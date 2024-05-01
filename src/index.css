@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cont-img {
+    text-align: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-image: url("https://cdn.www.gob.pe/uploads/document/file/5770787/898461-2.jpg");
+    background-position: right top;
+    background-size: cover;
+}
+
+.column-container {
+    column-count: 2;
+    column-gap: 20px;
+    text-align: justify;
+}
+.merienda {
+  font-family: "Merienda", cursive;
+}
+.anton-regular {
+  font-family: "Anton", sans-serif;
+}
+
+.cont-img-project{
+  text-align: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("https://miro.medium.com/v2/resize:fit:1400/1*JAIYv89MJhCkIEq2Zb-XlA.jpeg");
+  background-position: right top;
+  background-size: cover;
+}
