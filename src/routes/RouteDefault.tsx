@@ -1,33 +1,36 @@
 import React, { useEffect } from "react";
-import Inicio from "../page/client/Inicio";
+import Inicio from "../page/client/Home";
 import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
 import { useParam } from "../context/Context.provider";
 import Notice from "../page/client/Notice";
 import axios from "axios";
 import { useNotice } from "../context/Context.provider";
-
+import About from "../page/client/About";
+import Contact from "../page/client/Contact";
+import PATH_DOMAIN from "../config";
+import Login from "../page/client/Login";
 export interface DataNotice {
   id: string;
-  titulo: string;
-  imagen: string;
-  descripcion: string;
-  fecha: string;
+  title: string;
+  files: string;
+  content: string;
+  create_at: string;
+  date_published: string
 }
 
 const RouteDefault: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
   const { setParamNotice } = useNotice();
-
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const searchQuery = searchParams.get("search");
-    setParamURL(searchQuery || "inicio");
+    setParamURL(searchQuery || "home");
 
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost/regional/server/?action=notice"
+          `${PATH_DOMAIN}/regional/server/?action=obtener`
         );
         setParamNotice(response.data);
       } catch (error) {
@@ -40,7 +43,7 @@ const RouteDefault: React.FC = () => {
     const handlePopState = () => {
       const searchParams = new URLSearchParams(window.location.search);
       const searchQuery = searchParams.get("search");
-      setParamURL(searchQuery || "inicio");
+      setParamURL(searchQuery || "home");
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -51,19 +54,21 @@ const RouteDefault: React.FC = () => {
   }, []);
 
   return (
-    <div className="">
+    <div className="bg-[#041025]">
       <Header></Header>
       <div className="">
-        {paramURL === "inicio" ? (
+        {paramURL === "home" ? (
           <Inicio />
         ) : paramURL === "notice" ? (
           <Notice />
         ) : paramURL === "about" ? (
-          <h1>SOBRE NOSOTROS</h1>
+          <About></About>
         ) : paramURL === "service" ? (
           <h1>SERVICIOS</h1>
         ) : paramURL === "contact" ? (
-          <h1>CONTACTO</h1>
+          <Contact></Contact>
+        ) : paramURL === "login" ? (
+          <Login></Login>
         ) : (
           <h1>NO EXISTE LA RUTA</h1>
         )}

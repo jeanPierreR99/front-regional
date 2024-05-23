@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParam } from "../context/Context.provider";
 import logo from "../assets/logo-vivienda.png";
 
@@ -20,12 +20,33 @@ const Header: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    // Agrega un evento de escucha de scroll cuando el componente se monta
+    window.addEventListener("scroll", handleScroll);
+
+    // Elimina el evento de escucha de scroll cuando el componente se desmonta
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    // Verifica la posición actual del scroll y actualiza el estado en consecuencia
+    if (window.scrollY > 0) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
   return (
     <header
       className={
-        paramURL == "inicio"
-          ? "relative sm:absolute font-light top-0  z-[300] w-full bg-blue-700 md:bg-transparent"
-          : "relative font-light top-0 z-[300] w-full bg-blue-700"
+        paramURL == "home"
+          ? `fixed font-light top-0  z-[999] w-full bg-blue-900 ${scrolled? "bg-blue-900":"md:bg-transparent"}`
+          :paramURL=="login"?"hidden": " fixed font-light top-0 z-[999] w-full bg-blue-900"
       }
     >
       <div className="container mx-auto flex justify-between items-center py-2 px-6">
@@ -34,7 +55,7 @@ const Header: React.FC = () => {
         </div>
         <nav className="hidden md:flex">
           <button
-            onClick={() => handleChangeParam("inicio")}
+            onClick={() => handleChangeParam("home")}
             className="block text-white py-2 px-4 hover:border-b"
           >
             Inicio
@@ -98,7 +119,7 @@ const Header: React.FC = () => {
           <div className="md:hidden z-[999] absolute top-20 left-0 right-0 bg-blue-700">
             <div className="container mx-auto py-2 px-4">
               <button
-                onClick={() => handleChangeParam("inicio")}
+                onClick={() => handleChangeParam("home")}
                 className="block text-gray-300 py-2"
               >
                 Inicio

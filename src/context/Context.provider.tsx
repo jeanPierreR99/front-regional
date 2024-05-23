@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { DataNotice } from "../routes/RouteDefault";
 
 interface ParamContextType {
   paramURL: string;
@@ -7,8 +6,8 @@ interface ParamContextType {
 }
 
 interface NoticeContextType {
-  paramNotice: DataNotice | null;
-  setParamNotice: (paramNotice: DataNotice) => void;
+  paramNotice: any | null;
+  setParamNotice: (paramNotice: any) => void;
 }
 
 interface ParamIdContextType {
@@ -16,9 +15,36 @@ interface ParamIdContextType {
   setParamId: (paramId: string) => void;
 }
 
+interface LoginContextType {
+  isLoggedIn: boolean;
+  login: () => void;
+  logout: () => void;
+}
+
+const LoginContext = createContext<LoginContextType | undefined>(undefined);
 const ParamContext = createContext<ParamContextType | undefined>(undefined);
 const NoticeContext = createContext<NoticeContextType | null>(null);
 const ParamIdContext = createContext<ParamIdContextType | undefined>(undefined);
+
+export const LoginProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const login = () => {
+    setIsLoggedIn(true);
+  };
+
+  const logout = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <LoginContext.Provider value={{ isLoggedIn, login, logout }}>
+      {children}
+    </LoginContext.Provider>
+  );
+};
 
 export const ParamProvider: React.FC<{ children: ReactNode }> = ({
   children,
@@ -39,7 +65,7 @@ export const ParamProvider: React.FC<{ children: ReactNode }> = ({
 export const NoticeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [paramNotice, setParamNotice] = React.useState<DataNotice | null>(null);
+  const [paramNotice, setParamNotice] = React.useState<any | null>(null);
 
   const noticeContextValue: NoticeContextType = {
     paramNotice,
@@ -68,6 +94,14 @@ export const ParamIdProvider: React.FC<{ children: ReactNode }> = ({
       {children}
     </ParamIdContext.Provider>
   );
+};
+
+export const useLogin = (): LoginContextType => {
+  const context = useContext(LoginContext);
+  if (!context) {
+    throw new Error('useLogin must be used within a LoginProvider');
+  }
+  return context;
 };
 
 export const useParam = () => {

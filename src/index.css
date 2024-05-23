@@ -10,6 +10,13 @@
     background-position: right top;
     background-size: cover;
 }
+.cont-img-presentation {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("https://flowen.com.pe/wp-content/uploads/2020/12/PARA-BLOGS.jpg");
+  background-position: right top;
+  background-size: cover;
+}
 
 .column-container {
     column-count: 2;
@@ -30,4 +37,51 @@
   background-image: url("https://miro.medium.com/v2/resize:fit:1400/1*JAIYv89MJhCkIEq2Zb-XlA.jpeg");
   background-position: right top;
   background-size: cover;
+}
+.cont-img-about {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("https://seturismo.pe/wp-content/uploads/2018/08/turismo-en-Madre-de-Dios-780x470.jpg");
+  background-position: right top;
+  background-size: cover;
+}
+
+.pixel {
+  position: relative;
+  padding-top: 46px;
+  z-index: 1;
+}
+
+.pixel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("./assets/mision-port-2.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 40%;
+  opacity: 0.3; 
+  z-index: -1;
+}
+
+/* Estilo para la barra de desplazamiento del contenedor con clase .right */
+.right_scroll::-webkit-scrollbar {
+  width: 10px; /* Ancho de la barra de desplazamiento */
+}
+
+.right_scroll::-webkit-scrollbar-track {
+  background: #041025; /* Color del fondo de la barra de desplazamiento */
+}
+
+.right_scroll::-webkit-scrollbar-thumb {
+  background-color: #079ee4; /* Color de la barra de desplazamiento */
+  border-radius: 10px; /* Redondear la barra de desplazamiento */
+  border: 1px solid #079ee4; /* Espacio entre la barra y el contenedor */
+}
+
+.right_scroll::-webkit-scrollbar-thumb:hover {
+  background: #3183a9; /* Color de la barra de desplazamiento al pasar el mouse */
 }

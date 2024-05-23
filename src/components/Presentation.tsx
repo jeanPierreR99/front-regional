@@ -1,13 +1,23 @@
 import React from "react";
-
+// import preOne from "../assets/image-4.jpeg";
+import preTwo from "../assets/image-1.jpeg";
 const Presentation: React.FC = () => {
   return (
-    <div className="md:flex md:h-[540px] gap-4 overflow-hidden">
-      <div className="w-full md:w-7/12 flex flex-col justify-center gap-4">
-        <h5 style={{ lineHeight: "1.2" }} className="text-2xl md:text-5xl merienda font-black text-[#11BEF8]">
-          DIRECCIÓN REGIONAL DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO
+    <div className=" flex cont-img-presentation md:flex-row flex-col gap-14 overflow-hidden relative px-2 py-12 md:px-4 lg:px-16">
+      {/* <img
+        className="absolute z-10 left-0 top-0 w-full h-full"
+        src="https://i0.wp.com/vagamundosviajeros.com/wp-content/uploads/2016/08/puertomaldonado00302.jpg?ssl=1"
+        alt=""
+      /> */}
+      <div className="absolute z-10 w-full h-full top-0 left-0 bg-[#041025]/90 "></div>
+      <div className="w-full z-20 md:w-7/12 flex flex-col justify-center gap-4">
+        <h5
+          style={{ lineHeight: "1.2" }}
+          className="text-2xl z-20 md:text-5xl merienda font-black text-gray-100"
+        >
+          Lo que hacemos
         </h5>
-        <p className="text-md text-gray-500 font-light ">
+        <p className="text-md text-gray-300 font-light z-20">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
           necessitatibus quasi reiciendis perferendis ut tempore architecto
           pariatur? Provident aliquid, et rerum est odit accusamus alias,
@@ -16,19 +26,31 @@ const Presentation: React.FC = () => {
           nostrum vel optio fuga nulla delectus adipisci harum, molestiae
           explicabo dolorum ad beatae possimus quidem quo quibusdam.
         </p>
-        <span className="text-md merienda text-white font-bold bg-[#11BEF8] w-fit py-1 px-2 rounded-lg">
-          Agua colorada, Salud para todos
-        </span>
+        <ul className="list-none">
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            MEJORAR LA PRESTACIÓN DE SERVICIOS DE SANEAMIENTO RURAL
+          </li>
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          MEJORAR LA PRESTACIÓN DE SERVICIOS DE SANEAMIENTO RURAL
+          </li>
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          MEJORAR LA PRESTACIÓN DE SERVICIOS DE SANEAMIENTO RURAL
+          </li>
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          MEJORAR LA PRESTACIÓN DE SERVICIOS DE SANEAMIENTO RURAL
+          </li>
+        </ul>
+        <span className="text-gray-300 mt-5 font-light text-md relative ml-32  before:absolute  before:top-[50%] before:left-[-125px] before:text-8xl before:text-red-600 before:translate-y-[-50%] before:content-['10'] before:font-bold       after:absolute  after:top-[-40px] after:left-[-15px] after:text-5xl after:text-red-600 after:content-['+'] after:font-bold">Años llegando a tu hogar</span>
       </div>
-      <div className="w-full md:h-[540px] h-[460px] md:w-5/12 relative">
+      <div className="w-full z-20  h-[460px] md:w-5/12 relative">
         <img
-          className="md:w-[300px] border-4 border-[#11BEF8] w-[260px] h-[300px] shadow-xl md:h-[370px]  absolute top-32 left-0 md:left-6 rounded-md z-10 object-cover"
-          src="https://scontent.faqp2-2.fna.fbcdn.net/v/t31.18172-8/14500368_1745064772424258_3132535929541907353_o.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=gkwh6dEOzUQQ7kNvgGWOOZb&_nc_ht=scontent.faqp2-2.fna&oh=00_AfAG116byb29AzcdtW4Hb-Cjb6AOuoqTz1jJgyf23WiVgA&oe=6651EF1E"
+          className="absolute object-cover  z-20 w-[240px] h-[240px] bottom-0 left-0 border-2 border-[#3183a9]"
+          src="https://norteenlinea.com/media/k2/items/cache/80bb739c86fe521ed43709e93dbc77a6_XL.jpg"
           alt=""
         />
         <img
-          className="md:w-[300px]  border-4 border-[#11BEF8] w-[260px] h-[300px] shadow-xl md:h-[370px]  absolute top-6 left-36 md:left-40 rounded-md object-cover"
-          src="https://cdn.www.gob.pe/uploads/document/file/2148734/standard_WhatsApp%20Image%202021-09-01%20at%204.52.01%20PM.jpeg.jpeg"
+          className="absolute object-cover left-0 top-0 w-full h-[90%] border-2 border-[#3183a9]"
+          src={preTwo}
           alt=""
         />
       </div>

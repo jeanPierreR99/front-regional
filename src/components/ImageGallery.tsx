@@ -23,10 +23,10 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
       return (
         <div className="w-full h-full">
           <div
-            className="w-[100%] h-[100%] cursor-pointer sepia hover:sepia-0"
+            className="w-[100%] h-[100%] cursor-pointer sepia hover:sepia-0 transition-all duration-500"
             onClick={() => openLightbox(url)}
           >
-            <img className="w-full h-full" src={url} alt="" />
+            <img className="w-full h-full rounded-lg" src={url} alt="" />
           </div>
           <span className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-gray-500 rounded-full bg-white/80 select-none p-2 hidden group-hover/image:block">
             <svg
@@ -49,13 +49,21 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
               />
             </svg>
           </span>
+          <span className="absolute bottom-0 right-0 bg-blue-500 text-white px-2 py-1 rounded-tl-lg text-xs">
+            Foto
+          </span>
         </div>
       );
     } else if (type === "video") {
       return (
-        <div className="w-[100%] h-[100%] cursor-pointer sepia hover:sepia-0">
-          <video className="w-full h-full" controls src={url} />
-        </div>
+        <>
+          <span className="absolute z-10 bottom-0 right-0 bg-blue-500 text-white px-2 py-1 rounded-tl-lg text-xs">
+            Video
+          </span>
+          <div className="w-[100%] h-[100%] cursor-pointer sepia hover:sepia-0">
+            <video className="w-full h-full rounded-lg" controls src={url} />
+          </div>
+        </>
       );
     } else {
       return null;
@@ -63,12 +71,12 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
   };
 
   return (
-    <div className="flex relative w-[400px] h-[260px] group/image bg-black">
+    <div className="flex relative rounded-lg w-[49%] md:w-[250px] h-[200px] group/image bg-black shadow-md">
       {renderMedia()}
       {/* Lightbox */}
       {lightboxOpen && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-[90%] h-[70%] md:h-[95%]">
+          <div className="w-[90%] h-[50%] md:h-[95%]">
             {type === "image" && (
               <img className="w-full h-full" src={selectedMedia} alt="" />
             )}

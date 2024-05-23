@@ -5,7 +5,7 @@ const LetterTransition = () => {
   const [textIndex, setTextIndex] = useState(0);
   const texts = [
     "Agua colorada, Salud para todos",
-    "¡Compromiso con el saneamiento rural",
+    "¡Compromiso con el saneamiento rural!",
   ];
   const [isReversing, setIsReversing] = useState(false);
 
@@ -42,7 +42,7 @@ const LetterTransition = () => {
   }, [textIndex, isReversing]);
 
   return (
-    <h5 className="md:text-4xl tracking-widest text-xl text-green-500 font-light text-center letter-transition">
+    <h5 className="md:text-4xl tracking-widest text-xl text-blue-400 font-bold text-center letter-transition">
       {displayText.split("").map((letter, index) => (
         <span key={index} className="letter merienda">
           {letter} 

@@ -1,4 +1,5 @@
 import {
+  LoginProvider,
   NoticeProvider,
   ParamIdProvider,
   ParamProvider,
@@ -8,6 +9,7 @@ import RouteMain from "./routes/RouteMain";
 function App() {
   return (
     <div className="app App">
+      <LoginProvider>
       <ParamProvider>
         <NoticeProvider>
           <ParamIdProvider>
@@ -15,6 +17,7 @@ function App() {
           </ParamIdProvider>
         </NoticeProvider>
       </ParamProvider>
+      </LoginProvider>
     </div>
   );
 }
