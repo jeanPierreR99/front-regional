@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import TypewriterText from "./TypeWriterText";
 import portadaOne from "../assets/image-1.jpeg";
 import portadaTwo from "../assets/image-3.jpeg";
 const Slider: React.FC = () => {
   const [currSlide, setCurrSlide] = useState<number>(0);
+
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Solo animar una vez
+    threshold: 0.1, // Cuando el 20% del card es visible
+  });
+
   const slides: string[] = [
     portadaTwo,
     "https://e.rpp-noticias.io/xlarge/2023/01/19/074207_1377242.jpg",
@@ -29,7 +37,7 @@ const Slider: React.FC = () => {
   }, [currSlide]);
 
   return (
-    <div className="relative h-[500px] md:h-screen">
+    <div className="relative h-[600px] md:h-screen">
       <div className="overflow-hidden  w-full h-full">
         <div
           className="flex w-full h-full transition-transform duration-1000"
@@ -47,15 +55,27 @@ const Slider: React.FC = () => {
         </div>
       </div>
       <div className="absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]  z-[100] text-white w-9/12 md:w-10/12">
-        <h4
-          style={{ lineHeight: "1.4" }}
-          className="md:text-5xl text-center tracking-wide merienda  text-2xl font-bold"
+        <motion.h4
+          ref={ref}
+          initial={{ opacity: 0, x: -100 }}
+          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          transition={{ duration: 0.5 }}
+          className="md:text-5xl anton-regular text-center text-3xl"
         >
-          {/* DIRECCIÓN REGIONAL DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO */}
-          DRVCS MDD
-        </h4>
-        <p className="font-bold text-3xl text-center merienda">Trabajamos para mejorar la calidad de vida a través de proyectos de vivienda y saneamiento.</p>
-        <TypewriterText></TypewriterText>
+          DIRECCIÓN REGIONAL DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO  MDD
+          {/* DRVCS MDD */}
+        </motion.h4>
+        <motion.p
+          ref={ref}
+          initial={{ opacity: 0, x: 100 }}
+          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+          transition={{ duration: 0.5 }}
+          className="text-xl md:text-2xl text-center"
+        >
+          {/* Trabajamos para mejorar la calidad de vida a través de proyectos de */}
+          {/* {/* vivienda y saneamiento. */}
+        </motion.p>
+        {/* <TypewriterText></TypewriterText> */}
       </div>
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 h-full w-full">
@@ -104,7 +124,7 @@ const Slider: React.FC = () => {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          className="w-10 h-10 animate-bounce"
+          className="w-7 h-7 animate-bounce"
         >
           <path
             stroke-linecap="round"

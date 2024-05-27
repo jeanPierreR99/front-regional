@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
-
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 const LetterTransition = () => {
   const [displayText, setDisplayText] = useState("");
   const [textIndex, setTextIndex] = useState(0);
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Solo animar una vez
+    threshold: 0.1, // Cuando el 20% del card es visible
+  });
   const texts = [
     "Agua colorada, Salud para todos",
     "¡Compromiso con el saneamiento rural!",
@@ -42,13 +47,19 @@ const LetterTransition = () => {
   }, [textIndex, isReversing]);
 
   return (
-    <h5 className="md:text-4xl tracking-widest text-xl text-blue-400 font-bold text-center letter-transition">
+    <motion.h5
+      ref={ref}
+      initial={{ opacity: 0, y: 100 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+      transition={{ duration: 0.5 }}
+      className="md:text-2xl text-xl text-center letter-transition"
+    >
       {displayText.split("").map((letter, index) => (
-        <span key={index} className="letter merienda">
-          {letter} 
+        <span key={index} className="letter">
+          {letter}
         </span>
       ))}
-    </h5>
+    </motion.h5>
   );
 };
 

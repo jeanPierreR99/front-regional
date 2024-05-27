@@ -1,50 +1,72 @@
-import React, { useEffect } from 'react';
-import Logo from '../../components/Logo';
+import React, { useEffect } from "react";
+import Logo from "../../components/Logo";
+import SocialMedia from "../../components/SocialMedia";
+import Links from "../../components/Links";
 
-const Contact:React.FC = () => {
-  useEffect(()=>{
+const Contact: React.FC = () => {
+  useEffect(() => {
     window.scrollTo(0, 0);
-  })
+  });
   return (
     <section className="mt-36 px-2 md:px-4 lg:px-16">
       <div className="">
-        <h2 className="text-3xl text-gray-800 md:text-4xl font-bold mb-8">
+        <h2 className="text-3xl text-gray-200 md:text-4xl font-bold mb-8">
           Contáctenos
         </h2>
+        <div className="text-gray-300 mb-2 font-light">
+          <p>
+            <strong className="font-semibold">¡Nos encantaría saber de ti!</strong> ¿Tienes alguna pregunta, comentario o
+            simplemente quieres saludarnos? Estamos aquí para ayudarte. No dudes
+            en ponerte en contacto con nosotros a través del formulario a
+            continuación o utilizando cualquiera de los métodos de contacto
+            proporcionados. Nuestro equipo estará encantado de atenderte y
+            responder a todas tus inquietudes.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Formulario de contacto */}
           <div>
             <form className="space-y-4">
               <div>
-                <label htmlFor="name" className="block font-medium">
+                <label
+                  htmlFor="name"
+                  className="block font-medium text-gray-300"
+                >
                   Nombre
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block font-medium">
+                <label
+                  htmlFor="email"
+                  className="block font-medium text-gray-300"
+                >
                   Correo electrónico
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block font-medium">
+                <label
+                  htmlFor="message"
+                  className="block font-medium text-gray-300"
+                >
                   Mensaje
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  rows={6}
+                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
                 ></textarea>
               </div>
               <button
@@ -68,9 +90,13 @@ const Contact:React.FC = () => {
           </div>
         </div>
       </div>
-      <div className='mt-14'>
-      <Logo></Logo>
+      <div className="mt-14">
+        <Logo></Logo>
+        <div className="py-6">
+          <Links></Links>
+        </div>
       </div>
+      <SocialMedia></SocialMedia>
     </section>
   );
 };

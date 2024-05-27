@@ -1,6 +1,8 @@
 import PATH_DOMAIN from "../config";
 import { useParam, useParamId } from "../context/Context.provider";
 import { DataNotice } from "../routes/RouteDefault";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 const CardNotice: React.FC<DataNotice> = ({
   id,
   title,
@@ -10,7 +12,10 @@ const CardNotice: React.FC<DataNotice> = ({
 }) => {
   const { setParamURL } = useParam();
   const { setParamId } = useParamId();
-
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Solo animar una vez
+    threshold: 0.1, // Cuando el 20% del card es visible
+  });
   const handleChangeParam = (newParam: string) => {
     setParamURL("notice");
     setParamId(newParam);
@@ -24,7 +29,11 @@ const CardNotice: React.FC<DataNotice> = ({
   };
 
   return (
-    <div
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: 100 }}
+      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+      transition={{ duration: 0.5 }}
       onClick={() => handleChangeParam(id)}
       className="flex cursor-pointer h-[180px] md:w-full group/notice border border-[#3183a9] hover:bg-[#3183a9]/20 duration-500 flex-shrink-0 overflow-hidden shadow-lg hover:scale-110"
     >
@@ -46,7 +55,7 @@ const CardNotice: React.FC<DataNotice> = ({
           {create_at}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

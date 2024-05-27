@@ -9,6 +9,7 @@ import CardProjects from "../../components/CardProjects";
 import GallerySection from "../../components/GallerySection";
 import Links from "../../components/Links";
 import GalleryFill from "../../components/GalleryFill";
+import SocialMedia from "../../components/SocialMedia";
 
 const Inicio: React.FC = () => {
   const { paramNotice } = useNotice();
@@ -19,7 +20,7 @@ const Inicio: React.FC = () => {
   return (
     <div className="">
       <Slider></Slider>
-      <div className="flex flex-col mt-16 overflow-hidden">
+      <div className="flex flex-col mt-16 overflow-hidden relative">
         <div className="mb-16 px-2 md:px-4 lg:px-16">
           <Logo></Logo>
         </div>
@@ -29,9 +30,9 @@ const Inicio: React.FC = () => {
         <div>
           <Mision></Mision>
         </div>
-        <div className="px-2 py-2 md:px-4 lg:px-16 mt-14">
+        <div className="px-2 py-2 md:px-4 lg:px-16 mt-">
           <div className="flex flex-col gap-4">
-            <h6 className="relative text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
+            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               SANEAMIENTO Y URBANISMO
             </h6>
             <span className="text-gray-300 text-center font-light">
@@ -44,18 +45,16 @@ const Inicio: React.FC = () => {
               y los residuos hasta la creación de espacios verdes accesibles,
               cada aspecto del saneamiento y el urbanismo influye en nuestra
               cotidianidad y en el legado que dejamos a las generaciones
-              futuras. Por tanto, es imperativo dedicar recursos y esfuerzos a
-              la creación y mantenimiento de entornos urbanos que promuevan la
-              equidad, la inclusión y el bienestar para todos.
+              futuras.
             </span>
-            <div className="-mx-10 md:-mx-20">
-            <GalleryFill></GalleryFill>
+            <div className="-mx-10 md:-mx-20 pt-3">
+              <GalleryFill></GalleryFill>
             </div>
           </div>
         </div>
         <div className="px-2 py-2 md:px-4 lg:px-16 mt-14">
           <div className="flex flex-col gap-4">
-            <h6 className="relative text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
+            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               NOTICIAS
             </h6>
             <span className="text-gray-300 text-center font-light">
@@ -84,7 +83,7 @@ const Inicio: React.FC = () => {
         </div>
         <div className="mt-10 ">
           <div className="flex flex-col gap-4 px-2 md:px-4 lg:px-16">
-            <h6 className="relative text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
+            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               PROYECTOS
             </h6>
             <span className="text-gray-300 text-center font-light">
@@ -101,7 +100,7 @@ const Inicio: React.FC = () => {
         </div>
         <div className="px-2 py-2 md:px-4 lg:px-16 mt-14">
           <div className="flex flex-col gap-4">
-            <h6 className="relative text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
+            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               MULTIMEDIA
             </h6>
             <span className="text-gray-300 text-center font-light">
@@ -120,7 +119,7 @@ const Inicio: React.FC = () => {
         </div>
         <div className="px-2 py-2 md:px-4 lg:px-16 mt-6">
           <div className="flex flex-col gap-4">
-            <h6 className="relative text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
+            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               ENLACES DE INTERES
             </h6>
             <span className="text-gray-300 text-center font-light">
@@ -136,6 +135,7 @@ const Inicio: React.FC = () => {
           </div>
         </div>
       </div>
+      <SocialMedia></SocialMedia>
     </div>
   );
 };

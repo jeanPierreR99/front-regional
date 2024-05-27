@@ -1,33 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import GallerySection from "../GallerySection";
 import { useNotice } from "../../context/Context.provider";
 import PATH_DOMAIN from "../../config";
+import relojArena from "../../assets/icons8-reloj-arena-abajo.gif";
 import axios from "axios";
 
 interface ModalViewNoticeProps {
   isOpeView: boolean;
   id: string;
+  toast: any;
   onClose: () => void;
 }
 
 const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
   isOpeView,
   id,
+  toast,
   onClose,
 }) => {
   const { paramNotice, setParamNotice } = useNotice();
+  const [loading, setLoading] = useState<boolean>(false);
+  // const notify = () => {
+  //   toast.success("This is a success message!");
+  //   toast.error("This is an error message!");
+  //   toast.info("This is an info message!");
+  //   toast.warning("This is a warning message!");
+  // };
   if (!isOpeView) return null;
 
   const deleteNotice = async (id: any) => {
+    setLoading(true);
     try {
       const response = await axios.get(
         `${PATH_DOMAIN}/regional/server/?action=deletenotice&id=${id}`
       );
       if (response.data) {
-        alert("noticia: " + id + " eliminado");
         setParamNotice((prevNotices: any) =>
           prevNotices.filter((notice: any) => notice.id !== id)
         );
+        toast.success("Eliminado Correctamente: " + id);
+        setLoading(false)
         onClose();
         console.log(response);
       }
@@ -41,7 +53,9 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
       <div className="relative z-10 w-11/12 lg:w-[50%] md:w-8/12  h-[100%] mx-auto">
         <div className="bg-[#041025] border border-[#3183a9] w-full  h-full rounded-lg shadow-lg">
           <div className="flex justify-between items-center border-b border-[#3183a9] p-4">
-            <h3 className="text-lg font-semibold text-gray-200">Noticia {id}</h3>
+            <h3 className="text-lg font-semibold text-gray-200">
+              Noticia {id}
+            </h3>
             <button
               className="text-gray-300 hover:text-gray-400 focus:outline-none"
               onClick={onClose}
@@ -59,7 +73,7 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
               </svg>
             </button>
           </div>
-          <div className="p-4 overflow-y-auto h-[90%]">
+          <div className="p-4 overflow-y-auto h-[90%] overflow-x-hidden">
             {Array.isArray(paramNotice) &&
               paramNotice.map((obj) => {
                 if (obj.id === id) {
@@ -67,10 +81,13 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
                     <div key={obj.id} className="">
                       <div>
                         <button
-                          className="bg-red-600 hover:bg-red-500 text-white px-4 py-1 rounded-md mb-2"
+                          className="bg-red-600 flex gap-2 items-center hover:bg-red-500 text-white px-4 py-1 rounded-md mb-2"
                           onClick={() => deleteNotice(obj.id)}
                         >
-                          ELiminar
+                          <span>Eliminar</span>
+                          {loading && (
+                            <img src={relojArena} alt="" className="h-6" />
+                          )}
                         </button>
                       </div>
                       <div className="w-full flex flex-col">

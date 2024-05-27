@@ -3,16 +3,12 @@ import CardNotice from "../../components/CardNotice";
 import { useEffect } from "react";
 import GallerySection from "../../components/GallerySection";
 import Logo from "../../components/Logo";
+import Links from "../../components/Links";
 import PATH_DOMAIN from "../../config";
-// import EditorQuill from "../../components/EditorQuill";
+import SocialMedia from "../../components/SocialMedia";
 const Notice: React.FC = () => {
   const { paramNotice } = useNotice();
   const { paramId, setParamId } = useParamId();
-  // const handleChangeParam = () => {
-  //   const newSearchParams = new URLSearchParams(window.location.search);
-  //   const id = newSearchParams.get("id");
-  //   setUrl(id);
-  // };
 
   const handleChangeParam = () => {
     const newSearchParams = new URLSearchParams(window.location.search);
@@ -75,8 +71,8 @@ const Notice: React.FC = () => {
                   </div>
                 </div>
                 <div
-                  style={{ position: "sticky", top: "10px", overflowY: "auto" }}
-                  className="right_scroll w-full md:w-5/12  h-auto md:h-screen flex flex-col md:flex-col gap-4 px-2 py-4 md:py-0 overflow-x-hidden"
+                  style={{ position: "sticky", top: "90px", overflowY: "auto" }}
+                  className="right_scroll w-full md:w-5/12  h-auto md:h-[calc(100vh-100px)] flex flex-col md:flex-col gap-4 px-2 py-4 md:py-0 overflow-x-hidden"
                 >
                   {Array.isArray(paramNotice) &&
                     paramNotice.map((data) => (
@@ -136,8 +132,8 @@ const Notice: React.FC = () => {
               </div>
             </div>
             <div
-              style={{ position: "sticky", top: "10px", overflowY: "auto" }}
-              className="right_scroll w-full md:w-5/12  h-auto md:h-screen flex flex-col md:flex-col gap-4 px-2 py-4 md:py-0 overflow-x-hidden"
+              style={{ position: "sticky", top: "90px", overflowY: "auto" }}
+              className="right_scroll w-full md:w-5/12  h-auto md:h-[calc(100vh-100px)] flex flex-col md:flex-col gap-4 px-2 py-4 md:py-0 overflow-x-hidden"
             >
               {Array.isArray(paramNotice) &&
                 paramNotice.map((data) => (
@@ -156,7 +152,11 @@ const Notice: React.FC = () => {
         )}
       <div className="mt-14">
         <Logo></Logo>
+        <div className="py-6">
+          <Links></Links>
+        </div>
       </div>
+      <SocialMedia></SocialMedia>
     </div>
   );
 };

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNotice } from "../../context/Context.provider";
 import CardNotice from "../../components/CardNotice";
 import iconAddNotice from "../../assets/icon-add-noticia.png";
 import ModalAddNotice from "../../components/admin/ModalAddNotice";
 import ModalViewNotice from "../../components/admin/ModalViewNotice";
-// import EditorQuill from "../../components/EditorQuill";
+
 const NoticeAdmin: React.FC = () => {
   const { paramNotice } = useNotice();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenView, setIsOpenView] = useState(false);
   const [paramId, setParamId] = useState("");
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -18,8 +21,8 @@ const NoticeAdmin: React.FC = () => {
     setIsOpen(false);
   };
 
-  const openModalView = (id:string) => {
-    setParamId(id)
+  const openModalView = (id: string) => {
+    setParamId(id);
     setIsOpenView(true);
   };
 
@@ -35,15 +38,16 @@ const NoticeAdmin: React.FC = () => {
       >
         <img src={iconAddNotice} className="w-[50px] h-[50px]" alt="" />
       </button>
-      {/* <EditorQuill></EditorQuill> */}
-      <ModalAddNotice isOpen={isOpen} onClose={closeModal}></ModalAddNotice>
+      <ModalAddNotice isOpen={isOpen} toast={toast} onClose={closeModal}></ModalAddNotice>
       <div className="w-full flex md:flex-wrap flex-col md:flex-row gap-10 justify-center overflow-hidden">
         {Array.isArray(paramNotice) &&
           paramNotice.map((data) => (
             <div
               key={data.id}
               className=" w-full md:w-5/12"
-              onClick={()=>{openModalView(data.id)}}
+              onClick={() => {
+                openModalView(data.id);
+              }}
             >
               <CardNotice
                 id={data.id}
@@ -59,8 +63,21 @@ const NoticeAdmin: React.FC = () => {
       <ModalViewNotice
         isOpeView={isOpenView}
         id={paramId}
+        toast={toast}
         onClose={closeModalView}
-      ></ModalViewNotice>
+      />
+
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

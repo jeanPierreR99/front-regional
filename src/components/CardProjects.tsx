@@ -1,8 +1,18 @@
 import React from "react";
-
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 const CardProjects: React.FC = () => {
+
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Solo animar una vez
+    threshold: 0.2, // Cuando el 20% del card es visible
+  });
   return (
-    <div className="w-full group/project overflow-hidden mt-6 flex-shrink-0 flex h-[500px] px-2 md:px-4 lg:px-16">
+    <motion.div      ref={ref}
+    initial={{ opacity: 0, x: -100 }}
+    animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+    transition={{ duration: 0.5 }} 
+    className="w-full group/project overflow-hidden mt-6 flex-shrink-0 flex h-[500px] px-2 md:px-4 lg:px-16">
       <div className="w-6/12 relative flex items-center justify-center">
         <iframe
           className="z-10 w-[400px] h-[400px] rounded-xl border-4  border-[#081d3d]"
@@ -36,7 +46,7 @@ const CardProjects: React.FC = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

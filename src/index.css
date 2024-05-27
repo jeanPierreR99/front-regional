@@ -28,6 +28,7 @@
 }
 .anton-regular {
   font-family: "Anton", sans-serif;
+  letter-spacing: 4px;
 }
 
 .cont-img-project{
@@ -67,13 +68,19 @@
   z-index: -1;
 }
 
+.img-mision{
+  filter: drop-shadow(0 0 5px #3aafe6);
+}
+.img-mision:hover{
+  filter: drop-shadow(0 0 10px #3aafe6);
+}
 /* Estilo para la barra de desplazamiento del contenedor con clase .right */
 .right_scroll::-webkit-scrollbar {
   width: 10px; /* Ancho de la barra de desplazamiento */
 }
 
 .right_scroll::-webkit-scrollbar-track {
-  background: #041025; /* Color del fondo de la barra de desplazamiento */
+  background: #08285f; /* Color del fondo de la barra de desplazamiento */
 }
 
 .right_scroll::-webkit-scrollbar-thumb {
@@ -84,4 +91,8 @@
 
 .right_scroll::-webkit-scrollbar-thumb:hover {
   background: #3183a9; /* Color de la barra de desplazamiento al pasar el mouse */
+}
+
+.letter{
+  color: rgb(6, 249, 249);
 }

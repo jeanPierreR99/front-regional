@@ -44,7 +44,7 @@ const Login: React.FC = () => {
         </div>
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           <div className=" flex flex-col gap-2 ">
-            <img src={logo} alt="" className=" object-scale-down" />
+            <img src={logo} alt="" className="bg-white object-scale-down" />
             <input
               id="user"
               name="user"

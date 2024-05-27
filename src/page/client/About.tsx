@@ -3,6 +3,8 @@ import Mision from "../../components/Mision";
 import aboutOne from "../../assets/about-1.png";
 import aboutTwo from "../../assets/about-2.png";
 import Logo from "../../components/Logo";
+import Links from "../../components/Links";
+import SocialMedia from "../../components/SocialMedia";
 
 const About: React.FC = () => {
   useEffect(() => {
@@ -20,7 +22,7 @@ const About: React.FC = () => {
             <img
               src={aboutTwo}
               alt="Sobre Nosotros"
-              className="w-full h-full"
+              className="w-full h-full mix-blend-multiply"
             />
           </div>
           <div className="md:w-1/2 w-full">
@@ -60,7 +62,7 @@ const About: React.FC = () => {
             <img
               src={aboutOne}
               alt="Sobre Nosotros"
-              className="w-full h-full"
+              className="w-full h-full mix-blend-multiply"
             />
           </div>
           <div className="md:w-1/2 w-full">
@@ -100,9 +102,13 @@ const About: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="mt-20">
-      <Logo></Logo>
+      <div className="mt-14">
+        <Logo></Logo>
+        <div className="py-6">
+          <Links></Links>
+        </div>
       </div>
+      <SocialMedia></SocialMedia>
     </div>
   );
 };

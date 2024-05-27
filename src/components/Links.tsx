@@ -1,43 +1,30 @@
-import React from "react";
+import gobierno from "../assets/gobierno.png"
+import iconNotice from "../assets/icon-noticia.png"
+import coer from "../assets/coer.png"
+import datas from "../assets/datas.png"
+
 
 const Links: React.FC = () => {
+
   return (
-    <div className="flex flex-col gap-4">
-      <a
-        className="text-blue-400 w-fit hover:text-blue-600 border-b border-b-blue-400 hover:border-b-blue-600"
-        href="https://datass.vivienda.gob.pe/"
-      >
-        DATASS
+    <div className="flex flex-wrap gap-10 justify-center items-center text-center">
+    <a href="https://datass.vivienda.gob.pe/" className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+        <img src={datas} className="w-[70%] h-[70%]" alt="" />
+        <span>DATASS</span>
       </a>
-      {/* <div className="w-full h-[600px]">
-        <iframe
-          title="DATASS"
-          src="https://datass.vivienda.gob.pe/"
-          allowFullScreen
-          loading="lazy"
-          className="w-full h-full rounded-lg shadow-lg"
-        ></iframe>
-      </div> */}
-      <a
-        className="text-blue-400 w-fit hover:text-blue-600 border-b border-b-blue-400 hover:border-b-blue-600"
-        href="https://datass.vivienda.gob.pe/"
-      >
-        otro
+      <a href="https://datass.vivienda.gob.pe/" className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+        <img src={gobierno} className="w-[70%] h-[70%]" alt="" />
+        <span>GOGIERNO REGIONAL</span>
       </a>
-      <a
-        className="text-blue-400 w-fit hover:text-blue-600 border-b border-b-blue-400 hover:border-b-blue-600"
-        href="https://datass.vivienda.gob.pe/"
-      >
-        otro
+      <a href="https://datass.vivienda.gob.pe/" className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+        <img src={coer} className="w-[70%] h-[70%]" alt="" />
+        <span>COER</span>
       </a>
-      <a
-        className="text-blue-400 w-fit hover:text-blue-600 border-b border-b-blue-400 hover:border-b-blue-600"
-        href="https://datass.vivienda.gob.pe/"
-      >
-        otro
+      <a href="https://datass.vivienda.gob.pe/" className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+        <img src={iconNotice} className="w-[70%] h-[70%]" alt="" />
+        <span>Noticias</span>
       </a>
     </div>
   );
 };
-
 export default Links;
