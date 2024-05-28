@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import TypewriterText from "./TypeWriterText";
 import portadaOne from "../assets/image-1.jpeg";
 import portadaTwo from "../assets/image-3.jpeg";
 const Slider: React.FC = () => {
@@ -85,7 +84,7 @@ const Slider: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90"></div>
       <button
         onClick={prevSlide}
-        className="absolute w-10 h-10 ml-2 md:ml-10 cursor-pointer font-bold text-white/60 hover:text-white rounded-full bg-white/20 hover:bg-red-700 leading-tight text-center z-[600] top-[50%] translate-y-[-50%] left-0 flex items-center justify-center"
+        className="absolute w-10 h-10 ml-2 md:ml-10 cursor-pointer font-bold text-white/60 hover:text-white rounded-full bg-white/20 hover:bg-blue-400 duration-200 leading-tight text-center z-[600] top-[50%] translate-y-[-50%] left-0 flex items-center justify-center"
       >
         <svg
           className="w-6 h-6"
@@ -102,7 +101,7 @@ const Slider: React.FC = () => {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute w-10 h-10 mr-2 md:mr-10 cursor-pointer font-bold text-white/60 hover:text-white rounded-full bg-white/20 hover:bg-red-700 leading-tight text-center z-[600] top-[50%] translate-y-[-50%] right-0 flex items-center justify-center"
+        className="absolute w-10 h-10 mr-2 md:mr-10 cursor-pointer font-bold text-white/60 hover:text-white rounded-full bg-white/20 hover:bg-blue-400 duration-200 leading-tight text-center z-[600] top-[50%] translate-y-[-50%] right-0 flex items-center justify-center"
       >
         <svg
           className="w-6 h-6"

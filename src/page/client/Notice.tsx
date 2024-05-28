@@ -22,10 +22,8 @@ const Notice: React.FC = () => {
   useEffect(() => {
     handleChangeParam();
     window.scrollTo(0, 0);
-  }, []); // Sin dependencias
+  }, [paramId]); 
 
-  console.log(paramId);
-  console.log(paramNotice);
   return (
     <div className="flex flex-col px-2 md:px-4 lg:px-16  pt-14">
       {paramId &&

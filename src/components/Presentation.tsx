@@ -26,11 +26,11 @@ const Presentation: React.FC = () => {
           style={{ lineHeight: "1.2" }}
           className="text-2xl z-20 md:text-5xl merienda font-black text-gray-100"
         >
-          Que hacemos
+          Sobre Nosotros
         </h5>
         <p className="merienda text-md text-gray-300 font-light z-20">
-          La Dirección Regional de Construcción y Saneamiento en Madre de Dios,
-          desempeña un papel crucial en una región caracterizada por su
+          La Dirección Regional de Vivienda Construcción y Saneamiento en Madre
+          de Dios, desempeña un papel crucial en una región caracterizada por su
           biodiversidad única y su desarrollo económico en constante evolución.
           En un entorno donde la minería, el turismo y la conservación ambiental
           convergen, la labor de esta dirección adquiere una relevancia aún
@@ -67,6 +67,23 @@ const Presentation: React.FC = () => {
         <span className="merienda text-gray-300 mt-5 font-light text-md relative ml-32  before:absolute  before:top-[50%] before:left-[-125px] before:text-8xl before:text-red-600 before:translate-y-[-50%] before:content-['10'] before:font-bold       after:absolute  after:top-[-40px] after:left-[-15px] after:text-5xl after:text-red-600 after:content-['+'] after:font-bold">
           Años llegando a tu hogar
         </span>
+        <button className="flex gap-1 text-red-600 font-bold hover:text-red-500 w-fit mt-10 ">
+          Seguir leyendo{" "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </button>
       </motion.div>
       <motion.div
         ref={ref2}

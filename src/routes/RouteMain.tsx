@@ -16,7 +16,7 @@ function RouteMain() {
   }, [login]);
 
   if (loading) {
-    return <div>Loading...</div>; // O cualquier componente de carga que prefieras
+    return <div className="mt-26">Loading...</div>; // O cualquier componente de carga que prefieras
   }
 
   return isLoggedIn ? <RouteAdmin /> : <RouteDefault />;

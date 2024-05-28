@@ -55,7 +55,7 @@ const Inicio: React.FC = () => {
         <div className="px-2 py-2 md:px-4 lg:px-16 mt-14">
           <div className="flex flex-col gap-4">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
-              NOTICIAS
+              ULTIMAS NOTICIAS
             </h6>
             <span className="text-gray-300 text-center font-light">
               Descubre las últimas novedades y acontecimientos relacionados con

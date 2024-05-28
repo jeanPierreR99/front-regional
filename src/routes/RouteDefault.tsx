@@ -10,13 +10,14 @@ import About from "../page/client/About";
 import Contact from "../page/client/Contact";
 import PATH_DOMAIN from "../config";
 import Login from "../page/client/Login";
+import Multimedia from "../page/client/Multimedia";
 export interface DataNotice {
   id: string;
   title: string;
   files: string;
   content: string;
   create_at: string;
-  date_published: string
+  date_published: string;
 }
 
 const RouteDefault: React.FC = () => {
@@ -55,20 +56,20 @@ const RouteDefault: React.FC = () => {
 
   return (
     <div className="bg-[#041025]">
-      <Header></Header>
+      <Header />
       <div className="">
         {paramURL === "home" ? (
           <Inicio />
         ) : paramURL === "notice" ? (
           <Notice />
         ) : paramURL === "about" ? (
-          <About></About>
-        ) : paramURL === "service" ? (
-          <h1>SERVICIOS</h1>
+          <About />
+        ) : paramURL === "multimedia" ? (
+          <Multimedia />
         ) : paramURL === "contact" ? (
-          <Contact></Contact>
+          <Contact />
         ) : paramURL === "login" ? (
-          <Login></Login>
+          <Login />
         ) : (
           <h1>NO EXISTE LA RUTA</h1>
         )}

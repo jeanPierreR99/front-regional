@@ -56,31 +56,31 @@ const Header: React.FC = () => {
         <nav className="hidden md:flex">
           <button
             onClick={() => handleChangeParam("home")}
-            className="block text-white py-2 px-4 hover:border-b"
+            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Inicio
           </button>
           <button
             onClick={() => handleChangeParam("about")}
-            className="block text-white py-2 px-4 hover:border-b"
+            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Sobre nosotros
           </button>
           <button
             onClick={() => handleChangeParam("notice")}
-            className="block text-white py-2 px-4 hover:border-b"
+            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Noticias
           </button>
           <button
-            onClick={() => handleChangeParam("service")}
-            className="block text-white py-2 px-4 hover:border-b"
+            onClick={() => handleChangeParam("multimedia")}
+            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
-            Servicios
+            Multimedia
           </button>
           <button
             onClick={() => handleChangeParam("contact")}
-            className="block text-white py-2 px-4 hover:border-b"
+            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Contactos
           </button>
@@ -116,29 +116,35 @@ const Header: React.FC = () => {
           </button>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden z-[999] absolute top-20 left-0 right-0 bg-blue-700">
-            <div className="container mx-auto py-2 px-4">
+          <div className="md:hidden z-[999] absolute top-20 left-0 right-0 bg-blue-900">
+            <div className="container mx-auto">
               <button
                 onClick={() => handleChangeParam("home")}
-                className="block text-gray-300 py-2"
+                className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Inicio
               </button>
               <button
                 onClick={() => handleChangeParam("about")}
-                className="block text-gray-300 py-2"
+                className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
-                Acerca de
+                Sobre Nosotros
               </button>
               <button
                 onClick={() => handleChangeParam("notice")}
-                className="block text-gray-300 py-2"
+                className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
-                notice
+                Noticias
+              </button>
+              <button
+                onClick={() => handleChangeParam("multimedia")}
+                className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
+              >
+                Multimedia
               </button>
               <button
                 onClick={() => handleChangeParam("contact")}
-                className="block text-gray-300 py-2"
+                className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Contacto
               </button>

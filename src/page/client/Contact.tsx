@@ -8,10 +8,10 @@ const Contact: React.FC = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <section className="mt-36 px-2 md:px-4 lg:px-16">
-      <div className="">
+    <section className="pt-24 overflow-hidden px-2 md:px-4 lg:px-16">
+      <div className="pt-10">
         <h2 className="text-3xl text-gray-200 md:text-4xl font-bold mb-8">
-          Contáctenos
+          CONTÁCTENOS
         </h2>
         <div className="text-gray-300 mb-2 font-light">
           <p>

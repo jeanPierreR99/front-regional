@@ -11,10 +11,10 @@ const About: React.FC = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <div className="pt-24 overflow-hidden px-2 md:px-4 lg:px-16">
+    <section className="pt-24 overflow-hidden px-2 md:px-4 lg:px-16">
       <div className="w-full pt-10">
         <h2 className="text-3xl text-gray-200 md:text-4xl font-bold mb-8">
-          Sobre Nosotros
+          SOBRE NOSOTROS
         </h2>
         <Mision></Mision>
         <div className="flex flex-col md:flex-row justify-center items-center">
@@ -26,7 +26,7 @@ const About: React.FC = () => {
             />
           </div>
           <div className="md:w-1/2 w-full">
-            <span className="text-xl font-bold text-gray-300">Historia</span>
+            <span className="text-2xl md:text-4xl font-bold text-gray-300">HISTORIA</span>
             <p className=" text-gray-300 font-light mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -36,8 +36,8 @@ const About: React.FC = () => {
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <span className="text-xl font-bold text-gray-300">
-              Compromiso con la comunidad
+            <span className="text-2xl md:text-4xl font-bold text-gray-300">
+              COMPROMISO
             </span>
             <li className="text-gray-300 font-light">
               MEJORAR LA PRESTACIÓN DE SERVICIOS DE SANEAMIENTO RURAL{" "}
@@ -66,8 +66,8 @@ const About: React.FC = () => {
             />
           </div>
           <div className="md:w-1/2 w-full">
-            <span className="text-xl font-bold text-gray-300">
-              Logros y reconocimientos
+            <span className="text-2xl md:text-4xl font-bold text-gray-300">
+              LOGROS Y RECONOCIMIENTOS
             </span>
             <p className=" text-gray-300 font-light mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
@@ -109,7 +109,7 @@ const About: React.FC = () => {
         </div>
       </div>
       <SocialMedia></SocialMedia>
-    </div>
+    </section>
   );
 };
 

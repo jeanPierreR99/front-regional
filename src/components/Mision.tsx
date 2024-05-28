@@ -35,8 +35,8 @@ const Mision: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="font-medium text-xl text-gray-300 mb-1 tracking-wider">
-            Misión
+          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+            MISIÓN
           </h2>
           <p className="leading-relaxed text-gray-300 font-light">
             Trabajamos incansablemente para garantizar que cada proyecto de
@@ -63,8 +63,8 @@ const Mision: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="font-medium text-xl text-gray-300 mb-1 tracking-wider">
-            Vision
+          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+            VISIÓN
           </h2>
           <p className="leading-relaxed text-gray-300 font-light">
             Ser reconocidos como líderes regionales en la promoción de un
@@ -89,8 +89,8 @@ const Mision: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="font-medium text-xl text-gray-300 mb-1 tracking-wider">
-            Objetivos
+          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+            OBJETIVOS
           </h2>
           <ul className="list-none">
             <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
