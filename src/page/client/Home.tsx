@@ -27,10 +27,10 @@ const Inicio: React.FC = () => {
         <div className="">
           <Presentation></Presentation>
         </div>
-        <div>
+        <div className="px-2">
           <Mision></Mision>
         </div>
-        <div className="px-2 py-2 md:px-4 lg:px-16 mt-">
+        <div className="px-4 py-2 md:px-4 lg:px-16 mt-">
           <div className="flex flex-col gap-4">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               SANEAMIENTO Y URBANISMO
@@ -52,7 +52,7 @@ const Inicio: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="px-2 py-2 md:px-4 lg:px-16 mt-14">
+        <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
           <div className="flex flex-col gap-4">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               ULTIMAS NOTICIAS
@@ -82,7 +82,7 @@ const Inicio: React.FC = () => {
           </div>
         </div>
         <div className="mt-10 ">
-          <div className="flex flex-col gap-4 px-2 md:px-4 lg:px-16">
+          <div className="flex flex-col gap-4 px-4 md:px-4 lg:px-16">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               PROYECTOS
             </h6>
@@ -98,7 +98,7 @@ const Inicio: React.FC = () => {
             <CardProjects></CardProjects>
           </div>
         </div>
-        <div className="px-2 py-2 md:px-4 lg:px-16 mt-14">
+        <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
           <div className="flex flex-col gap-4">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               MULTIMEDIA
@@ -117,7 +117,7 @@ const Inicio: React.FC = () => {
             )}
           </div>
         </div>
-        <div className="px-2 py-2 md:px-4 lg:px-16 mt-6">
+        <div className="px-4 py-2 md:px-4 lg:px-16 mt-6">
           <div className="flex flex-col gap-4">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               ENLACES DE INTERES

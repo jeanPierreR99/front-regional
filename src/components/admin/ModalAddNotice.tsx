@@ -9,6 +9,32 @@ interface ModalAddNoticeProps {
   toast: any;
   onClose: () => void;
 }
+const processContent = (text: string) => {
+  if (!text) return "";
+  // Reemplazar **texto** con <strong>texto</strong>
+  const boldPattern = /\*\*(.*?)\*\*/g;
+  text = text.replace(boldPattern, '<strong class="text-bold">$1</strong>');
+
+  // Reemplazar --texto-- con <li>texto</li>
+  const listPattern = /--(.*?)--/g;
+  text = text.replace(listPattern, "<li>$1</li>");
+
+  return text;
+};
+
+const verifyTypeFile = (type: any, file: any) => {
+  if (type.startsWith("image/")) {
+    return <img className="w-full h-full object-cover" src={file} alt="" />;
+  }
+
+  return (
+    <video
+      src={file}
+      className="w-full h-[300px] md:h-[400px] object-cover"
+      controls
+    ></video>
+  );
+};
 
 const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
   isOpen,
@@ -34,6 +60,7 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
       const newFiles: File[] = Array.from(fileList);
       setFiles((prevFiles) => [...prevFiles, ...newFiles]);
     }
+    console.log(files);
   };
   const handleRemoveFile = (index: number) => {
     const newFiles = [...files];
@@ -47,7 +74,7 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
       return;
     }
 
-    setLoading(true)
+    setLoading(true);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -73,7 +100,7 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
       setContent("");
       setDate("");
       setFiles([]);
-      setLoading(false)
+      setLoading(false);
       setUploadMessage("");
       toast.success("Noticia agregada");
     } catch (error) {
@@ -84,8 +111,8 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
 
   return (
     <div className="fixed h-screen top-0 left-0 z-[999] py-4 outline-none bg-black/30 w-full">
-      <div className="relative z-10 w-11/12 lg:w-[70%] md:w-8/12  mx-auto">
-        <div className="bg-[#041025] border border-[#3183a9] w-full   rounded-lg shadow-lg">
+      <div className="relative z-10 w-11/12 lg:w-10/12 md:w-8/12 mx-auto">
+        <div className="bg-[#041025] border border-[#3183a9] w-full rounded-lg shadow-lg">
           <div className="flex justify-between items-center border-b border-[#3183a9] p-4">
             <h3 className="text-lg text-gray-300 font-semibold">
               Nueva Noticia
@@ -107,13 +134,23 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
               </svg>
             </button>
           </div>
-          <div className="p-4 overflow-y-auto h-auto">
+          <div className="p-4 overflow-y-auto h-[80vh] box-content">
             <form
-              className="w-full h-full md:flex flex-row gap-2"
+              className="w-full md:flex flex-row gap-2"
               onSubmit={handleSubmit}
               encType="multipart/form-data"
             >
-              <div className="w-6/12 flex flex-col gap-2">
+              <div
+                className="w-6/12 flex flex-col gap-2 h-[530px]"
+                style={{ position: "sticky", top: "0" }}
+              >
+                <input
+                  type="text"
+                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
+                  placeholder="Fecha de registro"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
                 <input
                   type="text"
                   className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
@@ -121,6 +158,19 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
+                <div className="text-gray-300 text-xs flex flex-col">
+                  <span>
+                    **Texto de ejemplo Bold**
+                    <span className="text-bold"> Texto de ejemplo Bold</span>
+                  </span>
+                  <span className="flex gap-4">
+                    --Texto de ejemplo List--<li> Texto de ejemplo List</li>
+                  </span>
+                  <span className="flex gap-4">
+                    --**Texto de ejemplo Combinado**--
+                    <li className="text-bold">Texto de ejemplo Combinado</li>
+                  </span>
+                </div>
                 <textarea
                   className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
                   rows={6}
@@ -129,27 +179,8 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
                   onChange={(e) => setContent(e.target.value)}
                 ></textarea>
                 <input
-                  type="text"
-                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
-                  placeholder="Fecha de registro"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-                {uploadMessage && (
-                  <p className="text-red-500">{uploadMessage}</p>
-                )}
-                <button
-                  type="submit"
-                  className="w-full flex gap-2 items-center justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-                >
-                  <span>Agregar</span>
-                  {loading && <img src={relojArena} alt="" className="h-6" />}
-                </button>
-              </div>
-              <div className="w-6/12">
-                <input
                   type="file"
-                  className="file:rounded-md file:bg-yellow-200 text-yellow-300 file:border-none file:hover:cursor-pointer cursor-pointer file:py-1 file:text-gray-700 w-full py-2 focus:outline-none sm:text-sm"
+                  className="file:rounded-md -mt-1 file:bg-yellow-200 text-yellow-300 file:border-none file:hover:cursor-pointer cursor-pointer file:py-1 file:text-gray-700 w-full py-2 focus:outline-none sm:text-sm"
                   onChange={handleFileChange}
                   multiple
                 />
@@ -181,6 +212,71 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
                       ))}
                     </tbody>
                   </table>
+                </div>
+                {uploadMessage && (
+                  <p className="text-red-500">{uploadMessage}</p>
+                )}
+                <button
+                  type="submit"
+                  className="w-full flex gap-2 items-center justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                >
+                  <span>Agregar</span>
+                  {loading && <img src={relojArena} alt="" className="h-6" />}
+                </button>
+              </div>
+              <div className="w-6/12">
+                {files.length > 0 && (
+                  <div className="w-full h-[250px] relative">
+                    <img
+                      className="w-full h-full object-cover"
+                      src={URL.createObjectURL(files[0])}
+                      alt=""
+                    />
+                  </div>
+                )}
+                <p className=" text-red-600 font-bold">Publicado el {date}</p>
+                <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
+                  {title}
+                </span>
+                <div className="column-container mt-2">
+                  <p
+                    className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
+                    dangerouslySetInnerHTML={{
+                      __html: processContent(content),
+                    }}
+                    style={{
+                      overflowWrap: "break-word",
+                      whiteSpace: "pre-line",
+                    }}
+                  ></p>
+                </div>
+                <div className="mt-6">
+                  <div className="grid grid-cols-4 gap-1">
+                    {files && files.length > 1 && (
+                      <div className="relative h-[250px] col-span-2 border-2 border-[#3183a9]">
+                        {verifyTypeFile(
+                          files[1].type,
+                          URL.createObjectURL(files[1])
+                        )}
+                      </div>
+                    )}
+                    {files && files.length > 2 && (
+                      <div className="relative h-[250px] col-span-2 border-2 border-[#3183a9]">
+                        {verifyTypeFile(
+                          files[2].type,
+                          URL.createObjectURL(files[2])
+                        )}
+                      </div>
+                    )}
+                    {files && files.length > 3 && (
+                      <div className="relative h-[250px] col-span-4 border-2 border-[#3183a9]">
+                        {verifyTypeFile(
+                          files[3].type,
+                          URL.createObjectURL(files[3])
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </form>

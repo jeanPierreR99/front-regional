@@ -20,7 +20,7 @@ const Multimedia: React.FC = () => {
       });
     setAllUrls(auxArray);
     window.scrollTo(0, 0);
-  }, []);
+  }, [paramNotice]);
   return (
     <section className="pt-24 overflow-hidden relative">
       <div className="pt-10">
@@ -35,10 +35,10 @@ const Multimedia: React.FC = () => {
                 key={index}
                 className={`${
                   index % 5 === 0
-                    ? "col-span-2 md:col-span-3"
+                    ? "col-span-2 md:col-span-2"
                     : index % 3 === 0
-                    ? "col-span-2 md:col-span-3"
-                    : "col-span-3 md:col-span-2"
+                    ? "col-span-2 md:col-span-2"
+                    : "col-span-3 md:col-span-3"
                 } relative overflow-hidden`}
               >
                 <ImageGallery url={data.url} type={data.type}></ImageGallery>

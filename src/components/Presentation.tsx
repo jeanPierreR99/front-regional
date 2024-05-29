@@ -3,7 +3,10 @@ import React from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import preTwo from "../assets/image-1.jpeg";
+import { useParam } from "../context/Context.provider";
 const Presentation: React.FC = () => {
+const {setParamURL} = useParam()
+
   const { ref: ref1, inView: inView1 } = useInView({
     triggerOnce: true,
     threshold: 0.4,
@@ -12,8 +15,19 @@ const Presentation: React.FC = () => {
     triggerOnce: true,
     threshold: 0.4,
   });
+
+  const handleChangeParam = (newParam: string) => {
+    setParamURL(newParam);
+    console.log(newParam);
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.delete("id")
+    newSearchParams.set("search", newParam);
+    const newUrl = `?${newSearchParams.toString()}`;
+    window.history.pushState({ path: newUrl }, "", newUrl);
+  };
+
   return (
-    <div className=" flex cont-img-presentation md:flex-row flex-col gap-14 overflow-hidden relative px-2 py-12 md:px-4 lg:px-16">
+    <div className="flex cont-img-presentation md:flex-row flex-col gap-14 overflow-hidden relative px-4 py-12 md:px-4 lg:px-16">
       <div className="absolute z-10 w-full h-full top-0 left-0 bg-[#041025]/90 "></div>
       <motion.div
         ref={ref1}
@@ -67,7 +81,7 @@ const Presentation: React.FC = () => {
         <span className="merienda text-gray-300 mt-5 font-light text-md relative ml-32  before:absolute  before:top-[50%] before:left-[-125px] before:text-8xl before:text-red-600 before:translate-y-[-50%] before:content-['10'] before:font-bold       after:absolute  after:top-[-40px] after:left-[-15px] after:text-5xl after:text-red-600 after:content-['+'] after:font-bold">
           Años llegando a tu hogar
         </span>
-        <button className="flex gap-1 text-red-600 font-bold hover:text-red-500 w-fit mt-10 ">
+        <button onClick={()=>handleChangeParam("about")} className="flex gap-1 text-red-600 font-bold hover:text-red-500 w-fit mt-10 ">
           Seguir leyendo{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"

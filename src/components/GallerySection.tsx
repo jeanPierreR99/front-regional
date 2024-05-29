@@ -22,6 +22,8 @@ const verifyTypeFile: React.FC = (type: any, url: any) => {
   );
 };
 const GallerySection: React.FC<any> = ({ files }) => {
+
+  console.log(files)
   const { ref: ref1, inView: inView1 } = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -41,7 +43,7 @@ const GallerySection: React.FC<any> = ({ files }) => {
           transition={{ duration: 0.5 }}
           className="relative col-span-2 border-2 border-[#3183a9]"
         >
-          {verifyTypeFile(files[0].type, files[0].url)}
+          {verifyTypeFile(files[1].type, files[1].url)}
         </motion.div>
         <motion.div
           ref={ref1}
@@ -50,7 +52,7 @@ const GallerySection: React.FC<any> = ({ files }) => {
           transition={{ duration: 0.5 }}
           className="relative col-span-2 border-2  border-[#3183a9]"
         >
-          {verifyTypeFile(files[1].type, files[1].url)}
+          {verifyTypeFile(files[2].type, files[2].url)}
         </motion.div>
         <motion.div
           ref={ref2}

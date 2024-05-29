@@ -27,7 +27,7 @@ const CardOption: React.FC = () => {
         <img src={iconProject} className="w-[70%] h-[70%]" alt="" />
         <span>Proyectos</span>
       </button>
-      <button onClick={()=>{handleChangeParam("galery")}} className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+      <button onClick={()=>{handleChangeParam("multimedia")}} className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
         <img src={iconGalery} className="w-[70%] h-[70%]" alt="" />
         <span>Galeria</span>
       </button>

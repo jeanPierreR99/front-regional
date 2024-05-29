@@ -6,6 +6,20 @@ import Logo from "../../components/Logo";
 import Links from "../../components/Links";
 import PATH_DOMAIN from "../../config";
 import SocialMedia from "../../components/SocialMedia";
+
+const processContent = (text: string) => {
+  if (!text) return "";
+  // Reemplazar **texto** con <strong>texto</strong>
+  const boldPattern = /\*\*(.*?)\*\*/g;
+  text = text.replace(boldPattern, '<strong class="text-bold">$1</strong>');
+
+  // Reemplazar --texto-- con <li>texto</li>
+  const listPattern = /--(.*?)--/g;
+  text = text.replace(listPattern, "<li>$1</li>");
+
+  return text;
+};
+
 const Notice: React.FC = () => {
   const { paramNotice } = useNotice();
   const { paramId, setParamId } = useParamId();
@@ -22,10 +36,10 @@ const Notice: React.FC = () => {
   useEffect(() => {
     handleChangeParam();
     window.scrollTo(0, 0);
-  }, [paramId]); 
+  }, [paramId]);
 
   return (
-    <div className="flex flex-col px-2 md:px-4 lg:px-16  pt-14">
+    <div className="flex flex-col px-4 md:px-4 lg:px-16  pt-14">
       {paramId &&
         Array.isArray(paramNotice) &&
         paramNotice.length > 0 &&
@@ -50,19 +64,14 @@ const Notice: React.FC = () => {
                   <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
                     {obj.title}
                   </span>
-                  <div className="flex flex-col gap-2 px-2 mt-2">
-                    <div
-                      className="column-container"
-                      style={{
-                        columnCount: "2",
-                        columnGap: "20px",
-                        textAlign: "justify",
+                  <div className="column-container">
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: processContent(obj.content),
                       }}
-                    >
-                      <p className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light">
-                        {obj.content}
-                      </p>
-                    </div>
+                      style={{ whiteSpace: "pre-line" }}
+                      className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
+                    ></p>
                   </div>
                   <div className="flex flex-wrap justify-around gap-4 w-full h-full mt-10">
                     <GallerySection files={obj.files}></GallerySection>
@@ -104,26 +113,21 @@ const Notice: React.FC = () => {
                   alt=""
                 />
               </div>
-           
+
               <p className=" text-red-600 font-bold">
                 Publicado el {paramNotice[0].create_at}
               </p>
               <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
                 {paramNotice[0].title}
               </span>
-              <div className="flex flex-col gap-2 px-2 mt-2">
-                <div
-                  className="column-container"
-                  style={{
-                    columnCount: "2",
-                    columnGap: "20px",
-                    textAlign: "justify",
+              <div className="column-container">
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: processContent(paramNotice[0].content),
                   }}
-                >
-                  <p className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light">
-                    {paramNotice[0].content}
-                  </p>
-                </div>
+                  style={{ whiteSpace: "pre-line" }}
+                  className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
+                ></p>
               </div>
               <div className="flex flex-wrap justify-around gap-4 w-full h-full mt-10">
                 <GallerySection files={paramNotice[0].files}></GallerySection>

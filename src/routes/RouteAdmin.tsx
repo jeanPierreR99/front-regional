@@ -6,6 +6,7 @@ import ProjectAdmin from "../page/admin/ProjectAdmin";
 import PATH_DOMAIN from "../config";
 import axios from "axios";
 import arrowLeft from "../assets/flecha-hacia-atras.png";
+import MultimediaAdmin from "../page/admin/MultimediaAdmin";
 
 const RouteAdmin: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
@@ -63,15 +64,15 @@ const RouteAdmin: React.FC = () => {
         <div>
           <div className="w-full h-[60px] bg-blue-800 flex items-center justify-between ">
             <div className="flex items-center">
-            <button
-            onClick={() => {
-              handleChangeParam("admin");
-            }}
-            className="rouned-full relative after:content-['volver'] after:text-gray-700 after:bg-gray-200 after:absolute after:top-[50%] after:translate-y-[-50%] after:left-12 after:hidden hover:after:block after:p-1 after:rounded-md text-gray-400 hover:text-black  w-10 h-10 ml-10 rounded-full"
-          >
-            <img src={arrowLeft} className="w-full h-full" alt="" />
-          </button>
-          <span className="text-white text-xl pl-4">ADMINISTRADOR</span>
+              <button
+                onClick={() => {
+                  handleChangeParam("admin");
+                }}
+                className="rouned-full relative after:content-['volver'] after:text-gray-700 after:bg-gray-200 after:absolute after:top-[50%] after:translate-y-[-50%] after:left-12 after:hidden hover:after:block after:p-1 after:rounded-md text-gray-400 hover:text-black  w-10 h-10 ml-10 rounded-full"
+              >
+                <img src={arrowLeft} className="w-full h-full" alt="" />
+              </button>
+              <span className="text-white text-xl pl-4">ADMINISTRADOR</span>
             </div>
             <button
               onClick={sessionDestroy}
@@ -100,6 +101,8 @@ const RouteAdmin: React.FC = () => {
               <NoticeAdmin />
             ) : paramURL === "project" ? (
               <ProjectAdmin />
+            ) : paramURL === "multimedia" ? (
+              <MultimediaAdmin />
             ) : (
               <h1>NO EXISTE LA RUTA</h1>
             )}
