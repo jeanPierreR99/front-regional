@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import GallerySection from "../GallerySection";
 import { useNotice } from "../../context/Context.provider";
-import PATH_DOMAIN from "../../config";
+import ENDPOINTS from "../../config";
 import relojArena from "../../assets/icons8-reloj-arena-abajo.gif";
 import axios from "axios";
 
@@ -45,9 +45,9 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
     setLoading(true);
     try {
       const response = await axios.get(
-        `${PATH_DOMAIN}/regional/server/?action=deletenotice&id=${id}`
+        `${ENDPOINTS.DELETE_NOTICE+id}`
       );
-      if (response.data) {
+      if (response.data.response.status===200) {
         setParamNotice((prevNotices: any) =>
           prevNotices.filter((notice: any) => notice.id !== id)
         );
@@ -56,13 +56,12 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
         onClose();
         console.log(response);
       }
-      console.log(response.data);
     } catch (e) {
       console.log("error en: " + e);
     }
   };
   return (
-    <div className="fixed h-screen top-0 left-0 z-[999] py-4 outline-none bg-black/30">
+    <div className="fixed h-screen w-full top-0 left-0 z-[999] py-4 outline-none bg-black/30">
       <div className="relative z-10 w-11/12 lg:w-[50%] md:w-8/12  h-[100%] mx-auto">
         <div className="bg-[#041025] border border-[#3183a9] w-full  h-full rounded-lg shadow-lg">
           <div className="flex justify-between items-center border-b border-[#3183a9] p-4">
@@ -107,12 +106,12 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
                         <div className="w-full h-[400px] relative">
                           <img
                             className="w-full h-full object-cover"
-                            src={`${PATH_DOMAIN}/regional/server/${obj.files[0].url}`}
+                            src={`${ENDPOINTS.DIR_IMG}/${obj.files[0].url}`}
                             alt=""
                           />
                         </div>
-                        <p className=" text-red-600 font-bold">
-                          Publicado el {obj.create_at}
+                        <p className=" text-yellow-300 font-bold">
+                          Publicado el {obj.date_published}
                         </p>
                         <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
                           {obj.title}

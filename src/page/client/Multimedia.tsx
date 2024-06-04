@@ -22,9 +22,9 @@ const Multimedia: React.FC = () => {
     window.scrollTo(0, 0);
   }, [paramNotice]);
   return (
-    <section className="pt-24 overflow-hidden relative">
+    <section className="py-24 overflow-hidden relative">
       <div className="pt-10">
-        <h2 className="text-3xl px-2 md:px-4 lg:px-16 text-gray-200 md:text-4xl font-bold mb-8">
+        <h2 className="text-3xl px-4 md:px-4 lg:px-16 text-gray-200 md:text-4xl font-bold mb-8">
           MULTIMEDIA
         </h2>
         <div className="grid grid-cols-5 gap-2">
@@ -46,9 +46,9 @@ const Multimedia: React.FC = () => {
             ))}
         </div>
       </div>
-      <div className="mt-14">
+      <div className="px-4 md:px-4 lg:px-16 mt-14">
         <Logo></Logo>
-        <div className="py-6">
+        <div className="md:mt-8 mt-2">
           <Links></Links>
         </div>
       </div>

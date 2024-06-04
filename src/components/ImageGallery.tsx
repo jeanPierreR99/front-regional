@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PATH_DOMAIN from "../config";
+import ENDPOINTS from "../config";
 
 interface galeryProps {
   url: string;
@@ -17,8 +17,8 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
             onClick={() => setLightboxOpen(true)}
           >
             <img
-              className="w-full h-full hover:scale-110 duration-500"
-              src={`${PATH_DOMAIN}/regional/server/${url}`}
+              className="w-full h-full hover:scale-110 duration-500 object-fit"
+              src={`${ENDPOINTS.DIR_IMG}/${url}`}
               alt=""
             />
           </div>
@@ -37,7 +37,7 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
           <video
             className="w-full h-full"
             controls
-            src={`${PATH_DOMAIN}/regional/server/${url}`}
+            src={`${ENDPOINTS.DIR_IMG}/${url}`}
           />
         </div>
       </div>
@@ -49,12 +49,12 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
       {renderMedia()}
       {/* Lightbox */}
       {lightboxOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-70">
           <div className="w-[90%] h-[50%] md:h-[95%]">
             {type !== "video" && (
               <img
-                className="w-full h-full"
-                src={`${PATH_DOMAIN}/regional/server/${url}`}
+                className="w-full h-full object-contain"
+                src={`${ENDPOINTS.DIR_IMG}/${url}`}
                 alt=""
               />
             )}
@@ -62,11 +62,11 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
               <video
                 className="w-full h-full"
                 controls
-                src={`${PATH_DOMAIN}/regional/server/${url}`}
+                src={`${ENDPOINTS.DIR_IMG}/${url}`}
               />
             )}
             <button
-              className="absolute top-10 right-24 text-white py-1 px-3 hover:bg-red-600 bg-red-500 rounded-md"
+              className="absolute top-5 right-10 text-gray-300 bg-red-700 hover:bg-red-600 py-1 px-3 rounded-md"
               onClick={() => setLightboxOpen(false)}
             >
               X

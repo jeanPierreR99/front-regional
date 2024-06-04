@@ -18,7 +18,7 @@ const Inicio: React.FC = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <div className="">
+    <div className="pb-16">
       <Slider></Slider>
       <div className="flex flex-col mt-16 overflow-hidden relative">
         <div className="mb-16 px-2 md:px-4 lg:px-16">
@@ -41,11 +41,7 @@ const Inicio: React.FC = () => {
               comunidades. A través de una planificación adecuada y la
               implementación de infraestructuras modernas, podemos garantizar la
               salud pública, la protección del medio ambiente y la calidad de
-              vida de todos los habitantes. Desde la gestión eficiente del agua
-              y los residuos hasta la creación de espacios verdes accesibles,
-              cada aspecto del saneamiento y el urbanismo influye en nuestra
-              cotidianidad y en el legado que dejamos a las generaciones
-              futuras.
+              vida de todos los habitantes.
             </span>
             <div className="-mx-10 md:-mx-20 pt-3">
               <GalleryFill></GalleryFill>
@@ -130,7 +126,7 @@ const Inicio: React.FC = () => {
               al día y tomar decisiones informadas.
             </span>
           </div>
-          <div className="py-6">
+          <div className="py-6 -mx-2">
             <Links></Links>
           </div>
         </div>

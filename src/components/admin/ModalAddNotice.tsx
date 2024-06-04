@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PATH_DOMAIN from "../../config";
+import ENDPOINTS from "../../config";
 import { useNotice } from "../../context/Context.provider";
 import relojArena from "../../assets/icons8-reloj-arena-abajo.gif";
 
@@ -9,6 +9,20 @@ interface ModalAddNoticeProps {
   toast: any;
   onClose: () => void;
 }
+
+const getDate = () => {
+  let fechaActual = new Date();
+
+  let anio = fechaActual.getFullYear();
+  let mes = String(fechaActual.getMonth() + 1).padStart(2, "0");
+  let dia = String(fechaActual.getDate()).padStart(2, "0");
+  let horas = String(fechaActual.getHours()).padStart(2, "0");
+  let minutos = String(fechaActual.getMinutes()).padStart(2, "0");
+  let segundos = String(fechaActual.getSeconds()).padStart(2, "0");
+
+  let fechaHoraActual = `${anio}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
+  return fechaHoraActual;
+};
 const processContent = (text: string) => {
   if (!text) return "";
   // Reemplazar **texto** con <strong>texto</strong>
@@ -30,7 +44,7 @@ const verifyTypeFile = (type: any, file: any) => {
   return (
     <video
       src={file}
-      className="w-full h-[300px] md:h-[400px] object-cover"
+      className="w-full h-[300px] md:h-full object-cover"
       controls
     ></video>
   );
@@ -44,9 +58,8 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
   const { paramNotice, setParamNotice } = useNotice();
   if (!isOpen) return null;
   const [loading, setLoading] = useState<boolean>(false);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [date, setDate] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [files, setFiles] = useState<File[]>([]);
   const [uploadMessage, setUploadMessage] = useState<string>("");
 
@@ -60,16 +73,20 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
       const newFiles: File[] = Array.from(fileList);
       setFiles((prevFiles) => [...prevFiles, ...newFiles]);
     }
-    console.log(files);
   };
+
   const handleRemoveFile = (index: number) => {
     const newFiles = [...files];
     newFiles.splice(index, 1);
     setFiles(newFiles);
   };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!title || !content || !date || files.length < 4) {
+    let date_published = new Date().getTime().toString();
+    let create_at = getDate();
+
+    if (!title || !content || files.length < 4) {
       setUploadMessage("Rellene todos los campos y 4 archivos requeridos");
       return;
     }
@@ -78,31 +95,32 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("date", date);
+    formData.append("date_published", date_published);
+    formData.append("create_at", create_at);
     for (let i = 0; i < files.length; i++) {
       formData.append("files[]", files[i]);
     }
     try {
-      const response = await axios.post(
-        `${PATH_DOMAIN}/regional/server/?action=addnotice`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(ENDPOINTS.ADD_NOTICE, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response.data.response.status === 200) {
+        const updatedParamNotice = [
+          ...paramNotice,
+          response.data.response.data,
+        ];
 
-      const updatedParamNotice = [...paramNotice, response.data];
-
-      setParamNotice(updatedParamNotice);
-      setTitle("");
-      setContent("");
-      setDate("");
-      setFiles([]);
-      setLoading(false);
-      setUploadMessage("");
-      toast.success("Noticia agregada");
+        setParamNotice(updatedParamNotice);
+        setTitle("");
+        setContent("");
+        setFiles([]);
+        setLoading(false);
+        setUploadMessage("");
+        toast.success("Noticia agregada");
+        return;
+      }
     } catch (error) {
       toast.info("Ocurrio un error");
     }
@@ -140,17 +158,7 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
               onSubmit={handleSubmit}
               encType="multipart/form-data"
             >
-              <div
-                className="w-6/12 flex flex-col gap-2 h-[530px]"
-                style={{ position: "sticky", top: "0" }}
-              >
-                <input
-                  type="text"
-                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
-                  placeholder="Fecha de registro"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
+              <div className="w-full md:w-6/12 flex flex-col gap-2 h-[530px] md:sticky top-0">
                 <input
                   type="text"
                   className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
@@ -218,13 +226,13 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
                 )}
                 <button
                   type="submit"
-                  className="w-full flex gap-2 items-center justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                  className="w-full flex gap-2 items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
                 >
                   <span>Agregar</span>
                   {loading && <img src={relojArena} alt="" className="h-6" />}
                 </button>
               </div>
-              <div className="w-6/12">
+              <div className="w-full md:w-6/12">
                 {files.length > 0 && (
                   <div className="w-full h-[250px] relative">
                     <img
@@ -234,7 +242,7 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
                     />
                   </div>
                 )}
-                <p className=" text-red-600 font-bold">Publicado el {date}</p>
+                <p className=" text-yellow-300 font-bold">Publicado el {getDate()}</p>
                 <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
                   {title}
                 </span>

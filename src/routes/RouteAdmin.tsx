@@ -3,9 +3,8 @@ import { useLogin, useNotice, useParam } from "../context/Context.provider";
 import Home from "../page/admin/Home";
 import NoticeAdmin from "../page/admin/NoticeAdmin";
 import ProjectAdmin from "../page/admin/ProjectAdmin";
-import PATH_DOMAIN from "../config";
+import ENDPOINTS from "../config";
 import axios from "axios";
-import arrowLeft from "../assets/flecha-hacia-atras.png";
 import MultimediaAdmin from "../page/admin/MultimediaAdmin";
 
 const RouteAdmin: React.FC = () => {
@@ -34,10 +33,11 @@ const RouteAdmin: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${PATH_DOMAIN}/regional/server/?action=obtener`
-        );
-        setParamNotice(response.data);
+        const response = await axios.get(ENDPOINTS.GET_NOTICE);
+        if (response.data.response.status === 200) {
+          setParamNotice(response.data.response.data);
+          return
+        }
       } catch (error) {
         console.log("error");
       }
@@ -62,21 +62,11 @@ const RouteAdmin: React.FC = () => {
     <div className="bg-[#041025]">
       {paramURL && (
         <div>
-          <div className="w-full h-[60px] bg-blue-800 flex items-center justify-between ">
-            <div className="flex items-center">
-              <button
-                onClick={() => {
-                  handleChangeParam("admin");
-                }}
-                className="rouned-full relative after:content-['volver'] after:text-gray-700 after:bg-gray-200 after:absolute after:top-[50%] after:translate-y-[-50%] after:left-12 after:hidden hover:after:block after:p-1 after:rounded-md text-gray-400 hover:text-black  w-10 h-10 ml-10 rounded-full"
-              >
-                <img src={arrowLeft} className="w-full h-full" alt="" />
-              </button>
-              <span className="text-white text-xl pl-4">ADMINISTRADOR</span>
-            </div>
+          <div className="w-full px-4 h-[60px] bg-blue-800 flex items-center justify-between ">
+            <span className="text-white text-xl">ADMINISTRADOR</span>
             <button
               onClick={sessionDestroy}
-              className={`pr-4 after:content-['Salir'] p-2 after:text-gray-700 after:bg-gray-200 after:absolute after:top-[50%] after:translate-y-[-50%] relative after:hidden after:right-10 hover:after:block after:p-1 after:rounded-md`}
+              className={`after:content-['Salir'] p-2 after:text-gray-700 after:bg-gray-200 after:absolute after:top-[50%] after:translate-y-[-50%] relative after:hidden after:right-10 hover:after:block after:p-1 after:rounded-md`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +84,20 @@ const RouteAdmin: React.FC = () => {
               </svg>
             </button>
           </div>
-          <div className="px-2 py-2 md:px-4 lg:px-16 mt-2">
+          <div className="px-4 py-2 md:px-4 lg:px-16 mt-2">
+            {paramURL != "admin" && (
+              <div className="text-gray-400 text-sm py-4">
+                <div>
+                  <button
+                    className="hover:text-gray-200"
+                    onClick={() => handleChangeParam("admin")}
+                  >
+                    Admin
+                  </button>
+                  <span className="text-gray-200"> / {paramURL}</span>
+                </div>
+              </div>
+            )}
             {paramURL === "admin" ? (
               <Home />
             ) : paramURL === "notice" ? (

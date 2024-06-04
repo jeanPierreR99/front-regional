@@ -29,7 +29,7 @@ const NoticeAdmin: React.FC = () => {
   const closeModalView = () => {
     setIsOpenView(false);
   };
-
+console.log(paramNotice)
   return (
     <div className="flex flex-col gap-4">
       <button

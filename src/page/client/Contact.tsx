@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <section className="pt-24 overflow-hidden px-2 md:px-4 lg:px-16">
+    <section className="py-24 overflow-hidden px-4 md:px-4 lg:px-16">
       <div className="pt-10">
         <h2 className="text-3xl text-gray-200 md:text-4xl font-bold mb-8">
           CONTÁCTENOS
@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
       </div>
       <div className="mt-14">
         <Logo></Logo>
-        <div className="py-6">
+        <div className="md:mt-8 mt-2">
           <Links></Links>
         </div>
       </div>

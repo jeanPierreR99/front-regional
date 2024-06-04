@@ -5,16 +5,16 @@ const Footer: React.FC = () => {
 
   const { paramURL } = useParam();
   return (
-    <footer className={paramURL=="login"?"hidden":"bg-[#031b35] mt-16 lg:grid lg:grid-cols-5"}>
-      <div className="relative block h-32 lg:col-span-2 lg:h-full">
+    <footer className={paramURL=="login"?"hidden":"bg-[#031b35] md:grid md:grid-cols-5 pt-10 md:pt-0"}>
+      <div className="relative block h-32 md:col-span-2 md:h-full">
         <img
           src={logoFooter}
           alt=""
-          className="absolute inset-0 h-full w-[136px] m-auto md:w-[50%] lg:w-[60%] lg:h-[80%]"
+          className="absolute  inset-0 h-full w-[136px] m-auto md:h-[60%] md:w-[60%] "
         />
       </div>
 
-      <div className="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
+      <div className="px-4 py-16 sm:px-6 md:col-span-3 md:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
             <p>
@@ -156,7 +156,7 @@ const Footer: React.FC = () => {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <p className="font-medium text-white">Servicios</p>
+              <p className="font-medium text-white">Enlaces</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
@@ -165,7 +165,7 @@ const Footer: React.FC = () => {
                     className="text-white transition hover:opacity-75"
                   >
                     {" "}
-                    Service 01{" "}
+                    Gobierno Regional{" "}
                   </a>
                 </li>
 
@@ -175,7 +175,7 @@ const Footer: React.FC = () => {
                     className="text-white transition hover:opacity-75"
                   >
                     {" "}
-                    Service 02{" "}
+                    Coer{" "}
                   </a>
                 </li>
 
@@ -185,7 +185,7 @@ const Footer: React.FC = () => {
                     className="text-white transition hover:opacity-75"
                   >
                     {" "}
-                    Service 03{" "}
+                    Datass{" "}
                   </a>
                 </li>
 
@@ -195,7 +195,7 @@ const Footer: React.FC = () => {
                     className="text-white transition hover:opacity-75"
                   >
                     {" "}
-                    Service 04{" "}
+                    DRA{" "}
                   </a>
                 </li>
 
@@ -205,7 +205,7 @@ const Footer: React.FC = () => {
                     className="text-white transition hover:opacity-75"
                   >
                     {" "}
-                    Service 05{" "}
+                    DRVCS{" "}
                   </a>
                 </li>
               </ul>

@@ -20,7 +20,7 @@ function MultimediaAdmin() {
   }, [paramNotice]);
   return (
     <div>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5 gap-2  -mx-2 md:-mx-4 lg:-mx-16">
         {allUrls &&
           Array.isArray(allUrls) &&
           allUrls.map((data: any, index: any) => (

@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import logo from "../../assets/logo-vivienda.png";
 import { useLogin } from "../../context/Context.provider";
+import axios from "axios";
+import ENDPOINTS from "../../config";
 const Login: React.FC = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useLogin();
+
+  const formData = new FormData();
 
   const handleChangeParam = (newParam: string) => {
     const newSearchParams = new URLSearchParams(window.location.search);
@@ -15,24 +19,37 @@ const Login: React.FC = () => {
     window.history.pushState({ path: newUrl }, "", newUrl);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async() => {
     if (!user || !password) {
       setError("Por favor, introduce tu correo electrónico y contraseña.");
     } else {
-      if (user == "admin" && password == "12345678") {
-        const objectUser = {
-          user: user,
-          password: password,
-        };
-        localStorage.setItem("user", JSON.stringify(objectUser));
-        handleChangeParam("admin")
-        login();
-        return
-      }
+
+    formData.append("user", user);
+    formData.append("password", password);
+    try {
+      const response = await axios.post(ENDPOINTS.LOGIN, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    if(response.data.response.data){
+      const objectUser = {
+        user: response.data.response.data,
+        role: "admin",
+      };
+      localStorage.setItem("user", JSON.stringify(objectUser));
+      handleChangeParam("admin")
+      login();
+      return
     }
-    setError("credenciales incorrectas");
-    console.log("Iniciando sesión...");
+   
+    setError("Credenciales incorrectas");
+    }catch(e){
+      setError("Ocurrio un error inesperado");
+    }
+  }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -76,7 +93,7 @@ const Login: React.FC = () => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               onClick={handleLogin}
             >
               Iniciar sesión

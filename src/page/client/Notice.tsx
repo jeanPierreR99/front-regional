@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import GallerySection from "../../components/GallerySection";
 import Logo from "../../components/Logo";
 import Links from "../../components/Links";
-import PATH_DOMAIN from "../../config";
+import ENDPOINTS from "../../config";
 import SocialMedia from "../../components/SocialMedia";
 
 const processContent = (text: string) => {
@@ -36,10 +36,11 @@ const Notice: React.FC = () => {
   useEffect(() => {
     handleChangeParam();
     window.scrollTo(0, 0);
+    console.log(paramNotice)
   }, [paramId]);
 
   return (
-    <div className="flex flex-col px-4 md:px-4 lg:px-16  pt-14">
+    <div className="flex flex-col px-4 md:px-4 lg:px-16  pt-14 pb-24">
       {paramId &&
         Array.isArray(paramNotice) &&
         paramNotice.length > 0 &&
@@ -54,12 +55,12 @@ const Notice: React.FC = () => {
                   <div className="w-full h-[400px] relative">
                     <img
                       className="w-full h-full"
-                      src={`${PATH_DOMAIN}/regional/server/${obj.files[0].url}`}
+                      src={`${ENDPOINTS.DIR_IMG}/${obj.files[0].url}`}
                       alt=""
                     />
                   </div>
-                  <p className=" text-red-600 font-bold">
-                    Publicado el {obj.create_at}
+                  <p className=" text-yellow-300 font-bold">
+                    Publicado el {obj.date_published}
                   </p>
                   <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
                     {obj.title}
@@ -73,13 +74,13 @@ const Notice: React.FC = () => {
                       className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
                     ></p>
                   </div>
-                  <div className="flex flex-wrap justify-around gap-4 w-full h-full mt-10">
+                  <div className="flex overflow-hidden flex-wrap justify-around gap-4 w-full h-full mt-10">
                     <GallerySection files={obj.files}></GallerySection>
                   </div>
                 </div>
                 <div
                   style={{ position: "sticky", top: "90px", overflowY: "auto" }}
-                  className="right_scroll w-full md:w-5/12  h-auto md:h-[calc(100vh-100px)] flex flex-col md:flex-col gap-4 px-2 py-4 md:py-0 overflow-x-hidden"
+                  className="right_scroll w-full md:w-5/12  h-auto md:h-[calc(100vh-100px)] flex flex-col md:flex-col gap-4 md:pr-2 py-4 md:py-0 overflow-x-hidden"
                 >
                   {Array.isArray(paramNotice) &&
                     paramNotice.map((data) => (
@@ -109,14 +110,15 @@ const Notice: React.FC = () => {
               <div className="w-full h-[400px] relative">
                 <img
                   className="w-full h-full"
-                  src={`${PATH_DOMAIN}/regional/server/${paramNotice[0].files[0].url}`}
+                  src={`${ENDPOINTS.DIR_IMG}/${paramNotice[0].files[0].url}`}
                   alt=""
                 />
               </div>
 
-              <p className=" text-red-600 font-bold">
-                Publicado el {paramNotice[0].create_at}
+              <p className=" text-yellow-300 font-bold">
+                Publicado el {paramNotice[0].date_published}
               </p>
+           
               <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
                 {paramNotice[0].title}
               </span>
@@ -129,13 +131,13 @@ const Notice: React.FC = () => {
                   className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
                 ></p>
               </div>
-              <div className="flex flex-wrap justify-around gap-4 w-full h-full mt-10">
+              <div className="flex overflow-hidden flex-wrap justify-around gap-4 w-full h-full mt-10">
                 <GallerySection files={paramNotice[0].files}></GallerySection>
               </div>
             </div>
             <div
               style={{ position: "sticky", top: "90px", overflowY: "auto" }}
-              className="right_scroll w-full md:w-5/12  h-auto md:h-[calc(100vh-100px)] flex flex-col md:flex-col gap-4 px-2 py-4 md:py-0 overflow-x-hidden"
+              className="right_scroll w-full md:w-5/12  h-auto md:h-[calc(100vh-100px)] flex flex-col md:flex-col gap-4 md:pr-2 py-4 md:py-0 overflow-x-hidden"
             >
               {Array.isArray(paramNotice) &&
                 paramNotice.map((data) => (
@@ -154,7 +156,7 @@ const Notice: React.FC = () => {
         )}
       <div className="mt-14">
         <Logo></Logo>
-        <div className="py-6">
+        <div className="md:mt-8 mt-2">
           <Links></Links>
         </div>
       </div>
