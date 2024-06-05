@@ -61,7 +61,7 @@ const Slider: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="md:text-5xl anton-regular text-center text-3xl"
         >
-          DIRECCIÓN REGIONAL DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO  MDD
+          DIRECCIÓN REGIONAL DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO MDD
           {/* DRVCS MDD */}
         </motion.h4>
         <motion.p
@@ -117,20 +117,22 @@ const Slider: React.FC = () => {
         </svg>
       </button>
       <div className="z-[600] text-white absolute bottom-10 left-[50%] translate-x-[-50%]">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          className="w-7 h-7 animate-bounce"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
-          />
-        </svg>
+        <a href="#presentation">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            className="w-7 h-7 animate-bounce"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+            />
+          </svg>
+        </a>
       </div>
     </div>
   );

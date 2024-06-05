@@ -2,10 +2,11 @@ import React from "react";
 // import preOne from "../assets/image-4.jpeg";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import preTwo from "../assets/image-1.jpeg";
 import { useParam } from "../context/Context.provider";
+import { handleChangeParam } from "../functions";
+
 const Presentation: React.FC = () => {
-const {setParamURL} = useParam()
+  const { setParamURL } = useParam();
 
   const { ref: ref1, inView: inView1 } = useInView({
     triggerOnce: true,
@@ -15,16 +16,6 @@ const {setParamURL} = useParam()
     triggerOnce: true,
     threshold: 0.4,
   });
-
-  const handleChangeParam = (newParam: string) => {
-    setParamURL(newParam);
-    console.log(newParam);
-    const newSearchParams = new URLSearchParams(window.location.search);
-    newSearchParams.delete("id")
-    newSearchParams.set("search", newParam);
-    const newUrl = `?${newSearchParams.toString()}`;
-    window.history.pushState({ path: newUrl }, "", newUrl);
-  };
 
   return (
     <div className="flex cont-img-presentation md:flex-row flex-col gap-14 overflow-hidden relative px-4 py-12 md:px-4 lg:px-16">
@@ -81,7 +72,10 @@ const {setParamURL} = useParam()
         <span className="merienda text-gray-300 mt-5 font-light text-md relative ml-32  before:absolute  before:top-[50%] before:left-[-125px] before:text-8xl before:text-red-600 before:translate-y-[-50%] before:content-['10'] before:font-bold       after:absolute  after:top-[-40px] after:left-[-15px] after:text-5xl after:text-red-600 after:content-['+'] after:font-bold">
           Años llegando a tu hogar
         </span>
-        <button onClick={()=>handleChangeParam("about")} className="flex gap-1 text-red-600 font-bold hover:text-red-500 w-fit mt-10 ">
+        <button
+          onClick={() => handleChangeParam("about", setParamURL)}
+          className="flex gap-1 text-red-600 font-bold hover:text-red-500 w-fit mt-10 "
+        >
           Seguir leyendo{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -104,18 +98,17 @@ const {setParamURL} = useParam()
         initial={{ opacity: 0, x: 100 }}
         animate={inView2 ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
         transition={{ duration: 0.5 }}
-        className="w-full z-20  h-[460px] md:w-5/12 relative"
+        className="w-full z-20 md:w-5/12 flex justify-center"
       >
-        <img
-          className="absolute object-cover  z-20 w-[240px] h-[240px] bottom-0 left-0 border-2 border-[#3183a9]"
-          src="https://norteenlinea.com/media/k2/items/cache/80bb739c86fe521ed43709e93dbc77a6_XL.jpg"
-          alt=""
-        />
-        <img
-          className="absolute object-cover left-0 top-0 w-full h-[90%] border-2 border-[#3183a9]"
-          src={preTwo}
-          alt=""
-        />
+        <iframe
+          src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fvideos%2F3317625031818688%2F&show_text=false&width=560&t=0"
+          width="100%"
+          className="m-auto h-[260px] md:h-[275px]"
+          style={{ overflow: "hidden" }}
+          scrolling="no"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          allowFullScreen={false}
+        ></iframe>
       </motion.div>
     </div>
   );

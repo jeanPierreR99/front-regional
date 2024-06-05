@@ -33,7 +33,7 @@ console.log(paramNotice)
   return (
     <div className="flex flex-col gap-4">
       <button
-        className="hover:scale-125 w-fit  hover:drop-shadow-md"
+        className="hover:scale-125 w-fit hover:text-gray-200 text-gray-400 text-sm  hover:drop-shadow-md relative before:absolute before:-right-14 before:top-[50%] before:translate-y-[-50%] before:content-['Agregar']  "
         onClick={openModal}
       >
         <img src={iconAddNotice} className="w-[50px] h-[50px]" alt="" />

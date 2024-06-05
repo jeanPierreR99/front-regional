@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import ENDPOINTS from "../config";
 import { useParam, useParamId } from "../context/Context.provider";
 import { DataNotice } from "../routes/RouteDefault";
+import { handleChangeParamId } from "../functions";
+
 const CardNoticeHome: React.FC<DataNotice> = ({
   id,
   title,
@@ -18,25 +20,13 @@ const CardNoticeHome: React.FC<DataNotice> = ({
     threshold: 0.2, // Cuando el 20% del card es visible
   });
 
-  const handleChangeParam = (newParam: string) => {
-    setParamURL("notice");
-    setParamId(newParam);
-    const newSearchParams = new URLSearchParams(window.location.search);
-    newSearchParams.delete("search");
-    newSearchParams.delete("id");
-    newSearchParams.append("search", "notice");
-    newSearchParams.append("id", newParam);
-    const newUrl = `?${newSearchParams.toString()}`;
-    window.history.pushState({ path: newUrl }, "", newUrl);
-  };
-
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, x: -100 }}
       animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
       transition={{ duration: 0.5 }}
-      onClick={() => handleChangeParam(id)}
+      onClick={() => handleChangeParamId(id, setParamURL, setParamId)}
       className="cursor-pointer w-[300px] h-auto md:w-[390px] text-justify group/notice  border-[#3183a9] flex-shrink-0 overflow-hidden hover:bg-[#3183a9]/20 duration-500"
     >
       <div className="overflow-hidden relative">

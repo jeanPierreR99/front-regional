@@ -36,7 +36,7 @@ const Notice: React.FC = () => {
   useEffect(() => {
     handleChangeParam();
     window.scrollTo(0, 0);
-    console.log(paramNotice)
+    console.log(paramNotice);
   }, [paramId]);
 
   return (
@@ -118,7 +118,7 @@ const Notice: React.FC = () => {
               <p className=" text-yellow-300 font-bold">
                 Publicado el {paramNotice[0].date_published}
               </p>
-           
+
               <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
                 {paramNotice[0].title}
               </span>
@@ -155,9 +155,9 @@ const Notice: React.FC = () => {
           </div>
         )}
       <div className="mt-14">
-        <Logo></Logo>
+        <Links></Links>
         <div className="md:mt-8 mt-2">
-          <Links></Links>
+          <Logo></Logo>
         </div>
       </div>
       <SocialMedia></SocialMedia>

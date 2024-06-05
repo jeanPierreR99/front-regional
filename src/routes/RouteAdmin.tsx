@@ -6,6 +6,7 @@ import ProjectAdmin from "../page/admin/ProjectAdmin";
 import ENDPOINTS from "../config";
 import axios from "axios";
 import MultimediaAdmin from "../page/admin/MultimediaAdmin";
+import { handleChangeParam } from "../functions";
 
 const RouteAdmin: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
@@ -13,19 +14,10 @@ const RouteAdmin: React.FC = () => {
   const { setParamNotice } = useNotice();
   const sessionDestroy = () => {
     localStorage.clear();
-    handleChangeParam("home");
+    handleChangeParam("home", setParamURL);
     logout();
   };
 
-  const handleChangeParam = (newParam: string) => {
-    setParamURL(newParam);
-    console.log(newParam);
-    const newSearchParams = new URLSearchParams(window.location.search);
-    newSearchParams.delete("id");
-    newSearchParams.set("search", newParam);
-    const newUrl = `?${newSearchParams.toString()}`;
-    window.history.pushState({ path: newUrl }, "", newUrl);
-  };
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const searchQuery = searchParams.get("search");
@@ -90,7 +82,7 @@ const RouteAdmin: React.FC = () => {
                 <div>
                   <button
                     className="hover:text-gray-200"
-                    onClick={() => handleChangeParam("admin")}
+                    onClick={() => handleChangeParam("admin", setParamURL)}
                   >
                     Admin
                   </button>

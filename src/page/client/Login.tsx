@@ -19,37 +19,41 @@ const Login: React.FC = () => {
     window.history.pushState({ path: newUrl }, "", newUrl);
   };
 
-  const handleLogin = async() => {
-    if (!user || !password) {
-      setError("Por favor, introduce tu correo electrónico y contraseña.");
+  const handleLogin = async () => {
+    if (!user && !password) {
+      setError("Por favor, introduzca su usuario y contraseña");
+    }
+    else if (!user) {
+      setError("Por favor, introduzca su usuario");
+    }
+    else if (!password) {
+      setError("Por favor, introduzca su contraseña");
     } else {
+      formData.append("user", user);
+      formData.append("password", password);
+      try {
+        const response = await axios.post(ENDPOINTS.LOGIN, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        if (response.data.response.data) {
+          const objectUser = {
+            user: response.data.response.data,
+            role: "admin",
+          };
+          localStorage.setItem("user", JSON.stringify(objectUser));
+          handleChangeParam("admin");
+          login();
+          return;
+        }
 
-    formData.append("user", user);
-    formData.append("password", password);
-    try {
-      const response = await axios.post(ENDPOINTS.LOGIN, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    if(response.data.response.data){
-      const objectUser = {
-        user: response.data.response.data,
-        role: "admin",
-      };
-      localStorage.setItem("user", JSON.stringify(objectUser));
-      handleChangeParam("admin")
-      login();
-      return
+        setError("Credenciales incorrectas");
+      } catch (e) {
+        setError("Ocurrio un error inesperado");
+      }
     }
-   
-    setError("Credenciales incorrectas");
-    }catch(e){
-      setError("Ocurrio un error inesperado");
-    }
-  }
   };
-  
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

@@ -14,11 +14,9 @@ interface ModalViewNoticeProps {
 
 const processContent = (text: string) => {
   if (!text) return "";
-  // Reemplazar **texto** con <strong>texto</strong>
   const boldPattern = /\*\*(.*?)\*\*/g;
   text = text.replace(boldPattern, '<strong class="text-bold">$1</strong>');
   
-  // Reemplazar --texto-- con <li>texto</li>
   const listPattern = /--(.*?)--/g;
   text = text.replace(listPattern, '<li>$1</li>');
 

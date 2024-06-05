@@ -3,6 +3,8 @@ import { useParam, useParamId } from "../context/Context.provider";
 import { DataNotice } from "../routes/RouteDefault";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { handleChangeParamId } from "../functions";
+
 const CardNotice: React.FC<DataNotice> = ({
   id,
   title,
@@ -16,17 +18,6 @@ const CardNotice: React.FC<DataNotice> = ({
     triggerOnce: true, // Solo animar una vez
     threshold: 0.1, // Cuando el 20% del card es visible
   });
-  const handleChangeParam = (newParam: string) => {
-    setParamURL("notice");
-    setParamId(newParam);
-    const newSearchParams = new URLSearchParams(window.location.search);
-    newSearchParams.delete("search");
-    newSearchParams.delete("id");
-    newSearchParams.append("search", "notice");
-    newSearchParams.append("id", newParam);
-    const newUrl = `?${newSearchParams.toString()}`;
-    window.history.pushState({ path: newUrl }, "", newUrl);
-  };
 
   return (
     <motion.div
@@ -34,7 +25,7 @@ const CardNotice: React.FC<DataNotice> = ({
       initial={{ opacity: 0, x: 100 }}
       animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
       transition={{ duration: 0.5 }}
-      onClick={() => handleChangeParam(id)}
+      onClick={() => handleChangeParamId(id,setParamURL,setParamId)}
       className="flex cursor-pointer h-[180px] md:w-full group/notice hover:bg-[#3183a9]/20 duration-500 flex-shrink-0 overflow-hidden   hover:scale-110"
     >
       <div className="overflow-hidden relative w-4/12">

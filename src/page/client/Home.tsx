@@ -3,7 +3,6 @@ import Slider from "../../components/Slider";
 import CardNoticeHome from "../../components/CardNoticeHome";
 import Logo from "../../components/Logo";
 import Presentation from "../../components/Presentation";
-import Mision from "../../components/Mision";
 import { useNotice } from "../../context/Context.provider";
 import CardProjects from "../../components/CardProjects";
 import GallerySection from "../../components/GallerySection";
@@ -20,17 +19,14 @@ const Inicio: React.FC = () => {
   return (
     <div className="pb-16">
       <Slider></Slider>
-      <div className="flex flex-col mt-16 overflow-hidden relative">
-        <div className="mb-16 px-2 md:px-4 lg:px-16">
+      <div className="" id="presentation">
           <Logo></Logo>
         </div>
-        <div className="">
+      <div className="flex flex-col mt-16 overflow-hidden relative">
+        <div>
           <Presentation></Presentation>
         </div>
-        <div className="px-2">
-          <Mision></Mision>
-        </div>
-        <div className="px-4 py-2 md:px-4 lg:px-16 mt-">
+        <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
           <div className="flex flex-col gap-4">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               SANEAMIENTO Y URBANISMO

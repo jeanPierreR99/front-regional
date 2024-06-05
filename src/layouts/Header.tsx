@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParam } from "../context/Context.provider";
 import logo from "../assets/logo-vivienda.png";
-
+import {handleChangeParam} from "../functions";
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { paramURL, setParamURL } = useParam();
-
-  const handleChangeParam = (newParam: string) => {
-    setParamURL(newParam);
-    console.log(newParam);
-    const newSearchParams = new URLSearchParams(window.location.search);
-    newSearchParams.delete("id")
-    newSearchParams.set("search", newParam);
-    const newUrl = `?${newSearchParams.toString()}`;
-    window.history.pushState({ path: newUrl }, "", newUrl);
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -55,31 +45,31 @@ const Header: React.FC = () => {
         </div>
         <nav className="hidden md:flex">
           <button
-            onClick={() => handleChangeParam("home")}
+            onClick={() => handleChangeParam("home", setParamURL)}
             className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Inicio
           </button>
           <button
-            onClick={() => handleChangeParam("about")}
+            onClick={() => handleChangeParam("about", setParamURL)}
             className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Sobre nosotros
           </button>
           <button
-            onClick={() => handleChangeParam("notice")}
+            onClick={() => handleChangeParam("notice", setParamURL)}
             className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Noticias
           </button>
           <button
-            onClick={() => handleChangeParam("multimedia")}
+            onClick={() => handleChangeParam("multimedia", setParamURL)}
             className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Multimedia
           </button>
           <button
-            onClick={() => handleChangeParam("contact")}
+            onClick={() => handleChangeParam("contact", setParamURL)}
             className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Contactos
@@ -119,31 +109,31 @@ const Header: React.FC = () => {
           <div className="md:hidden z-[999] absolute top-20 left-0 right-0 bg-blue-900">
             <div className="container mx-auto">
               <button
-                onClick={() => handleChangeParam("home")}
+                onClick={() => handleChangeParam("home", setParamURL)}
                 className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Inicio
               </button>
               <button
-                onClick={() => handleChangeParam("about")}
+                onClick={() => handleChangeParam("about", setParamURL)}
                 className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Sobre Nosotros
               </button>
               <button
-                onClick={() => handleChangeParam("notice")}
+                onClick={() => handleChangeParam("notice", setParamURL)}
                 className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Noticias
               </button>
               <button
-                onClick={() => handleChangeParam("multimedia")}
+                onClick={() => handleChangeParam("multimedia", setParamURL)}
                 className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Multimedia
               </button>
               <button
-                onClick={() => handleChangeParam("contact")}
+                onClick={() => handleChangeParam("contact", setParamURL)}
                 className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Contacto
