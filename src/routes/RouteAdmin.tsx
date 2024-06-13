@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLogin, useNotice, useParam } from "../context/Context.provider";
+import { useLogin, useNotice, useParam, useParamId } from "../context/Context.provider";
 import Home from "../page/admin/Home";
 import NoticeAdmin from "../page/admin/NoticeAdmin";
 import ProjectAdmin from "../page/admin/ProjectAdmin";
@@ -7,14 +7,16 @@ import ENDPOINTS from "../config";
 import axios from "axios";
 import MultimediaAdmin from "../page/admin/MultimediaAdmin";
 import { handleChangeParam } from "../functions";
+import SystemMetrics from "../page/admin/SystemMetrics";
 
 const RouteAdmin: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
+  const {setParamId} = useParamId();
   const { logout } = useLogin();
   const { setParamNotice } = useNotice();
   const sessionDestroy = () => {
     localStorage.clear();
-    handleChangeParam("home", setParamURL);
+    handleChangeParam("home", setParamURL, setParamId);
     logout();
   };
 
@@ -28,7 +30,7 @@ const RouteAdmin: React.FC = () => {
         const response = await axios.get(ENDPOINTS.GET_NOTICE);
         if (response.data.response.status === 200) {
           setParamNotice(response.data.response.data);
-          return
+          return;
         }
       } catch (error) {
         console.log("error");
@@ -82,7 +84,7 @@ const RouteAdmin: React.FC = () => {
                 <div>
                   <button
                     className="hover:text-gray-200"
-                    onClick={() => handleChangeParam("admin", setParamURL)}
+                    onClick={() => handleChangeParam("admin", setParamURL, setParamId)}
                   >
                     Admin
                   </button>
@@ -94,7 +96,9 @@ const RouteAdmin: React.FC = () => {
               <Home />
             ) : paramURL === "notice" ? (
               <NoticeAdmin />
-            ) : paramURL === "project" ? (
+            ) : paramURL === "estadistica" ? (
+              <SystemMetrics />
+            ) : paramURL === "post" ? (
               <ProjectAdmin />
             ) : paramURL === "multimedia" ? (
               <MultimediaAdmin />

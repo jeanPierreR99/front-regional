@@ -3,14 +3,15 @@ import ENDPOINTS from "../config";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { handleChangeParam } from "../functions";
-import { useParam } from "../context/Context.provider";
+import { useParam, useParamId } from "../context/Context.provider";
 
 const verifyTypeFile: React.FC = (type: any, url: any) => {
   const { setParamURL } = useParam();
+  const {setParamId} = useParamId();
   if (type !== "mp4") {
     return (
       <img
-        onClick={() => handleChangeParam("multimedia", setParamURL)}
+        onClick={() => handleChangeParam("multimedia", setParamURL, setParamId)}
         src={`${ENDPOINTS.DIR_IMG}/${url}`}
         alt="Descripción de la imagen 1"
         className="w-full cursor-pointer hover:scale-110 duration-500 h-[290px] md:h-[400px] object-fit"

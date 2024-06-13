@@ -18,11 +18,6 @@
   background-size: cover;
 }
 
-.column-container {
-  /* column-count: 2; */
-  /* column-gap: 20px; */
-  /* text-align: justify; */
-}
 .merienda {
   font-family: "Merienda", cursive;
 }
@@ -77,6 +72,7 @@
 /* Estilo para la barra de desplazamiento del contenedor con clase .right */
 .right_scroll::-webkit-scrollbar {
   width: 5px; /* Ancho de la barra de desplazamiento */
+  height: 7px;
 }
 
 .right_scroll::-webkit-scrollbar-track {
@@ -98,4 +94,15 @@
 }
 .text-bold {
   font-weight: 600;
+}
+
+
+
+
+.background-slider{
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("https://content.nationalgeographic.com.es/medio/2024/03/14/istock-1411573046_5bb15a2f_240314120504_1280x854.jpg");
+  background-size: cover;
+  filter: blur(3px);
 }

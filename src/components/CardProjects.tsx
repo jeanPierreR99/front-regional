@@ -24,7 +24,7 @@ const CardProjects: React.FC = () => {
       </div>
       <div className="w-full md:w-6/12 px-4 flex flex-col gap-2 relative bg-[#081d3d] py-6 md:pt-10">
         <div className="absolute md:block hidden group-hover/project:w-[2000px] transition-all duration-700 right-[60px] top-0 w-full h-full bg-[#081d3d] -skew-x-12"></div>
-        <span className="text-gray-200 z-10 font-bold md:pr-12 text-2xl md:text-4xl">
+        <span className="text-cyan-500 z-10 font-bold md:pr-12 text-2xl md:text-4xl">
           SISTEMA DE FACTURACIÓN DE AGUA POTABLE EN CENTROS POBLADOS RURALES
         </span>
         <span className="text-gray-300 font-light z-10 md:pr-12">

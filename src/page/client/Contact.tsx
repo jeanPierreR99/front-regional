@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Logo from "../../components/Logo";
 import SocialMedia from "../../components/SocialMedia";
 import Links from "../../components/Links";
 
@@ -8,7 +7,7 @@ const Contact: React.FC = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <section className="py-24 overflow-hidden px-4 md:px-4 lg:px-16">
+    <section className="pt-24 pb-6 overflow-hidden px-4 md:px-4 lg:px-16">
       <div className="pt-10">
         <h2 className="text-3xl text-gray-200 md:text-4xl font-bold mb-8">
           CONTÁCTENOS
@@ -92,9 +91,6 @@ const Contact: React.FC = () => {
       </div>
       <div className="mt-14">
         <Links></Links>
-        <div className="md:mt-8 mt-2">
-        <Logo></Logo>
-        </div>
       </div>
       <SocialMedia></SocialMedia>
     </section>

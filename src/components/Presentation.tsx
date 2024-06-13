@@ -2,19 +2,20 @@ import React from "react";
 // import preOne from "../assets/image-4.jpeg";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { useParam } from "../context/Context.provider";
+import { useParam, useParamId } from "../context/Context.provider";
 import { handleChangeParam } from "../functions";
 
 const Presentation: React.FC = () => {
   const { setParamURL } = useParam();
+  const { setParamId } = useParamId();
 
   const { ref: ref1, inView: inView1 } = useInView({
     triggerOnce: true,
-    threshold: 0.4,
+    threshold: 0.1,
   });
   const { ref: ref2, inView: inView2 } = useInView({
     triggerOnce: true,
-    threshold: 0.4,
+    threshold: 0.3,
   });
 
   return (
@@ -29,7 +30,7 @@ const Presentation: React.FC = () => {
       >
         <h5
           style={{ lineHeight: "1.2" }}
-          className="text-2xl z-20 md:text-5xl merienda font-black text-gray-100"
+          className="text-2xl z-20 md:text-5xl merienda font-black text-cyan-500"
         >
           Sobre Nosotros
         </h5>
@@ -42,39 +43,39 @@ const Presentation: React.FC = () => {
           mayor.
         </p>
         <ul className="merienda list-none">
-          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-cyan-500 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
             Impulsar la Producción Habitacional, reducir sus costos y facilitar
             su Adquisición.
           </li>
-          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-cyan-500 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
             Mejorar el entorno Habitacional de la Población de Extrema Pobreza
             radicada en Asentamientos Humanos.
           </li>
-          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-cyan-500 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
             Propiciar el ordenamiento Territorial de la Población y sus
             Actividades, así como el Desarrollo Integral de las Ciudades al
             interior de la Región.
           </li>
-          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-cyan-500 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
             Impulsar la Formalización e Industrialización de la actividad
             constructiva Tecnificada y Sostenible.
           </li>
-          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-cyan-500 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
             Propiciar la reducción sostenida de la Contaminación Ambiental
             Urbana y Rural.
           </li>
-          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+          <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-cyan-500 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
             Promover la Sostenibilidad de los Sistemas, la ampliación de la
             cobertura y el mejoramiento de la calidad de los Servicios de
             Saneamiento.
           </li>
         </ul>
-        <span className="merienda text-gray-300 mt-5 font-light text-md relative ml-32  before:absolute  before:top-[50%] before:left-[-125px] before:text-8xl before:text-red-600 before:translate-y-[-50%] before:content-['10'] before:font-bold       after:absolute  after:top-[-40px] after:left-[-15px] after:text-5xl after:text-red-600 after:content-['+'] after:font-bold">
+        <span className="merienda text-gray-300 mt-5 font-light text-md relative ml-32  before:absolute  before:top-[50%] before:left-[-125px] before:text-8xl before:text-cyan-500 before:translate-y-[-50%] before:content-['10'] before:font-bold       after:absolute  after:top-[-40px] after:left-[-15px] after:text-5xl after:text-cyan-500 after:content-['+'] after:font-bold">
           Años llegando a tu hogar
         </span>
         <button
-          onClick={() => handleChangeParam("about", setParamURL)}
-          className="flex gap-1 text-red-600 font-bold hover:text-red-500 w-fit mt-10 "
+          onClick={() => handleChangeParam("about", setParamURL, setParamId)}
+          className="flex gap-1 text-cyan-500 font-bold hover:text-cyan-600 w-fit mt-10 "
         >
           Seguir leyendo{" "}
           <svg

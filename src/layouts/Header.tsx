@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParam } from "../context/Context.provider";
+import { useParam, useParamId } from "../context/Context.provider";
 import logo from "../assets/logo-vivienda.png";
-import {handleChangeParam} from "../functions";
+import { handleChangeParam } from "../functions";
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { paramURL, setParamURL } = useParam();
+  const { setParamId } = useParamId();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,8 +36,12 @@ const Header: React.FC = () => {
     <header
       className={
         paramURL == "home"
-          ? `fixed font-light top-0  z-[999] w-full bg-blue-900 ${scrolled? "bg-blue-900":"md:bg-transparent"}`
-          :paramURL=="login"?"hidden": " fixed font-light top-0 z-[999] w-full bg-blue-900"
+          ? `fixed font-light top-0  z-[999] w-full bg-blue-900 ${
+              scrolled ? "bg-blue-900" : "md:bg-transparent"
+            }`
+          : paramURL == "login"
+          ? "hidden"
+          : " fixed font-light top-0 z-[999] w-full bg-blue-900"
       }
     >
       <div className="container mx-auto flex justify-between items-center py-2 px-6">
@@ -45,32 +50,73 @@ const Header: React.FC = () => {
         </div>
         <nav className="hidden md:flex">
           <button
-            onClick={() => handleChangeParam("home", setParamURL)}
+            onClick={() => handleChangeParam("home", setParamURL, setParamId)}
             className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Inicio
           </button>
           <button
-            onClick={() => handleChangeParam("about", setParamURL)}
+            onClick={() => handleChangeParam("about", setParamURL, setParamId)}
             className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
           >
             Sobre nosotros
           </button>
+          <li className="relative group list-none hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b">
+            <a href="#" className="hover:text-gray-400 flex gap-1 items-center">
+              Medios{" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            </a>
+            <ul className="absolute left-0 hidden w-40 bg-blue-700 px-2 text-white group-hover:block">
+              <li>
+                {" "}
+                <button
+                  onClick={() =>
+                    handleChangeParam("notice", setParamURL, setParamId)
+                  }
+                  className="hover:text-white/70 border-white/10 block text-white py-2 w-full border-b"
+                >
+                  Noticias
+                </button>
+              </li>
+              <button
+                onClick={() =>
+                  handleChangeParam("post", setParamURL, setParamId)
+                }
+                className="hover:text-white/70 border-white/10 block text-white py-2 w-full border-b"
+              >
+                Comunicados
+              </button>
+              <li>
+                {" "}
+                <button
+                  onClick={() =>
+                    handleChangeParam("multimedia", setParamURL, setParamId)
+                  }
+                  className="hover:text-white/70 hover:border-white/50 block text-white py-2 w-full"
+                >
+                  Multimedia
+                </button>
+              </li>
+            </ul>
+          </li>
           <button
-            onClick={() => handleChangeParam("notice", setParamURL)}
-            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
-          >
-            Noticias
-          </button>
-          <button
-            onClick={() => handleChangeParam("multimedia", setParamURL)}
-            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
-          >
-            Multimedia
-          </button>
-          <button
-            onClick={() => handleChangeParam("contact", setParamURL)}
-            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
+            onClick={() =>
+              handleChangeParam("contact", setParamURL, setParamId)
+            }
+            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4"
           >
             Contactos
           </button>
@@ -106,34 +152,82 @@ const Header: React.FC = () => {
           </button>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden z-[999] absolute top-20 left-0 right-0 bg-blue-900">
+          <div className="md:hidden pb-2 z-[999] absolute top-20 left-0 right-0 bg-blue-900">
             <div className="container mx-auto">
               <button
-                onClick={() => handleChangeParam("home", setParamURL)}
+                onClick={() =>
+                  handleChangeParam("home", setParamURL, setParamId)
+                }
                 className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Inicio
               </button>
               <button
-                onClick={() => handleChangeParam("about", setParamURL)}
+                onClick={() =>
+                  handleChangeParam("about", setParamURL, setParamId)
+                }
                 className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Sobre Nosotros
               </button>
+              <li className="relative hover:h-[160px] duration-500 group list-none block text-gray-300 py-2 px-4">
+                <a
+                  href="#"
+                  className="flex gap-1 items-center justify-center"
+                >
+                  Medios{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="size-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </a>
+                <ul className="absolute left-0 hidden w-full bg-blue-900 px-2 group-hover:block">
+                  <li>
+                    {" "}
+                    <button
+                      onClick={() =>
+                        handleChangeParam("notice", setParamURL, setParamId)
+                      }
+                      className=" block py-2 w-full hover:bg-blue-800"
+                    >
+                      Noticias
+                    </button>
+                  </li>
+                  <button
+                    onClick={() =>
+                      handleChangeParam("post", setParamURL, setParamId)
+                    }
+                    className=" block py-2 w-full hover:bg-blue-800"
+                  >
+                    Comunicados
+                  </button>
+                  <li>
+                    {" "}
+                    <button
+                      onClick={() =>
+                        handleChangeParam("multimedia", setParamURL, setParamId)
+                      }
+                      className=" block py-2 w-full hover:bg-blue-800"
+                    >
+                      Multimedia
+                    </button>
+                  </li>
+                </ul>
+              </li>
               <button
-                onClick={() => handleChangeParam("notice", setParamURL)}
-                className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
-              >
-                Noticias
-              </button>
-              <button
-                onClick={() => handleChangeParam("multimedia", setParamURL)}
-                className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
-              >
-                Multimedia
-              </button>
-              <button
-                onClick={() => handleChangeParam("contact", setParamURL)}
+                onClick={() =>
+                  handleChangeParam("contact", setParamURL, setParamId)
+                }
                 className="block text-gray-300 py-2 hover:bg-blue-800 w-full"
               >
                 Contacto

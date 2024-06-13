@@ -12,6 +12,7 @@ import ENDPOINTS from "../config";
 import Login from "../page/client/Login";
 import Multimedia from "../page/client/Multimedia";
 import loading from "../assets/500.gif";
+import Post from "../page/client/Post";
 export interface DataNotice {
   id: string;
   title: string;
@@ -78,6 +79,8 @@ const RouteDefault: React.FC = () => {
               <About />
             ) : paramURL === "multimedia" ? (
               <Multimedia />
+            ) : paramURL === "post" ? (
+              <Post />
             ) : paramURL === "contact" ? (
               <Contact />
             ) : paramURL === "login" ? (

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Slider from "../../components/Slider";
 import CardNoticeHome from "../../components/CardNoticeHome";
-import Logo from "../../components/Logo";
 import Presentation from "../../components/Presentation";
 import { useNotice } from "../../context/Context.provider";
 import CardProjects from "../../components/CardProjects";
@@ -9,6 +8,7 @@ import GallerySection from "../../components/GallerySection";
 import Links from "../../components/Links";
 import GalleryFill from "../../components/GalleryFill";
 import SocialMedia from "../../components/SocialMedia";
+import CircleArea from "../../components/CircleArea";
 
 const Inicio: React.FC = () => {
   const { paramNotice } = useNotice();
@@ -17,16 +17,14 @@ const Inicio: React.FC = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <div className="pb-16">
+    <div className="">
       <Slider></Slider>
-      <div className="" id="presentation">
-          <Logo></Logo>
-        </div>
-      <div className="flex flex-col mt-16 overflow-hidden relative">
+      <div className="flex flex-col  overflow-hidden relative">
+        <div><CircleArea></CircleArea></div>
         <div>
           <Presentation></Presentation>
         </div>
-        <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
+        {/* <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
           <div className="flex flex-col gap-4">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
               SANEAMIENTO Y URBANISMO
@@ -43,7 +41,7 @@ const Inicio: React.FC = () => {
               <GalleryFill></GalleryFill>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
           <div className="flex flex-col gap-4">
             <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
@@ -122,7 +120,7 @@ const Inicio: React.FC = () => {
               al día y tomar decisiones informadas.
             </span>
           </div>
-          <div className="py-6 -mx-2">
+          <div className="py-6 mx-2">
             <Links></Links>
           </div>
         </div>

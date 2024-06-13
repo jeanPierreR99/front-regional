@@ -2,30 +2,57 @@
 import React, { useEffect, useState } from "react";
 import ImageGallery from "../../components/ImageGallery";
 import SocialMedia from "../../components/SocialMedia";
-import Logo from "../../components/Logo";
 import Links from "../../components/Links";
-import { useNotice } from "../../context/Context.provider";
+import { useNotice, useParamId } from "../../context/Context.provider";
 const Multimedia: React.FC = () => {
   const { paramNotice } = useNotice();
+  const { paramId, setParamId } = useParamId();
   const [allUrls, setAllUrls] = useState<Array<string>>([]);
+  const [title, setTitle] = useState<string>("");
 
-  useEffect(() => {
+  const handleChangeParamMedia = () => {
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set("search", "multimedia");
+
+    setParamId(newSearchParams.get("id") || "1");
+    const newUrl = `?${newSearchParams.toString()}`;
+    window.history.pushState({ path: newUrl }, "", newUrl);
+
     let auxArray: any = [];
-    Array.isArray(paramNotice) &&
-      paramNotice.forEach((obj: any) => {
-        Array.isArray(obj.files) &&
-          obj.files.forEach((element: any) => {
-            auxArray.push(element);
-          });
-      });
+    if (paramId !== "1" || !paramId) {
+      Array.isArray(paramNotice) &&
+        paramNotice.forEach((obj: any) => {
+          if (obj.id == paramId) {
+            setTitle(obj.title);
+            Array.isArray(obj.files) &&
+              obj.files.forEach((element: any) => {
+                auxArray.push(element);
+              });
+            return;
+          }
+        });
+    } else {
+      Array.isArray(paramNotice) &&
+        paramNotice.forEach((obj: any) => {
+          Array.isArray(obj.files) &&
+            obj.files.forEach((element: any) => {
+              auxArray.push(element);
+            });
+        });
+    }
     setAllUrls(auxArray);
     window.scrollTo(0, 0);
-  }, [paramNotice]);
+  };
+
+  useEffect(() => {
+    handleChangeParamMedia();
+    console.log(paramId);
+  }, [paramId]);
   return (
-    <section className="py-24 overflow-hidden relative">
+    <section className="pt-24 pb-6 overflow-hidden relative">
       <div className="pt-10">
-        <h2 className="text-3xl px-4 md:px-4 lg:px-16 text-gray-200 md:text-4xl font-bold mb-8">
-          MULTIMEDIA
+        <h2 className="text-3xl px-4 md:px-4 lg:px-16 text-gray-200 md:text-4xl font-bold mb-8 uppercase">
+          {paramId !== "1" && title}
         </h2>
         <div className="grid grid-cols-5 gap-2">
           {allUrls &&
@@ -48,9 +75,6 @@ const Multimedia: React.FC = () => {
       </div>
       <div className="px-4 md:px-4 lg:px-16 mt-14">
         <Links></Links>
-        <div className="md:mt-8 mt-2">
-          <Logo></Logo>
-        </div>
       </div>
       <SocialMedia></SocialMedia>
     </section>

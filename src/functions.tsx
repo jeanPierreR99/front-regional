@@ -1,8 +1,10 @@
 export function handleChangeParam(
   newParam: string,
-  setParamURL: (param: string) => void
+  setParamURL: any,
+  setParamId: any
 ) {
   setParamURL(newParam);
+  setParamId("1");
 
   const newSearchParams = new URLSearchParams(window.location.search);
   newSearchParams.delete("id");
@@ -12,18 +14,19 @@ export function handleChangeParam(
 }
 
 export function handleChangeParamId(
-  noticeId: string,
-  setParamURL: (param: string) => void,
-  setParamId: (param: string) => void
+  param: string,
+  id: string,
+  setParamURL: any,
+  setParamId: any
 ) {
-  setParamURL("notice");
-  setParamId(noticeId);
+  setParamURL(param);
+  setParamId(id);
 
   const newSearchParams = new URLSearchParams(window.location.search);
   newSearchParams.delete("search");
   newSearchParams.delete("id");
-  newSearchParams.append("search", "notice");
-  newSearchParams.append("id", noticeId);
+  newSearchParams.append("search", param);
+  newSearchParams.append("id", id);
   const newUrl = `?${newSearchParams.toString()}`;
   window.history.pushState({ path: newUrl }, "", newUrl);
 }

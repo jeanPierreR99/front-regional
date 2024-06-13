@@ -26,8 +26,8 @@ const CardNoticeHome: React.FC<DataNotice> = ({
       initial={{ opacity: 0, x: -100 }}
       animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
       transition={{ duration: 0.5 }}
-      onClick={() => handleChangeParamId(id, setParamURL, setParamId)}
-      className="cursor-pointer w-[300px] h-auto md:w-[390px] text-justify group/notice  border-[#3183a9] flex-shrink-0 overflow-hidden hover:bg-[#3183a9]/20 duration-500"
+      onClick={() => handleChangeParamId("notice",id, setParamURL, setParamId)}
+      className="cursor-pointer w-[300px] h-auto md:w-[390px] text-justify group/notice flex-shrink-0 overflow-hidden hover:bg-[#3183a9]/20 duration-500"
     >
       <div className="overflow-hidden relative">
         <img

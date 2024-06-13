@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Mision from "../../components/Mision";
-import Logo from "../../components/Logo";
 import Links from "../../components/Links";
 import SocialMedia from "../../components/SocialMedia";
 import HistoryLog from "../../components/HistoryLog";
@@ -10,7 +9,7 @@ const About: React.FC = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <section className="py-24 overflow-hidden px-2 md:px-4 lg:px-16">
+    <section className="pt-24 pb-6 overflow-hidden px-2 md:px-4 lg:px-16">
       <div className="w-full pt-10">
         <h2 className="text-3xl px-2 text-gray-200 md:text-4xl font-bold mb-8">
           SOBRE NOSOTROS
@@ -20,9 +19,6 @@ const About: React.FC = () => {
       </div>
       <div className="mt-14">
         <Links></Links>
-        <div className="md:mt-8 mt-2">
-        <Logo></Logo>
-        </div>
       </div>
       <SocialMedia></SocialMedia>
     </section>

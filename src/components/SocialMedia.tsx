@@ -17,7 +17,7 @@ const SocialMedia: React.FC = () => {
       initial={{ opacity: 0, y: 100 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
       transition={{ duration: 0.5 }}
-      className="fixed hidden left-1 bottom-[10px] md:flex flex-col z-[9999]"
+      className="fixed hidden right-1 bottom-[10px] md:flex flex-col z-[9999]"
     >
       <a
         href="#"

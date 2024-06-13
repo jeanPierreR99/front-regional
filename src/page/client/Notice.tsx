@@ -1,11 +1,14 @@
-import { useNotice, useParamId } from "../../context/Context.provider";
+import {
+  useNotice,
+  useParam,
+  useParamId,
+} from "../../context/Context.provider";
 import CardNotice from "../../components/CardNotice";
 import { useEffect } from "react";
-import GallerySection from "../../components/GallerySection";
-import Logo from "../../components/Logo";
 import Links from "../../components/Links";
 import ENDPOINTS from "../../config";
 import SocialMedia from "../../components/SocialMedia";
+import { handleChangeParamId } from "../../functions";
 
 const processContent = (text: string) => {
   if (!text) return "";
@@ -22,13 +25,14 @@ const processContent = (text: string) => {
 
 const Notice: React.FC = () => {
   const { paramNotice } = useNotice();
+  const { paramURL ,setParamURL } = useParam();
   const { paramId, setParamId } = useParamId();
 
   const handleChangeParam = () => {
     const newSearchParams = new URLSearchParams(window.location.search);
     newSearchParams.set("search", "notice");
 
-    setParamId(newSearchParams.get("id") || "1");
+    setParamId(newSearchParams.get("id") || "");
     const newUrl = `?${newSearchParams.toString()}`;
     window.history.pushState({ path: newUrl }, "", newUrl);
   };
@@ -36,11 +40,10 @@ const Notice: React.FC = () => {
   useEffect(() => {
     handleChangeParam();
     window.scrollTo(0, 0);
-    console.log(paramNotice);
-  }, [paramId]);
+  }, [paramId, paramURL]);
 
   return (
-    <div className="flex flex-col px-4 md:px-4 lg:px-16  pt-14 pb-24">
+    <div className="flex flex-col px-4 md:px-4 lg:px-16  pt-14 pb-6">
       {paramId &&
         Array.isArray(paramNotice) &&
         paramNotice.length > 0 &&
@@ -59,7 +62,7 @@ const Notice: React.FC = () => {
                       alt=""
                     />
                   </div>
-                  <p className=" text-yellow-300 font-bold">
+                  <p className=" text-blue-400 font-bold">
                     Publicado el {obj.date_published}
                   </p>
                   <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
@@ -74,8 +77,34 @@ const Notice: React.FC = () => {
                       className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
                     ></p>
                   </div>
-                  <div className="flex overflow-hidden flex-wrap justify-around gap-4 w-full h-full mt-10">
-                    <GallerySection files={obj.files}></GallerySection>
+                  <div className="text-right z-10 md:pr-12">
+                    <button
+                      onClick={() =>
+                        handleChangeParamId(
+                          "multimedia",
+                          obj.id,
+                          setParamURL,
+                          setParamId
+                        )
+                      }
+                      className="hover:text-blue-400/70 text-blue-400 float-end w-fit px-2 py-1 rounded-md flex gap-1"
+                    >
+                      Ver galeria
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        className="size-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
                 <div
@@ -99,7 +128,7 @@ const Notice: React.FC = () => {
             );
           }
         })}
-      {paramId == "1" &&
+      {paramId == "" &&
         Array.isArray(paramNotice) &&
         paramNotice.length > 0 && (
           <div
@@ -115,7 +144,7 @@ const Notice: React.FC = () => {
                 />
               </div>
 
-              <p className=" text-yellow-300 font-bold">
+              <p className=" text-blue-400 font-bold">
                 Publicado el {paramNotice[0].date_published}
               </p>
 
@@ -131,8 +160,34 @@ const Notice: React.FC = () => {
                   className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
                 ></p>
               </div>
-              <div className="flex overflow-hidden flex-wrap justify-around gap-4 w-full h-full mt-10">
-                <GallerySection files={paramNotice[0].files}></GallerySection>
+              <div className="text-right z-10 md:pr-12">
+                <button
+                  onClick={() =>
+                    handleChangeParamId(
+                      "multimedia",
+                      paramNotice[0].id,
+                      setParamURL,
+                      setParamId
+                    )
+                  }
+                  className="hover:text-blue-400/70 text-blue-400 float-end w-fit px-2 py-1 rounded-md flex gap-1"
+                >
+                  Ver galeria
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </button>
               </div>
             </div>
             <div
@@ -156,9 +211,6 @@ const Notice: React.FC = () => {
         )}
       <div className="mt-14">
         <Links></Links>
-        <div className="md:mt-8 mt-2">
-          <Logo></Logo>
-        </div>
       </div>
       <SocialMedia></SocialMedia>
     </div>
