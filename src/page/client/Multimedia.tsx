@@ -51,8 +51,8 @@ const Multimedia: React.FC = () => {
   return (
     <section className="pt-24 pb-6 overflow-hidden relative">
       <div className="pt-10">
-        <h2 className="text-3xl px-4 md:px-4 lg:px-16 text-gray-200 md:text-4xl font-bold mb-8 uppercase">
-          {paramId !== "1" && title}
+        <h2 className="text-3xl px-4 md:px-4 lg:px-16 text-gray-900 md:text-4xl font-bold mb-8 uppercase">
+          {paramId !== "1" ? title : "IMGENES Y VIDEOS"}
         </h2>
         <div className="grid grid-cols-5 gap-2">
           {allUrls &&

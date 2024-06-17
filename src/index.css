@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
 .cont-img {
   text-align: center;
   background-attachment: fixed;
@@ -48,7 +51,7 @@
   z-index: 1;
 }
 
-.pixel::before {
+/* .pixel::before {
   content: "";
   position: absolute;
   top: 0;
@@ -61,10 +64,10 @@
   background-size: 40%;
   opacity: 0.3;
   z-index: -1;
-}
+} */
 
 .img-mision {
-  filter: drop-shadow(0 0 5px #3aafe6);
+  filter: drop-shadow(0 0 5px #22bbe6);
 }
 .img-mision:hover {
   filter: drop-shadow(0 0 10px #3aafe6);
@@ -76,17 +79,17 @@
 }
 
 .right_scroll::-webkit-scrollbar-track {
-  background: #08285f; /* Color del fondo de la barra de desplazamiento */
+  background: #e3e0e0; /* Color del fondo de la barra de desplazamiento */
 }
 
 .right_scroll::-webkit-scrollbar-thumb {
-  background-color: #079ee4; /* Color de la barra de desplazamiento */
+  background-color: #a2a7ab; /* Color de la barra de desplazamiento */
   border-radius: 10px; /* Redondear la barra de desplazamiento */
-  border: 1px solid #079ee4; /* Espacio entre la barra y el contenedor */
+  border: 1px solid #a2a7ab; /* Espacio entre la barra y el contenedor */
 }
 
 .right_scroll::-webkit-scrollbar-thumb:hover {
-  background: #3183a9; /* Color de la barra de desplazamiento al pasar el mouse */
+  background: #a2a7ab; /* Color de la barra de desplazamiento al pasar el mouse */
 }
 
 .letter {
@@ -96,13 +99,37 @@
   font-weight: 600;
 }
 
-
-
-
-.background-slider{
+.background-slider {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-image: url("https://content.nationalgeographic.com.es/medio/2024/03/14/istock-1411573046_5bb15a2f_240314120504_1280x854.jpg");
   background-size: cover;
-  filter: blur(3px);
+  /* filter: blur(3px); */
+}
+
+.gradient {
+  /* background: rgb(3, 6, 169); */
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgb(5, 3, 158) 0.1%,
+    rgb(3, 129, 127) 99.8%
+  );
+}
+.gradient-p {
+  /* background: rgba(212, 212, 213, 0.893); */
+}
+
+.cont-img-proyect {
+  /* background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("https://www.metropolitan-touring.com/wp-content/uploads/2023/10/destination-peru-madre-de-dios-puerto-maldonado.webp");
+  background-position: right top;
+  background-size: cover; */
+}
+footer {
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgb(8 5 83) 0.1%,
+    rgb(20 78 237) 99.8%
+  );
 }

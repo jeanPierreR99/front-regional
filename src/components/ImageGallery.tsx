@@ -13,7 +13,7 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
       return (
         <div className="w-full h-[200px] md:h-[350px]">
           <div
-            className="w-[100%] h-[100%] cursor-pointer grayscale hover:grayscale-0 transition-all duration-500"
+            className="w-[100%] h-[100%] cursor-pointer transition-all duration-500"
             onClick={() => setLightboxOpen(true)}
           >
             <img
@@ -33,7 +33,7 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
         <span className="absolute z-10 bottom-0 right-0 bg-red-800 text-white px-2 py-1 rounded-tl-lg text-xs">
           Video
         </span>
-        <div className="w-full h-full cursor-pointer grayscale hover:grayscale-0">
+        <div className="w-full h-full cursor-pointer">
           <video
             className="w-full h-full"
             controls

@@ -59,7 +59,7 @@ const Login: React.FC = () => {
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         <div>
-          <h2 className="text-center text-3xl font-extrabold text-gray-200">
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Iniciar sesión
           </h2>
         </div>
@@ -72,7 +72,7 @@ const Login: React.FC = () => {
               type="text"
               autoComplete="text"
               required
-              className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
+              className="rounded-md w-full px-3 py-2 border border-gray-300 outline-none focus:border-blue-600 placeholder-gray-500 text-gray-500 sm:text-sm"
               placeholder="Correo electrónico"
               value={user}
               onChange={(e) => setUser(e.target.value)}
@@ -84,7 +84,7 @@ const Login: React.FC = () => {
               type="password"
               autoComplete="current-password"
               required
-              className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
+              className="rounded-md w-full px-3 py-2 border border-gray-300 outline-none focus:border-blue-600 placeholder-gray-500 text-red-600 sm:text-sm"
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

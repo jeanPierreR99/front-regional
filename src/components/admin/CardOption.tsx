@@ -11,19 +11,19 @@ const CardOption: React.FC = () => {
 
   return (           
     <div className="flex flex-wrap gap-10 justify-center py-20 md:pt-0 items-center w-full h-full  md:h-[calc(100vh-84px)] overflow-hidden">
-    <button onClick={()=>{handleChangeParam("estadistica", setParamURL, setParamId)}} className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+    <button onClick={()=>{handleChangeParam("estadistica", setParamURL, setParamId)}} className="w-[200px] bg-none border border-[#0306a9] bg-white text-[#0306a9] font-bold transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
         <img src={iconEstadistica} className="w-[70%] h-[70%]" alt="" />
         <span>Estadistica</span>
       </button>
-      <button onClick={()=>{handleChangeParam("post", setParamURL, setParamId)}} className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+      <button onClick={()=>{handleChangeParam("post", setParamURL, setParamId)}} className="w-[200px] bg-none border border-[#0306a9] bg-white text-[#0306a9] font-bold transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
         <img src={iconPost} className="w-[70%] h-[70%]" alt="" />
-        <span>Proyectos</span>
+        <span>Anuncios</span>
       </button>
-      <button onClick={()=>{handleChangeParam("multimedia", setParamURL, setParamId)}} className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+      <button onClick={()=>{handleChangeParam("multimedia", setParamURL, setParamId)}} className="w-[200px] bg-none border border-[#0306a9] bg-white text-[#0306a9] font-bold transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
         <img src={iconGalery} className="w-[70%] h-[70%]" alt="" />
         <span>Galeria</span>
       </button>
-      <button onClick={()=>{handleChangeParam("notice", setParamURL, setParamId)}} className="w-[200px] bg-none text-gray-200 border border-[#3183a9] hover:bg-[#3183a9]/20 hover:text-white transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
+      <button onClick={()=>{handleChangeParam("notice", setParamURL, setParamId)}} className="w-[200px] bg-none border border-[#0306a9] bg-white text-[#0306a9] font-bold transition-all duration-300 items-center justify-center h-[200px] flex flex-col gap-2 shadow-lg p-8 rounded-lg hover:scale-125">
         <img src={iconNotice} className="w-[70%] h-[70%]" alt="" />
         <span>Noticias</span>
       </button>

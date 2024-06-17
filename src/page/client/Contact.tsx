@@ -9,12 +9,12 @@ const Contact: React.FC = () => {
   return (
     <section className="pt-24 pb-6 overflow-hidden px-4 md:px-4 lg:px-16">
       <div className="pt-10">
-        <h2 className="text-3xl text-gray-200 md:text-4xl font-bold mb-8">
+        <h2 className="text-3xl text-gray-900 md:text-4xl font-bold mb-8">
           CONTÁCTENOS
         </h2>
-        <div className="text-gray-300 mb-2 font-light">
+        <div className="text-gray-500 mb-2">
           <p>
-            <strong className="font-semibold">¡Nos encantaría saber de ti!</strong> ¿Tienes alguna pregunta, comentario o
+            <strong className="">¡Nos encantaría saber de ti!</strong> ¿Tienes alguna pregunta, comentario o
             simplemente quieres saludarnos? Estamos aquí para ayudarte. No dudes
             en ponerte en contacto con nosotros a través del formulario a
             continuación o utilizando cualquiera de los métodos de contacto
@@ -29,7 +29,7 @@ const Contact: React.FC = () => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block font-medium text-gray-300"
+                  className="block font-medium text-gray-500"
                 >
                   Nombre
                 </label>
@@ -37,13 +37,13 @@ const Contact: React.FC = () => {
                   type="text"
                   id="name"
                   name="name"
-                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
+                  className="rounded-md w-full px-3 py-2 border border-gray-300 focus:border-blue-800 text-gray-500 focus:outline-none sm:text-sm"
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block font-medium text-gray-300"
+                  className="block font-medium text-gray-500"
                 >
                   Correo electrónico
                 </label>
@@ -51,13 +51,13 @@ const Contact: React.FC = () => {
                   type="email"
                   id="email"
                   name="email"
-                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
+                  className="rounded-md w-full px-3 py-2 border border-gray-300 focus:border-blue-800 text-gray-500 focus:outline-none sm:text-sm"
                 />
               </div>
               <div>
                 <label
                   htmlFor="message"
-                  className="block font-medium text-gray-300"
+                  className="block font-medium text-gray-500"
                 >
                   Mensaje
                 </label>
@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
                   id="message"
                   name="message"
                   rows={6}
-                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
+                  className="rounded-md w-full px-3 py-2 border border-gray-300 focus:border-blue-800 text-gray-500 focus:outline-none sm:text-sm"
                 ></textarea>
               </div>
               <button

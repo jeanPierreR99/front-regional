@@ -26,7 +26,7 @@ const CardNotice: React.FC<DataNotice> = ({
       animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
       transition={{ duration: 0.5 }}
       onClick={() => handleChangeParamId("notice",id,setParamURL,setParamId)}
-      className="flex cursor-pointer h-[180px] md:w-full group/notice hover:bg-[#3183a9]/20 duration-500 flex-shrink-0 overflow-hidden   hover:scale-110"
+      className="flex cursor-pointer h-[180px] md:w-full group/notice hover:bg-gray-100 duration-400 flex-shrink-0 overflow-hidden   hover:scale-110"
     >
       <div className="overflow-hidden relative w-4/12">
         <img
@@ -36,13 +36,13 @@ const CardNotice: React.FC<DataNotice> = ({
         />
       </div>
       <div className="px-4 py-2 w-8/12 relative overflow-hidden">
-        <a className="line-clamp-3 text-gray-300 font-bold group-hover/notice:text-white text-lg">
+        <a className="line-clamp-3 text-sm text-gray-800 font-bold">
           {title}
         </a>
-        <p className="text-gray-300 text-sm line-clamp-3 group-hover/notice:text-white">
+        <p className="text-gray-800 text-sm line-clamp-3 ">
           {content}
         </p>
-        <p className="text-gray-400 font-light text-sm line-clamp-3 group-hover/notice:text-white">
+        <p className="text-gray-400 text-sm line-clamp-3 ">
           {date_published}
         </p>
       </div>

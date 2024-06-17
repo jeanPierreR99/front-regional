@@ -61,9 +61,9 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
   return (
     <div className="fixed h-screen w-full top-0 left-0 z-[999] py-4 outline-none bg-black/30">
       <div className="relative z-10 w-11/12 lg:w-[50%] md:w-8/12  h-[100%] mx-auto">
-        <div className="bg-[#041025] border border-[#3183a9] w-full  h-full rounded-lg shadow-lg">
-          <div className="flex justify-between items-center border-b border-[#3183a9] p-4">
-            <h3 className="text-lg font-semibold text-gray-200">
+        <div className="bg-white w-full  h-full rounded-lg shadow-lg">
+          <div className="flex justify-between items-center border-b border-gray-300 p-4">
+            <h3 className="text-lg font-semibold text-gray-900">
               Noticia {id}
             </h3>
             <button
@@ -108,16 +108,16 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
                             alt=""
                           />
                         </div>
-                        <p className=" text-yellow-300 font-bold">
+                        <p className=" text-[#0306a9] font-bold">
                           Publicado el {obj.date_published}
                         </p>
-                        <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
+                        <span className="text-xl md:text-2xl font-bold  text-gray-900 uppercase">
                           {obj.title}
                         </span>
                         <div className="flex flex-col gap-2 px-2 mt-2">
                           <div className="column-container">
                             <p
-                              className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
+                              className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-700 first-letter:mr-3 first-letter:float-left text-gray-500"
                               dangerouslySetInnerHTML={{
                                 __html: processContent(obj.content),
                               }}

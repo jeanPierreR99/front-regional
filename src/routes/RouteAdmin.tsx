@@ -53,10 +53,10 @@ const RouteAdmin: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-[#041025]">
+    <div className="">
       {paramURL && (
         <div>
-          <div className="w-full px-4 h-[60px] bg-blue-800 flex items-center justify-between ">
+          <div className="w-full px-4 h-[60px] bg-[#0306a9] flex items-center justify-between ">
             <span className="text-white text-xl">ADMINISTRADOR</span>
             <button
               onClick={sessionDestroy}
@@ -80,15 +80,15 @@ const RouteAdmin: React.FC = () => {
           </div>
           <div className="px-4 py-2 md:px-4 lg:px-16 mt-2">
             {paramURL != "admin" && (
-              <div className="text-gray-400 text-sm py-4">
+              <div className="text-gray-500 text-sm py-4">
                 <div>
                   <button
-                    className="hover:text-gray-200"
+                    className="hover:text-gray-500/70"
                     onClick={() => handleChangeParam("admin", setParamURL, setParamId)}
                   >
                     Admin
                   </button>
-                  <span className="text-gray-200"> / {paramURL}</span>
+                  <span className="text-gray-400"> / {paramURL}</span>
                 </div>
               </div>
             )}

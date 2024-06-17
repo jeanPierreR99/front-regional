@@ -6,9 +6,7 @@ import { useNotice } from "../../context/Context.provider";
 import CardProjects from "../../components/CardProjects";
 import GallerySection from "../../components/GallerySection";
 import Links from "../../components/Links";
-import GalleryFill from "../../components/GalleryFill";
 import SocialMedia from "../../components/SocialMedia";
-import CircleArea from "../../components/CircleArea";
 
 const Inicio: React.FC = () => {
   const { paramNotice } = useNotice();
@@ -20,39 +18,15 @@ const Inicio: React.FC = () => {
     <div className="">
       <Slider></Slider>
       <div className="flex flex-col  overflow-hidden relative">
-        <div><CircleArea></CircleArea></div>
         <div>
           <Presentation></Presentation>
         </div>
-        {/* <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
-          <div className="flex flex-col gap-4">
-            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
-              SANEAMIENTO Y URBANISMO
-            </h6>
-            <span className="text-gray-300 text-center font-light">
-              El saneamiento y el urbanismo constituyen los pilares
-              fundamentales para el desarrollo sostenible de nuestras ciudades y
-              comunidades. A través de una planificación adecuada y la
-              implementación de infraestructuras modernas, podemos garantizar la
-              salud pública, la protección del medio ambiente y la calidad de
-              vida de todos los habitantes.
-            </span>
-            <div className="-mx-10 md:-mx-20 pt-3">
-              <GalleryFill></GalleryFill>
-            </div>
-          </div>
-        </div> */}
+        <div>{/* <CircleArea></CircleArea> */}</div>
         <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
-          <div className="flex flex-col gap-4">
-            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
-              ULTIMAS NOTICIAS
+          <div className="flex flex-col mb-10">
+            <h6 className="merienda relative text-2xl md:text-5xl w-fit m-auto text-gray-900 font-black before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-15px] before:bg-[#0306A9]">
+              Ultimas Noticias
             </h6>
-            <span className="text-gray-300 text-center font-light">
-              Descubre las últimas novedades y acontecimientos relacionados con
-              el desarrollo urbano, la vivienda sostenible y los proyectos en
-              curso en la región de Madre de Dios. Mantente informado sobre los
-              avances y las iniciativas que impactan en nuestra comunidad.
-            </span>
           </div>
           <div className="flex gap-4 md:justify-center py-6 px-2 overflow-x-auto">
             {Array.isArray(paramNotice) &&
@@ -70,36 +44,49 @@ const Inicio: React.FC = () => {
                   ></CardNoticeHome>
                 ))}
           </div>
+          <div className="flex gap-4 md:justify-center py-6 px-2 md:overflow-x-hidden overflow-x-auto">
+            <div className="overflow-y-auto h-[400px] md:h-[500px] flex-shrink-0">
+              <iframe
+                src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fposts%2Fpfbid02N1NdoGG22ZEVew7yJqcFDPe3WSgxb6CSgoknjtp6LxV711rU4vwK91Qy5gJQjPml&show_text=true&width=400"
+                style={{ border: "none" }}
+                width={380}
+                height={800}
+                className="overflow-y-auto"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              ></iframe>
+            </div>
+            <div className="overflow-y-auto h-[400px] md:h-[500px] flex-shrink-0">
+              <iframe
+                src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fposts%2Fpfbid0oCxMWY2n4r7ULuZaMyLir91FDcGH2pDQkqJvQ8Yku8VrnNN9pMcVNySmu8gRTzSbl&show_text=true&width=400"
+                style={{ border: "none" }}
+                width={380}
+                height={800}
+                className="overflow-y-auto"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              ></iframe>
+            </div>
+            <div className="overflow-y-auto h-[400px] md:h-[500px] flex-shrink-0">
+              <iframe
+                src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fposts%2Fpfbid0KrTewcdsUzVh3WvXd2fKkqBs53uh98hsag2mTvXXg7FQrowyuSxGzShKjLEW45wql&show_text=true&width=400"
+                style={{ border: "none" }}
+                width={380}
+                height={800}
+                className="overflow-y-auto"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              ></iframe>
+            </div>
+          </div>
         </div>
         <div className="mt-10 ">
-          <div className="flex flex-col gap-4 px-4 md:px-4 lg:px-16">
-            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
-              PROYECTOS
-            </h6>
-            <span className="text-gray-300 text-center font-light">
-              Explora nuestros proyectos emblemáticos y futuros, diseñados para
-              mejorar la calidad de vida de los habitantes de Madre de Dios.
-              Desde la construcción de infraestructuras hasta programas de
-              desarrollo comunitario, conoce cómo estamos trabajando para un
-              futuro más próspero y sostenible.
-            </span>
-          </div>
           <div className="-mx-10 md:-mx-20">
             <CardProjects></CardProjects>
           </div>
         </div>
         <div className="px-4 py-2 md:px-4 lg:px-16 mt-14">
-          <div className="flex flex-col gap-4">
-            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
-              MULTIMEDIA
+          <div className="flex flex-col mb-10">
+            <h6 className="merienda relative text-2xl md:text-5xl w-fit m-auto text-gray-900 font-black before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-15px] before:bg-[#0306A9]">
+              Multimedia
             </h6>
-            <span className="text-gray-300 text-center font-light">
-              Sumérgete en nuestra galería multimedia para visualizar imágenes,
-              videos y contenido interactivo que destacan nuestros proyectos en
-              acción. Vive la experiencia de nuestros logros visuales y
-              audiovisuales, capturando el progreso y la belleza de nuestra
-              región.
-            </span>
           </div>
           <div className="py-6">
             {Array.isArray(paramNotice) && paramNotice.length > 0 && (
@@ -108,17 +95,10 @@ const Inicio: React.FC = () => {
           </div>
         </div>
         <div className="px-4 py-2 md:px-4 lg:px-16 mt-6">
-          <div className="flex flex-col gap-4">
-            <h6 className="relative text-2xl md:text-4xl w-fit m-auto text-gray-300 font-light before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-5px] before:bg-red-600">
-              ENLACES DE INTERES
+          <div className="flex flex-col gap-10">
+            <h6 className="merienda relative mb-10 text-2xl md:text-5xl w-fit m-auto text-gray-900 font-black before:w-4/12 before:translate-x-[-50%] before:h-[3px] before:absolute before:left-[50%] before:bottom-[-15px] before:bg-[#0306A9]">
+              Enlaces de Interes
             </h6>
-            <span className="text-gray-300 text-center font-light">
-              Encuentra recursos útiles y enlaces relevantes relacionados con el
-              sector de vivienda, construcción y saneamiento en Madre de Dios.
-              Desde documentos oficiales hasta sitios web de interés, aquí
-              encontrarás una recopilación de información que te ayudará a estar
-              al día y tomar decisiones informadas.
-            </span>
           </div>
           <div className="py-6 mx-2">
             <Links></Links>

@@ -91,7 +91,7 @@ const MyChart: React.FC = () => {
           color: '#b7b6b626', // Cambia el color de las líneas del eje x a blanco
         },
         ticks: {
-          color: '#ffffff', // Cambia el color del texto de las etiquetas del eje x a blanco
+          color: 'black', // Cambia el color del texto de las etiquetas del eje x a blanco
         },
       },
       y: {
@@ -106,7 +106,7 @@ const MyChart: React.FC = () => {
     plugins: {
       datalabels: {
         display: true,
-        color: 'white',
+        color: 'black',
         formatter: (value: number) => `${value} MB`,
         font: {
           weight: 'bold',
@@ -115,15 +115,15 @@ const MyChart: React.FC = () => {
         align: 'center' as const,  // Specify the valid type
       },
     },
-    color:'white'
+    color:'black'
   };
 
   const options3:any = {
-    color:'white',
+    color:'black',
     plugins: {
       datalabels: {
         display: true,
-        color: 'white',
+        color: 'black',
         formatter: (value: number) => `${value}%`,
         font: {
           weight: 'bold',
@@ -136,7 +136,7 @@ const MyChart: React.FC = () => {
 
   return (
     <div className="my-chart text-center p-10 text-white">
-      <h1 className='text-red-500 mb-4 text-xl font-medium'>Métricas Del Sistema</h1>
+      <h1 className='text-[#0306a9] mb-4 text-3xl font-bold'>Métricas Del Sistema</h1>
       <div className="chart-container gap-6 grid md:grid-cols-3 grid-cols-1">
         <div className="chart-item">
           <h2>Tamaño Del Directorio</h2>

@@ -61,7 +61,7 @@ const RouteDefault: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-[#041025]">
+    <div className="bg-white">
       {load && (
         <div className="h-screen flex justify-center items-center">
           <img src={loading} className="w-16 h-16 bg-[#04BDF3] rounded-full" alt="" />

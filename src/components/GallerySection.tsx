@@ -14,14 +14,14 @@ const verifyTypeFile: React.FC = (type: any, url: any) => {
         onClick={() => handleChangeParam("multimedia", setParamURL, setParamId)}
         src={`${ENDPOINTS.DIR_IMG}/${url}`}
         alt="Descripción de la imagen 1"
-        className="w-full cursor-pointer hover:scale-110 duration-500 h-[290px] md:h-[400px] object-fit"
+        className="w-full cursor-pointer hover:scale-110 duration-500 h-[290px] md:h-[300px] object-fit"
       />
     );
   }
 
   return (
     <video
-      className="w-full h-[290px] md:h-[400px] object-cover"
+      className="w-full h-[290px] md:h-[300px] object-cover"
       controls
       src={`${ENDPOINTS.DIR_IMG}/${url}`}
     />
@@ -39,13 +39,13 @@ const GallerySection: React.FC<any> = ({ files }) => {
 
   return (
     <div className="mx-auto w-full">
-      <div className="grid grid-cols-4 gap-1">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <motion.div
           ref={ref1}
           initial={{ opacity: 0, x: -100 }}
           animate={inView1 ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
           transition={{ duration: 0.5 }}
-          className="overflow-hidden col-span-2 border border-[#3183a9]"
+          className="overflow-hidden  col-span-1"
         >
           {verifyTypeFile(files[1].type, files[1].url)}
         </motion.div>
@@ -54,7 +54,7 @@ const GallerySection: React.FC<any> = ({ files }) => {
           initial={{ opacity: 0, x: 100 }}
           animate={inView1 ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
           transition={{ duration: 0.5 }}
-          className="overflow-hidden col-span-2 border  border-[#3183a9]"
+          className="overflow-hidden  col-span-1"
         >
           {verifyTypeFile(files[2].type, files[2].url)}
         </motion.div>
@@ -63,9 +63,36 @@ const GallerySection: React.FC<any> = ({ files }) => {
           initial={{ opacity: 0, y: 100 }}
           animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
           transition={{ duration: 0.5 }}
-          className="overflow-hidden col-span-4 border  border-[#3183a9]"
+          className="overflow-hidden  col-span-1"
         >
           {verifyTypeFile(files[3].type, files[3].url)}
+        </motion.div>
+        <motion.div
+          ref={ref2}
+          initial={{ opacity: 0, y: 100 }}
+          animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+          transition={{ duration: 0.5 }}
+          className="overflow-hidden  col-span-1"
+        >
+          {verifyTypeFile(files[0].type, files[0].url)}
+        </motion.div>
+        <motion.div
+          ref={ref2}
+          initial={{ opacity: 0, y: 100 }}
+          animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+          transition={{ duration: 0.5 }}
+          className="overflow-hidden  col-span-1"
+        >
+          {verifyTypeFile(files[1].type, files[1].url)}
+        </motion.div>
+        <motion.div
+          ref={ref2}
+          initial={{ opacity: 0, y: 100 }}
+          animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+          transition={{ duration: 0.5 }}
+          className="overflow-hidden  col-span-1"
+        >
+          {verifyTypeFile(files[2].type, files[2].url)}
         </motion.div>
       </div>
     </div>

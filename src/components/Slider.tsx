@@ -89,10 +89,10 @@ const Slider: React.FC = () => {
       className="relative h-[calc(100vh-180px)] md:h-screen w-full overflow-hidden"
     >
       <div className="absolute top-0 left-0 background-slider w-full h-full"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
       <button
         onClick={prevSlide}
-        className="absolute w-10 h-10 ml-2 hidden cursor-pointer font-bold text-white/60 hover:text-white rounded-full bg-white/20 hover:bg-blue-400 duration-200 leading-tight text-center z-[600] top-[50%] translate-y-[-50%] left-0 md:flex items-center justify-center"
+        className="absolute w-10 h-10 ml-2 hidden cursor-pointer font-bold text-white/60 hover:text-white rounded-full bg-white/20 hover:bg-cyan-500 duration-200 leading-tight text-center z-[600] top-[50%] translate-y-[-50%] left-0 md:flex items-center justify-center"
       >
         <svg
           className="w-6 h-6"
@@ -109,7 +109,7 @@ const Slider: React.FC = () => {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute w-10 h-10 mr-2 hidden cursor-pointer font-bold text-white/60 hover:text-white rounded-full bg-white/20 hover:bg-blue-400 duration-200 leading-tight text-center z-[600] top-[50%] translate-y-[-50%] right-0 md:flex items-center justify-center"
+        className="absolute w-10 h-10 mr-2 hidden cursor-pointer font-bold text-white/60 hover:text-white rounded-full bg-white/20 hover:bg-cyan-500 duration-200 leading-tight text-center z-[600] top-[50%] translate-y-[-50%] right-0 md:flex items-center justify-center"
       >
         <svg
           className="w-6 h-6"
@@ -125,7 +125,7 @@ const Slider: React.FC = () => {
         </svg>
       </button>
       <div
-        className="flex h-full w-full transition-transform duration-1000"
+        className="flex h-full w-full transition-transform duration-700 pb-10"
         style={{ transform: `translateX(-${currSlide * 100}%)` }}
       >
         {slides.map((slide, index) => (
@@ -134,10 +134,10 @@ const Slider: React.FC = () => {
             className="relative flex-shrink-0 flex flex-col md:flex-row w-full h-full px-4"
           >
             <div className="w-full md:w-6/12 h-6/12 pt-36 md:pt-0  flex flex-col justify-center text-white md:px-14">
-              <h4 className="md:text-5xl text-2xl merienda font-black line-clamp-2 md:leading-tight">
+              <h4 className="md:text-5xl merienda text-cyan-400 text-2xl font-black line-clamp-3 md:leading-tight">
                 {slide.titulo}
               </h4>
-              <h4 className="md:text-lg mt-4 merienda line-clamp-5">
+              <h4 className="md:text-lg mt-4  line-clamp-5">
                 {slide.contenido}
               </h4>
               <div className="flex my-4 justify-end">
@@ -150,9 +150,9 @@ const Slider: React.FC = () => {
                       setParamId
                     )
                   }
-                  className="flex text-yellow-400 gap-1 font-bold hover:text-yellow-300 w-fit"
+                  className="flex  p-3 border text-white duration-300 hover:bg-cyan-400 hover:border-cyan-400  gap-1 font-bold hover:text-gray-900 w-fit"
                 >
-                  Seguir leyendo{" "}
+                 Ver comunicado
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -174,7 +174,7 @@ const Slider: React.FC = () => {
               <img
                 src={slide.imagen}
                 alt={`Slide ${index + 1}`}
-                className="md:w-[70%] w-full h-full md:h-[80%]"
+                className="md:w-[70%] w-[70%] h-full md:h-[80%] shadow-2xl"
               />
             </div>
           </div>
@@ -185,7 +185,7 @@ const Slider: React.FC = () => {
           <button
             key={index}
             className={`w-3 h-3 rounded-full ${
-              index === currSlide ? "bg-blue-400" : "bg-blue-100"
+              index === currSlide ? "bg-cyan-400" : "bg-cyan-100"
             }`}
             onClick={() => goToSlide(index)}
           />

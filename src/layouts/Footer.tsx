@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         className={
           paramURL == "login"
             ? "hidden"
-            : "bg-[#031b35] md:grid md:grid-cols-5 pt-10 md:pt-0"
+            : "bg-blue-900 md:grid md:grid-cols-5 pt-10 md:pt-0"
         }
       >
         <div className="relative block h-32 md:col-span-2 md:h-full">

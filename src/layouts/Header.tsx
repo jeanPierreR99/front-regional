@@ -36,12 +36,12 @@ const Header: React.FC = () => {
     <header
       className={
         paramURL == "home"
-          ? `fixed font-light top-0  z-[999] w-full bg-blue-900 ${
-              scrolled ? "bg-blue-900" : "md:bg-transparent"
+          ? `fixed font-light top-0  z-[999] w-full bg-[#0306a9] ${
+              scrolled ? "bg-[#0306a9] shadow-lg text-white" : "text-white md:bg-transparent"
             }`
           : paramURL == "login"
           ? "hidden"
-          : " fixed font-light top-0 z-[999] w-full bg-blue-900"
+          : " fixed font-light top-0 z-[999] w-full bg-[#0306a9] shadow-lg text-white"
       }
     >
       <div className="container mx-auto flex justify-between items-center py-2 px-6">
@@ -51,18 +51,18 @@ const Header: React.FC = () => {
         <nav className="hidden md:flex">
           <button
             onClick={() => handleChangeParam("home", setParamURL, setParamId)}
-            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
+            className=" hover:text-white/70 hover:border-white/50 block py-2 px-4 hover:border-b"
           >
             Inicio
           </button>
           <button
             onClick={() => handleChangeParam("about", setParamURL, setParamId)}
-            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b"
+            className=" hover:text-white/70 hover:border-white/50 block py-2 px-4 hover:border-b"
           >
             Sobre nosotros
           </button>
-          <li className="relative group list-none hover:text-white/70 hover:border-white/50 block text-white py-2 px-4 hover:border-b">
-            <a href="#" className="hover:text-gray-400 flex gap-1 items-center">
+          <li className="relative group list-none  hover:border-white/50 block py-2 px-4 hover:border-b">
+            <a href="#" className="hover:text-white/70 flex gap-1 items-center">
               Medios{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                   onClick={() =>
                     handleChangeParam("notice", setParamURL, setParamId)
                   }
-                  className="hover:text-white/70 border-white/10 block text-white py-2 w-full border-b"
+                  className="hover:text-white/70 border-white block py-2 w-full border-b"
                 >
                   Noticias
                 </button>
@@ -95,7 +95,7 @@ const Header: React.FC = () => {
                 onClick={() =>
                   handleChangeParam("post", setParamURL, setParamId)
                 }
-                className="hover:text-white/70 border-white/10 block text-white py-2 w-full border-b"
+                className="hover:text-white/70 border-white block py-2 w-full border-b"
               >
                 Comunicados
               </button>
@@ -105,7 +105,7 @@ const Header: React.FC = () => {
                   onClick={() =>
                     handleChangeParam("multimedia", setParamURL, setParamId)
                   }
-                  className="hover:text-white/70 hover:border-white/50 block text-white py-2 w-full"
+                  className="hover:text-white/70 hover:border-white block py-2 w-full"
                 >
                   Multimedia
                 </button>
@@ -116,7 +116,7 @@ const Header: React.FC = () => {
             onClick={() =>
               handleChangeParam("contact", setParamURL, setParamId)
             }
-            className="hover:text-white/70 hover:border-white/50 block text-white py-2 px-4"
+            className=" hover:text-white/70 hover:border-white/50  hover:border-b block py-2 px-4"
           >
             Contactos
           </button>
@@ -152,7 +152,7 @@ const Header: React.FC = () => {
           </button>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden pb-2 z-[999] absolute top-20 left-0 right-0 bg-blue-900">
+          <div className="md:hidden pb-2 z-[999] absolute top-20 left-0 right-0 bg-[#0306a9]">
             <div className="container mx-auto">
               <button
                 onClick={() =>
@@ -191,7 +191,7 @@ const Header: React.FC = () => {
                     />
                   </svg>
                 </a>
-                <ul className="absolute left-0 hidden w-full bg-blue-900 px-2 group-hover:block">
+                <ul className="absolute left-0 hidden w-full bg-[#0306a9] px-2 group-hover:block">
                   <li>
                     {" "}
                     <button

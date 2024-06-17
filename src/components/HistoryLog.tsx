@@ -36,10 +36,10 @@ const HistoryLog: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+          <h2 className="text-2xl md:text-4xl text-gray-900 mb-1 font-black">
             HISTORIA
           </h2>
-          <p className="leading-relaxed text-gray-300 font-light">
+          <p className="leading-relaxed text-gray-500">
             Nuestra organización nació con el propósito de atender las
             necesidades críticas de infraestructura y saneamiento en la región
             de Madre de Dios. Desde nuestros inicios, hemos trabajado arduamente
@@ -69,29 +69,29 @@ const HistoryLog: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+          <h2 className="text-2xl md:text-4xl text-gray-900 mb-1 font-black">
             COMPROMISO
           </h2>
-          <p className="leading-relaxed text-gray-300 font-light">
+          <p className="leading-relaxed text-gray-500">
             Nuestro compromiso se centra en garantizar que cada proyecto que
             llevamos a cabo no solo cumpla con los más altos estándares
             técnicos, sino que también respete y proteja los ecosistemas únicos
             de Madre de Dios. Estamos dedicados a:
           </p>
           <ul className="list-none">
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               <strong className="font-semibold">Calidad y Seguridad:</strong>
               Implementar prácticas de construcción y saneamiento que aseguren
               la durabilidad y la seguridad de nuestras obras.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               <strong className="font-semibold">
                 Sostenibilidad Ambiental:
               </strong>
               Adoptar enfoques que minimicen el impacto ambiental, promoviendo
               la conservación de la biodiversidad y los recursos naturales.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               <strong className="font-semibold">
                 Innovación y Mejora Continua:
               </strong>
@@ -117,32 +117,32 @@ const HistoryLog: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+          <h2 className="text-2xl md:text-4xl text-gray-900 mb-1 font-black">
             LOGROS Y RECONOCIMIENTOS
           </h2>
           <ul className="list-none">
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Hemos completado más de 50 proyectos de saneamiento en áreas
               urbanas y rurales, proporcionando acceso a agua potable y
               mejorando las condiciones de vida de miles de familias.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Desarrollamos infraestructuras utilizando materiales y técnicas
               sostenibles, reduciendo el impacto ambiental y promoviendo la
               conservación de los recursos naturales de Madre de Dios.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Hemos lanzado programas educativos que han capacitado a más de
               10,000 personas en prácticas sostenibles y seguras de construcción
               y saneamiento, fomentando una cultura de cuidado ambiental.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Trabajamos en colaboración con autoridades locales para
               regularizar la minería informal, minimizando sus impactos
               negativos en el medio ambiente y mejorando la seguridad de los
               trabajadores.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Recibimos este reconocimiento de la Gobernación Regional de Madre
               de Dios por nuestro compromiso y liderazgo en el desarrollo
               sostenible de la región.

@@ -5,9 +5,7 @@ import { useNotice } from "../../context/Context.provider";
 import relojArena from "../../assets/icons8-reloj-arena-abajo.gif";
 
 interface ModalAddNoticeProps {
-  isOpen: boolean;
   toast: any;
-  onClose: () => void;
 }
 
 const getDate = () => {
@@ -48,13 +46,8 @@ const verifyTypeFile = (type: any, file: any) => {
   );
 };
 
-const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
-  isOpen,
-  toast,
-  onClose,
-}) => {
+const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({ toast }) => {
   const { paramNotice, setParamNotice } = useNotice();
-  if (!isOpen) return null;
   const [loading, setLoading] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
@@ -104,6 +97,7 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log(response);
       if (response.data.response.status === 200) {
         const updatedParamNotice = [
           ...paramNotice,
@@ -126,172 +120,148 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({
   };
 
   return (
-    <div className="fixed h-screen top-0 left-0 z-[999] py-4 outline-none bg-black/30 w-full">
-      <div className="relative z-10 w-11/12 lg:w-10/12 md:w-8/12 mx-auto">
-        <div className="bg-[#041025] border border-[#3183a9] w-full rounded-lg shadow-lg">
-          <div className="flex justify-between items-center border-b border-[#3183a9] p-4">
-            <h3 className="text-lg text-gray-300 font-semibold">
-              Nueva Noticia
-            </h3>
+    <div className="">
+      <span className="font-bold text-xl">NUEVA NOTICIA</span>
+      <br />
+      <br />
+      <div className="">
+        <form
+          className="w-full md:flex flex-row gap-2"
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+        >
+          <div className="w-full md:w-6/12 flex flex-col gap-2 h-[630px] md:sticky top-0">
+            <input
+              type="text"
+              className="rounded-md w-full px-3 py-2 border border-gray-300 focus:border-[#0306a9] placeholder-gray-300 text-gray-500 focus:outline-none sm:text-sm"
+              placeholder="Título"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <div className="text-gray-500 text-xs flex flex-col">
+              <span>
+                **Texto de ejemplo Bold**
+                <span className="text-bold"> Texto de ejemplo Bold</span>
+              </span>
+              <span className="flex gap-4">
+                --Texto de ejemplo List--<li> Texto de ejemplo List</li>
+              </span>
+              <span className="flex gap-4">
+                --**Texto de ejemplo Combinado**--
+                <li className="text-bold">Texto de ejemplo Combinado</li>
+              </span>
+            </div>
+            <textarea
+              className="rounded-md w-full px-3 py-2 border border-gray-300 focus:border-[#0306a9] placeholder-gray-300 text-gray-500 focus:outline-none sm:text-sm"
+              rows={10}
+              placeholder="Contenido"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            ></textarea>
+            <input
+              type="file"
+              className="file:rounded-md -mt-1 file:bg-green-600 text-green-600 file:border-none file:hover:cursor-pointer cursor-pointer file:py-1 file:text-white w-full py-2 focus:outline-none sm:text-sm"
+              onChange={handleFileChange}
+              multiple
+              accept="image/*, video/*"
+            />
+            <div className="w-full">
+              <table className="w-full divide-y divide-gray-200">
+                <thead className="">
+                  <tr>
+                    <th className="py-3 text-left text-xs font-medium text-gray-500 tracking-wider">
+                      4 ARCHIVOS REQUERIDOS
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="">
+                  {files.map((file, index) => (
+                    <tr key={index}>
+                      <td className="px-1  py-1  text-sm text-blue-500">
+                        {file.name}
+                      </td>
+                      <td className="px-1 py-1 text-sm">
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveFile(index)}
+                          className="text-red-500 hover:text-red-500/70"
+                        >
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {uploadMessage && <p className="text-red-500">{uploadMessage}</p>}
             <button
-              className="text-gray-500 hover:text-gray-700 focus:outline-none"
-              onClick={onClose}
+              type="submit"
+              className="w-full flex gap-2 items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
+              <span>Agregar</span>
+              {loading && <img src={relojArena} alt="" className="h-6" />}
             </button>
           </div>
-          <div className="p-4 overflow-y-auto h-[80vh] box-content">
-            <form
-              className="w-full md:flex flex-row gap-2"
-              onSubmit={handleSubmit}
-              encType="multipart/form-data"
-            >
-              <div className="w-full md:w-6/12 flex flex-col gap-2 h-[530px] md:sticky top-0">
-                <input
-                  type="text"
-                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
-                  placeholder="Título"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+          <div className="w-full md:w-6/12 border border-gray-300 p-2 rounded-md">
+            {files.length > 0 && (
+              <div className="w-full h-[250px] relative">
+                <img
+                  className="w-full h-full object-cover"
+                  src={URL.createObjectURL(files[0])}
+                  alt=""
                 />
-                <div className="text-gray-300 text-xs flex flex-col">
-                  <span>
-                    **Texto de ejemplo Bold**
-                    <span className="text-bold"> Texto de ejemplo Bold</span>
-                  </span>
-                  <span className="flex gap-4">
-                    --Texto de ejemplo List--<li> Texto de ejemplo List</li>
-                  </span>
-                  <span className="flex gap-4">
-                    --**Texto de ejemplo Combinado**--
-                    <li className="text-bold">Texto de ejemplo Combinado</li>
-                  </span>
-                </div>
-                <textarea
-                  className="rounded-md w-full px-3 py-2 border border-gray-800 focus:border-[#3183a9] placeholder-gray-500 text-gray-300 focus:outline-none sm:text-sm bg-black/40"
-                  rows={6}
-                  placeholder="Contenido"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                ></textarea>
-                <input
-                  type="file"
-                  className="file:rounded-md -mt-1 file:bg-yellow-200 text-yellow-300 file:border-none file:hover:cursor-pointer cursor-pointer file:py-1 file:text-gray-700 w-full py-2 focus:outline-none sm:text-sm"
-                  onChange={handleFileChange}
-                  multiple
-                  accept="image/*, video/*"
-                  
-                />
-                <div className="w-full">
-                  <table className="w-full divide-y divide-gray-200">
-                    <thead className="">
-                      <tr>
-                        <th className="py-3 text-left text-xs font-medium text-gray-300 tracking-wider">
-                          4 ARCHIVOS REQUERIDOS
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="">
-                      {files.map((file, index) => (
-                        <tr key={index}>
-                          <td className="px-1  py-1  text-sm text-gray-400">
-                            {file.name}
-                          </td>
-                          <td className="px-1 py-1 text-sm text-gray-400">
-                            <button
-                              type="button"
-                              onClick={() => handleRemoveFile(index)}
-                              className="text-red-500 hover:text-red-700"
-                            >
-                              Eliminar
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                {uploadMessage && (
-                  <p className="text-red-500">{uploadMessage}</p>
-                )}
-                <button
-                  type="submit"
-                  className="w-full flex gap-2 items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-                >
-                  <span>Agregar</span>
-                  {loading && <img src={relojArena} alt="" className="h-6" />}
-                </button>
               </div>
-              <div className="w-full md:w-6/12">
-                {files.length > 0 && (
-                  <div className="w-full h-[250px] relative">
-                    <img
-                      className="w-full h-full object-cover"
-                      src={URL.createObjectURL(files[0])}
-                      alt=""
-                    />
+            )}
+            <p className=" text-[#0306a9] font-bold">
+              Publicado el {getDate()}
+            </p>
+            <span className="text-xl md:text-2xl font-bold  text-gray-900 uppercase">
+              {title}
+            </span>
+            <div className="column-container mt-2">
+              <p
+                className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-700 first-letter:mr-3 first-letter:float-left text-gray-500"
+                dangerouslySetInnerHTML={{
+                  __html: processContent(content),
+                }}
+                style={{
+                  overflowWrap: "break-word",
+                  whiteSpace: "pre-line",
+                }}
+              ></p>
+            </div>
+            <div className="mt-6">
+              <div className="grid grid-cols-4 gap-1">
+                {files && files.length > 1 && (
+                  <div className="relative h-[250px] col-span-2">
+                    {verifyTypeFile(
+                      files[1].type,
+                      URL.createObjectURL(files[1])
+                    )}
                   </div>
                 )}
-                <p className=" text-yellow-300 font-bold">Publicado el {getDate()}</p>
-                <span className="text-xl md:text-2xl font-bold  text-gray-200 uppercase">
-                  {title}
-                </span>
-                <div className="column-container mt-2">
-                  <p
-                    className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-300 first-letter:mr-3 first-letter:float-left text-gray-300 font-light"
-                    dangerouslySetInnerHTML={{
-                      __html: processContent(content),
-                    }}
-                    style={{
-                      overflowWrap: "break-word",
-                      whiteSpace: "pre-line",
-                    }}
-                  ></p>
-                </div>
-                <div className="mt-6">
-                  <div className="grid grid-cols-4 gap-1">
-                    {files && files.length > 1 && (
-                      <div className="relative h-[250px] col-span-2 border-2 border-[#3183a9]">
-                        {verifyTypeFile(
-                          files[1].type,
-                          URL.createObjectURL(files[1])
-                        )}
-                      </div>
-                    )}
-                    {files && files.length > 2 && (
-                      <div className="relative h-[250px] col-span-2 border-2 border-[#3183a9]">
-                        {verifyTypeFile(
-                          files[2].type,
-                          URL.createObjectURL(files[2])
-                        )}
-                      </div>
-                    )}
-                    {files && files.length > 3 && (
-                      <div className="relative h-[250px] col-span-4 border-2 border-[#3183a9]">
-                        {verifyTypeFile(
-                          files[3].type,
-                          URL.createObjectURL(files[3])
-                        )}
-                      </div>
+                {files && files.length > 2 && (
+                  <div className="relative h-[250px] col-span-2">
+                    {verifyTypeFile(
+                      files[2].type,
+                      URL.createObjectURL(files[2])
                     )}
                   </div>
-                </div>
+                )}
+                {files && files.length > 3 && (
+                  <div className="relative h-[250px] col-span-4">
+                    {verifyTypeFile(
+                      files[3].type,
+                      URL.createObjectURL(files[3])
+                    )}
+                  </div>
+                )}
               </div>
-            </form>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
-      <div className="fixed inset-0 bg-gray-900 opacity-50"></div>
     </div>
   );
 };

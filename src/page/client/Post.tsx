@@ -17,7 +17,7 @@ const processContent = (text: string) => {
 
 const ItemPost: React.FC<any> = ({ img }: any) => {
   return (
-    <div className="w-[250px] md:w-[300px] flex-shrink-0 h-[270px] hover:scale-105 duration-500">
+    <div className="w-[180px] md:w-[350px] flex-shrink-0 h-[300px] md:h-[350px] hover:scale-105 duration-500">
       <button className="h-full w-full">
         <img className="w-full h-full" src={img} alt="img" />
       </button>
@@ -82,7 +82,87 @@ const Post: React.FC = () => {
   }, [paramURL, paramId]);
   return (
     <div className="pt-24 pb-6 overflow-hidden px-4 md:px-4 lg:px-16 flex flex-col gap-6">
-      <div className="flex justify-between gap-4 overflow-x-auto overflow-y-hidden pb-2 right_scroll">
+      <div className="flex">
+        <div className="flex-col hidden md:flex w-2/12 gap-4 py-6 px-2">
+          <div className="overflow-y-auto h-[400px] flex-shrink-0">
+            <iframe
+              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fposts%2Fpfbid02N1NdoGG22ZEVew7yJqcFDPe3WSgxb6CSgoknjtp6LxV711rU4vwK91Qy5gJQjPml&show_text=true&width=200"
+              style={{ border: "none" }}
+              width={350}
+              height={800}
+              className="overflow-y-auto"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            ></iframe>
+          </div>
+          <div className="overflow-y-auto h-[400px] flex-shrink-0">
+            <iframe
+              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fposts%2Fpfbid0oCxMWY2n4r7ULuZaMyLir91FDcGH2pDQkqJvQ8Yku8VrnNN9pMcVNySmu8gRTzSbl&show_text=true&width=200"
+              style={{ border: "none" }}
+              width={350}
+              height={800}
+              className="overflow-y-auto"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            ></iframe>
+          </div>
+        </div>
+        {paramId &&
+          itemsPost.map((data, index) => {
+            if (data.id.toString() == paramId) {
+              return (
+                <div key={index} className="w-full md:w-10/12">
+                  <div className="">
+                    <img
+                      className="w-full md:w-1/2 h-auto object-contain float-left mr-4 mb-4"
+                      src={data.imagen}
+                      alt=""
+                    />
+                    <p className=" text-[#0306A9] font-bold">
+                      Publicado el {data.fecha}
+                    </p>
+                    <h4 className="uppercase text-gray-900 font-bold text-xl md:text-2xl">
+                      {data.titulo}
+                    </h4>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: processContent(data.contenido),
+                      }}
+                      className="text-gray-500 whitespace-pre-line"
+                    ></p>
+                  </div>
+                </div>
+              );
+            }
+          })}
+  
+      {paramId == "" && (
+        <div className="md:w-10/12 w-full">
+          <div className="">
+            <img
+              className="w-full md:w-1/2 h-auto object-contain float-left mr-4 mb-4"
+              src={itemsPost[0].imagen}
+              alt=""
+            />
+          </div>
+          <div className="">
+            <p className=" text-[#0306A9] font-bold">
+              Publicado el {itemsPost[0].fecha}
+            </p>
+            <h4 className="uppercase text-gray-900 font-bold text-xl md:text-2xl">
+              {itemsPost[0].titulo}
+            </h4>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: processContent(itemsPost[0].contenido),
+              }}
+              className="text-gray-500 whitespace-pre-line"
+            ></p>
+          </div>
+          
+        </div>
+      )}
+          </div>
+      <h4 className="text-5xl font-black">Comunicados</h4>
+      <div className="flex flex-wrap justify-between gap-2 md:gap-4 pb-2 right_scroll">
         {itemsPost.map((data, index) => (
           <div
             onClick={() =>
@@ -99,63 +179,6 @@ const Post: React.FC = () => {
           </div>
         ))}
       </div>
-      {paramId &&
-        itemsPost.map((data, index) => {
-          if (data.id.toString() == paramId) {
-            return (
-              <div
-                key={index}
-                className=""
-              >
-                <div className="">
-                  <img
-                    className="w-full md:w-1/2 h-auto object-contain float-left mr-4 mb-4"
-                    src={data.imagen}
-                    alt=""
-                  />
-                  <p className=" text-blue-400 font-bold">
-                    Publicado el {data.fecha}
-                  </p>
-                  <h4 className="uppercase text-gray-200 font-bold text-xl md:text-2xl">
-                    {data.titulo}
-                  </h4>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: processContent(data.contenido),
-                    }}
-                    className="text-gray-300 font-light whitespace-pre-line"
-                  ></p>
-                </div>
-              </div>
-            );
-          }
-        })}
-
-      {paramId == "" && (
-        <div className="">
-          <div className="">
-            <img
-              className="w-full md:w-1/2 h-auto object-contain float-left mr-4 mb-4"
-              src={itemsPost[0].imagen}
-              alt=""
-            />
-          </div>
-          <div className="">
-            <p className=" text-blue-400 font-bold">
-              Publicado el {itemsPost[0].fecha}
-            </p>
-            <h4 className="uppercase text-gray-200 font-bold text-xl md:text-2xl">
-              {itemsPost[0].titulo}
-            </h4>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: processContent(itemsPost[0].contenido),
-              }}
-              className="text-gray-300 font-light whitespace-pre-line"
-            ></p>
-          </div>
-        </div>
-      )}
       <div className="mt-14">
         <Links></Links>
       </div>

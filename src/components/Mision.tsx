@@ -35,10 +35,10 @@ const Mision: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+          <h2 className="text-2xl md:text-4xl text-gray-900 mb-1 font-black">
             MISIÓN
           </h2>
-          <p className="leading-relaxed text-gray-300 font-light">
+          <p className="leading-relaxed text-gray-500">
             Trabajamos incansablemente para garantizar que cada proyecto de
             construcción y saneamiento en Madre de Dios cumpla con los más altos
             estándares de calidad, seguridad y sostenibilidad ambiental. Nuestra
@@ -63,10 +63,10 @@ const Mision: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+          <h2 className="text-2xl md:text-4xl text-gray-900 mb-1 font-black">
             VISIÓN
           </h2>
-          <p className="leading-relaxed text-gray-300 font-light">
+          <p className="leading-relaxed text-gray-500">
             Ser reconocidos como líderes regionales en la promoción de un
             desarrollo sostenible y equitativo, donde la infraestructura de
             construcción y saneamiento se convierta en un motor de progreso,
@@ -89,26 +89,26 @@ const Mision: React.FC = () => {
           />
         </div>
         <div className="w-full md:w-8/12">
-          <h2 className="text-2xl md:text-4xl text-gray-300 mb-1 font-black">
+          <h2 className="text-2xl md:text-4xl text-gray-900 mb-1 font-black">
             OBJETIVOS
           </h2>
           <ul className="list-none">
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Mejorar la infraestructura urbana y rural para garantizar acceso
               equitativo a servicios básicos.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 font-light text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Promover prácticas sostenibles en construcción y saneamiento para
               conservar el medio ambiente.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Regularizar la minería informal para minimizar impactos negativos.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Fortalecer la gestión de riesgos naturales mediante medidas
               preventivas y mitigadoras.
             </li>
-            <li className="mb-2 font-light text-gray-300 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
+            <li className="mb-2 text-gray-500 relative ml-4 before:w-[10px] before:h-[10px] before:absolute before:bg-red-600 before:top-[50%] before:left-[-15px] before:translate-y-[-50%]">
               Educar y sensibilizar a la comunidad sobre el cuidado del medio
               ambiente y prácticas seguras en construcción y saneamiento.
             </li>
