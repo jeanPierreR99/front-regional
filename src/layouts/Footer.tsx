@@ -1,5 +1,5 @@
 import React from "react";
-import logoFooter from "../assets/logo-footer.png";
+import logoFooter from "../assets/img-icon/logo-footer.png";
 import { useParam } from "../context/Context.provider";
 import Logo from "../components/Logo";
 const Footer: React.FC = () => {

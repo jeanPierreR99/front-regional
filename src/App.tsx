@@ -3,6 +3,7 @@ import {
   NoticeProvider,
   ParamIdProvider,
   ParamProvider,
+  PostProvider,
 } from "./context/Context.provider";
 import RouteMain from "./routes/RouteMain";
 
@@ -12,9 +13,11 @@ function App() {
       <LoginProvider>
       <ParamProvider>
         <NoticeProvider>
+          <PostProvider>
           <ParamIdProvider>
             <RouteMain></RouteMain>
           </ParamIdProvider>
+          </PostProvider>
         </NoticeProvider>
       </ParamProvider>
       </LoginProvider>

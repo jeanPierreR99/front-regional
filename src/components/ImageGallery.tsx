@@ -33,7 +33,7 @@ const ImageGallery: React.FC<galeryProps> = ({ url, type }) => {
         <span className="absolute z-10 bottom-0 right-0 bg-red-800 text-white px-2 py-1 rounded-tl-lg text-xs">
           Video
         </span>
-        <div className="w-full h-full cursor-pointer">
+        <div className="w-full h-full cursor-zoom-in">
           <video
             className="w-full h-full"
             controls

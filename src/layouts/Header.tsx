@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParam, useParamId } from "../context/Context.provider";
-import logo from "../assets/logo-vivienda.png";
+import logo from "../assets/img-main/logo-vivienda.png";
 import { handleChangeParam } from "../functions";
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

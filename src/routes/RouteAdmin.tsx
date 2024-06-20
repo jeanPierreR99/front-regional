@@ -1,19 +1,26 @@
 import React, { useEffect } from "react";
-import { useLogin, useNotice, useParam, useParamId } from "../context/Context.provider";
+import {
+  useLogin,
+  useNotice,
+  useParam,
+  useParamId,
+  usePost,
+} from "../context/Context.provider";
 import Home from "../page/admin/Home";
 import NoticeAdmin from "../page/admin/NoticeAdmin";
-import ProjectAdmin from "../page/admin/ProjectAdmin";
+import PostAdmin from "../page/admin/PostAdmin";
 import ENDPOINTS from "../config";
 import axios from "axios";
 import MultimediaAdmin from "../page/admin/MultimediaAdmin";
-import { handleChangeParam } from "../functions";
+import { handleChangeParam, handleData } from "../functions";
 import SystemMetrics from "../page/admin/SystemMetrics";
 
 const RouteAdmin: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
-  const {setParamId} = useParamId();
+  const { setParamId } = useParamId();
   const { logout } = useLogin();
   const { setParamNotice } = useNotice();
+  const { setParamPost } = usePost();
   const sessionDestroy = () => {
     localStorage.clear();
     handleChangeParam("home", setParamURL, setParamId);
@@ -25,19 +32,8 @@ const RouteAdmin: React.FC = () => {
     const searchQuery = searchParams.get("search");
     setParamURL(searchQuery || "admin");
 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(ENDPOINTS.GET_NOTICE);
-        if (response.data.response.status === 200) {
-          setParamNotice(response.data.response.data);
-          return;
-        }
-      } catch (error) {
-        console.log("error");
-      }
-    };
-
-    fetchData();
+    handleData(axios, ENDPOINTS.GET_NOTICE, setParamNotice);
+    handleData(axios, ENDPOINTS.GET_POST, setParamPost);
 
     const handlePopState = () => {
       const searchParams = new URLSearchParams(window.location.search);
@@ -84,7 +80,9 @@ const RouteAdmin: React.FC = () => {
                 <div>
                   <button
                     className="hover:text-gray-500/70"
-                    onClick={() => handleChangeParam("admin", setParamURL, setParamId)}
+                    onClick={() =>
+                      handleChangeParam("admin", setParamURL, setParamId)
+                    }
                   >
                     Admin
                   </button>
@@ -99,7 +97,7 @@ const RouteAdmin: React.FC = () => {
             ) : paramURL === "estadistica" ? (
               <SystemMetrics />
             ) : paramURL === "post" ? (
-              <ProjectAdmin />
+              <PostAdmin />
             ) : paramURL === "multimedia" ? (
               <MultimediaAdmin />
             ) : (

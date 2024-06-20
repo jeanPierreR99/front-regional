@@ -1,9 +1,9 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import mision from "../assets/mision.png";
-import vision from "../assets/vision.png";
-import objetivos from "../assets/objetivos.png";
+import mision from "../assets/img-icon/about-mision.png";
+import vision from "../assets/img-icon/about-vision.png";
+import objetivos from "../assets/img-icon/about-objetivos.png";
 const Mision: React.FC = () => {
   const { ref: ref1, inView: inView1 } = useInView({
     triggerOnce: true,

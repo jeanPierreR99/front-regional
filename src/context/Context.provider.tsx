@@ -10,6 +10,11 @@ interface NoticeContextType {
   setParamNotice: (paramNotice: any) => void;
 }
 
+interface PostContextType {
+  paramPost: any | null;
+  setParamPost: (paramPost: any) => void;
+}
+
 interface ParamIdContextType {
   paramId: string;
   setParamId: (paramId: string) => void;
@@ -24,6 +29,7 @@ interface LoginContextType {
 const LoginContext = createContext<LoginContextType | undefined>(undefined);
 const ParamContext = createContext<ParamContextType | undefined>(undefined);
 const NoticeContext = createContext<NoticeContextType | null>(null);
+const PostContext = createContext<PostContextType | null>(null);
 const ParamIdContext = createContext<ParamIdContextType | undefined>(undefined);
 
 export const LoginProvider: React.FC<{ children: ReactNode }> = ({
@@ -62,6 +68,7 @@ export const ParamProvider: React.FC<{ children: ReactNode }> = ({
     </ParamContext.Provider>
   );
 };
+
 export const NoticeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
@@ -76,6 +83,23 @@ export const NoticeProvider: React.FC<{ children: ReactNode }> = ({
     <NoticeContext.Provider value={noticeContextValue}>
       {children}
     </NoticeContext.Provider>
+  );
+};
+
+export const PostProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [paramPost, setParamPost] = React.useState<any | null>(null);
+
+  const postContextValue: PostContextType = {
+    paramPost,
+    setParamPost,
+  };
+
+  return (
+    <PostContext.Provider value={postContextValue}>
+      {children}
+    </PostContext.Provider>
   );
 };
 
@@ -99,7 +123,7 @@ export const ParamIdProvider: React.FC<{ children: ReactNode }> = ({
 export const useLogin = (): LoginContextType => {
   const context = useContext(LoginContext);
   if (!context) {
-    throw new Error('useLogin must be used within a LoginProvider');
+    throw new Error("useLogin must be used within a LoginProvider");
   }
   return context;
 };
@@ -117,7 +141,16 @@ export const useNotice = () => {
   const context = useContext(NoticeContext);
 
   if (!context) {
-    throw new Error("NoticeContext debe ser usado dentro de un NoticeContext");
+    throw new Error("NoticeContext debe ser usado dentro de un NOTICEContext");
+  }
+  return context;
+};
+
+export const usePost = () => {
+  const context = useContext(PostContext);
+
+  if (!context) {
+    throw new Error("PostContext debe ser usado dentro de un POSTprovider");
   }
   return context;
 };

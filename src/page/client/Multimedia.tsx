@@ -54,19 +54,13 @@ const Multimedia: React.FC = () => {
         <h2 className="text-3xl px-4 md:px-4 lg:px-16 text-gray-900 md:text-4xl font-bold mb-8 uppercase">
           {paramId !== "1" ? title : "IMGENES Y VIDEOS"}
         </h2>
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {allUrls &&
             Array.isArray(allUrls) &&
             allUrls.map((data: any, index: any) => (
               <div
                 key={index}
-                className={`${
-                  index % 5 === 0
-                    ? "col-span-2 md:col-span-2"
-                    : index % 3 === 0
-                    ? "col-span-2 md:col-span-2"
-                    : "col-span-3 md:col-span-3"
-                } relative overflow-hidden`}
+                className="col-span-1 relative overflow-hidden"
               >
                 <ImageGallery url={data.url} type={data.type}></ImageGallery>
               </div>

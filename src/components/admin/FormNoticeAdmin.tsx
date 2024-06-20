@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import ENDPOINTS from "../../config";
 import { useNotice } from "../../context/Context.provider";
-import relojArena from "../../assets/icons8-reloj-arena-abajo.gif";
+import relojArena from "../../assets/img-icon/loader-sub.gif";
 
-interface ModalAddNoticeProps {
+interface FormNoticeAdminProps {
   toast: any;
 }
 
@@ -46,7 +46,7 @@ const verifyTypeFile = (type: any, file: any) => {
   );
 };
 
-const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({ toast }) => {
+const FormNoticeAdmin: React.FC<FormNoticeAdminProps> = ({ toast }) => {
   const { paramNotice, setParamNotice } = useNotice();
   const [loading, setLoading] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
@@ -56,10 +56,6 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({ toast }) => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
-    if (files?.length >= 4) {
-      toast.warning("Maximo 4 Archivos");
-      return;
-    }
     if (fileList) {
       const newFiles: File[] = Array.from(fileList);
       setFiles((prevFiles) => [...prevFiles, ...newFiles]);
@@ -213,15 +209,15 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({ toast }) => {
                 />
               </div>
             )}
-            <p className=" text-[#0306a9] font-bold">
+            <p className=" text-red-600 font-bold">
               Publicado el {getDate()}
             </p>
-            <span className="text-xl md:text-2xl font-bold  text-gray-900 uppercase">
+            <span className="text-xl md:text-2xl font-bold  text-black uppercase">
               {title}
             </span>
             <div className="column-container mt-2">
               <p
-                className="first-letter:text-7xl first-letter:font-light first-letter:text-gray-700 first-letter:mr-3 first-letter:float-left text-gray-500"
+                className="first-letter:text-7xl first-letter:font-light first-letter:mr-3 first-letter:float-left text-black font-light"
                 dangerouslySetInnerHTML={{
                   __html: processContent(content),
                 }}
@@ -232,31 +228,14 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({ toast }) => {
               ></p>
             </div>
             <div className="mt-6">
-              <div className="grid grid-cols-4 gap-1">
-                {files && files.length > 1 && (
-                  <div className="relative h-[250px] col-span-2">
-                    {verifyTypeFile(
-                      files[1].type,
-                      URL.createObjectURL(files[1])
-                    )}
-                  </div>
-                )}
-                {files && files.length > 2 && (
-                  <div className="relative h-[250px] col-span-2">
-                    {verifyTypeFile(
-                      files[2].type,
-                      URL.createObjectURL(files[2])
-                    )}
-                  </div>
-                )}
-                {files && files.length > 3 && (
-                  <div className="relative h-[250px] col-span-4">
-                    {verifyTypeFile(
-                      files[3].type,
-                      URL.createObjectURL(files[3])
-                    )}
-                  </div>
-                )}
+              <div className="grid grid-cols-2 gap-1">
+                {files &&
+                  files.length > 1 &&
+                  files.map((data, index) => (
+                    <div key={index} className="relative h-[250px] col-span-1">
+                      {verifyTypeFile(data.type, URL.createObjectURL(data))}
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -266,4 +245,4 @@ const ModalAddNotice: React.FC<ModalAddNoticeProps> = ({ toast }) => {
   );
 };
 
-export default ModalAddNotice;
+export default FormNoticeAdmin;

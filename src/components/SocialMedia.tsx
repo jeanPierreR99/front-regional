@@ -1,8 +1,8 @@
 import React from "react";
-import facebook from "../assets/facebook.png";
-import youtube from "../assets/youtube.png";
-import whatsapp from "../assets/whatsapp.png";
-import x from "../assets/x.png";
+import facebook from "../assets/img-icon/logo-facebook.png";
+import youtube from "../assets/img-icon/logo-youtube.png";
+import whatsapp from "../assets/img-icon/logo-whatsapp.png";
+import x from "../assets/img-icon/x.png";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import GallerySection from "../GallerySection";
-import { useNotice } from "../../context/Context.provider";
+import { usePost } from "../../context/Context.provider";
 import ENDPOINTS from "../../config";
 import relojArena from "../../assets/img-icon/loader-sub.gif";
 import axios from "axios";
 
-interface ModalViewNoticeProps {
+interface ModalViewPostProps {
   isOpeView: boolean;
   id: string;
   toast: any;
@@ -23,25 +22,25 @@ const processContent = (text: string) => {
   return text;
 };
 
-const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
+const ModalViewPost: React.FC<ModalViewPostProps> = ({
   isOpeView,
   id,
   toast,
   onClose,
 }) => {
-  const { paramNotice, setParamNotice } = useNotice();
+  const { paramPost, setParamPost } = usePost();
   const [loading, setLoading] = useState<boolean>(false);
 
   if (!isOpeView) return null;
 
-  const deleteNotice = async (id: any) => {
+  const deletePost = async (id: any) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${ENDPOINTS.DELETE_NOTICE+id}`
+        `${ENDPOINTS.DELETE_POST+id}`
       );
       if (response.data.response.status===200) {
-        setParamNotice((prevNotices: any) =>
+        setParamPost((prevNotices: any) =>
           prevNotices.filter((notice: any) => notice.id !== id)
         );
         toast.success("Eliminado Correctamente: " + id);
@@ -59,7 +58,7 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
         <div className="bg-white w-full  h-full rounded-lg shadow-lg">
           <div className="flex justify-between items-center border-b border-gray-300 p-4">
             <h3 className="text-lg font-semibold text-gray-900">
-              Noticia {id}
+              Comunicado {id}
             </h3>
             <button
               className="text-gray-300 hover:text-gray-400 focus:outline-none"
@@ -79,15 +78,15 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
             </button>
           </div>
           <div className="p-4 overflow-y-auto h-[90%] overflow-x-hidden">
-            {Array.isArray(paramNotice) &&
-              paramNotice.map((obj) => {
+            {Array.isArray(paramPost) &&
+              paramPost.map((obj) => {
                 if (obj.id === id) {
                   return (
                     <div key={obj.id} className="">
                       <div>
                         <button
                           className="bg-red-600 flex gap-2 items-center hover:bg-red-500 text-white px-4 py-1 rounded-md mb-2"
-                          onClick={() => deleteNotice(obj.id)}
+                          onClick={() => deletePost(obj.id)}
                         >
                           <span>Eliminar</span>
                           {loading && (
@@ -98,12 +97,12 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
                       <div className="w-full flex flex-col">
                         <div className="w-full h-[400px] relative">
                           <img
-                            className="w-full h-full object-cover"
-                            src={`${ENDPOINTS.DIR_IMG}/${obj.files[0].url}`}
+                            className="w-full h-full object-contain"
+                            src={`${ENDPOINTS.DIR_IMG}/${obj.file.url}`}
                             alt=""
                           />
                         </div>
-                        <p className=" text-[#0306a9] font-bold">
+                        <p className=" text-red-600 font-bold">
                           Publicado el {obj.date_published}
                         </p>
                         <span className="text-xl md:text-2xl font-bold  text-black uppercase">
@@ -120,9 +119,6 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
                             ></p>
                           </div>
                         </div>
-                        <div className="mt-6">
-                          <GallerySection files={obj.files}></GallerySection>
-                        </div>
                       </div>
                     </div>
                   );
@@ -136,4 +132,4 @@ const ModalViewNotice: React.FC<ModalViewNoticeProps> = ({
   );
 };
 
-export default ModalViewNotice;
+export default ModalViewPost;

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNotice } from "../../context/Context.provider";
-import CardNotice from "../../components/CardNotice";
-import FormNoticeAdmin from "../../components/admin/FormNoticeAdmin";
-import ModalViewNotice from "../../components/admin/ModalViewNotice";
+import FormPostAdmin from "../../components/admin/FormPostAdmin";
+import { usePost } from "../../context/Context.provider";
+import CardPost from "../../components/CardPost";
+import { useState } from "react";
+import ModalViewPost from "../../components/admin/ModalViewPost";
 
-const NoticeAdmin: React.FC = () => {
-  const { paramNotice } = useNotice();
+const PostAdmin: React.FC = () => {
+  const { paramPost } = usePost();
   const [isOpenView, setIsOpenView] = useState(false);
   const [paramId, setParamId] = useState("");
 
@@ -19,43 +18,41 @@ const NoticeAdmin: React.FC = () => {
   const closeModalView = () => {
     setIsOpenView(false);
   };
-  console.log(paramNotice);
   return (
     <div className="flex flex-col gap-4">
-      <FormNoticeAdmin toast={toast}></FormNoticeAdmin>
+      <FormPostAdmin toast={toast}></FormPostAdmin>
       <details className="p-4 border border-gray-300 rounded-lg">
-        <summary className="text-lg font-semibold cursor-pointer text-green-600">
-          Noticias
+        <summary className="text-lg font-semibold cursor-pointer text-orange-600">
+          Ver comunicados
         </summary>
-        <div className="w-full flex md:flex-wrap flex-col md:flex-row gap-3 justify-center overflow-hidden">
-          {Array.isArray(paramNotice) &&
-            paramNotice.map((data) => (
+        <div className="w-full flex md:flex-wrap flex-col md:flex-row md:gap-10 gap-3 justify-center items-center overflow-hidden">
+          {paramPost &&
+            paramPost.map((data: any, index: any) => (
               <div
                 key={data.id}
-                className=" w-full md:w-5/12"
+                className=""
                 onClick={() => {
                   openModalView(data.id);
                 }}
               >
-                <CardNotice
+                <CardPost
+                  key={index}
                   id={data.id}
+                  img={data.file.url}
                   title={data.title}
-                  files={data.files[0].url}
                   content={data.content}
-                  create_at={data.create_at}
                   date_published={data.date_published}
-                ></CardNotice>
+                ></CardPost>
               </div>
             ))}
         </div>
       </details>
-      <ModalViewNotice
+      <ModalViewPost
         isOpeView={isOpenView}
         id={paramId}
         toast={toast}
         onClose={closeModalView}
       />
-
       <ToastContainer
         position="top-center"
         autoClose={4000}
@@ -71,4 +68,4 @@ const NoticeAdmin: React.FC = () => {
   );
 };
 
-export default NoticeAdmin;
+export default PostAdmin;

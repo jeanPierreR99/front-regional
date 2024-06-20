@@ -1,8 +1,8 @@
-import vivienda from "../assets/vivienda.png";
-import construccion from "../assets/construccion.png";
-import saneamiento from "../assets/sameamiento.png";
-import urbanismo from "../assets/urbanismo.png";
-import fond from "../assets/image-1.jpeg";
+import vivienda from "../assets/img-icon/about-vivienda.png";
+import construccion from "../assets/img-icon/about-construccion.png";
+import saneamiento from "../assets//img-icon/about-sameamiento.png";
+import urbanismo from "../assets/img-icon/about-urbanismo.png";
+import fond from "../assets/img-main/image-5.jpeg";
 const CircleArea = () => {
   return (
     <div className="flex flex-col items-center justify-center my-28">

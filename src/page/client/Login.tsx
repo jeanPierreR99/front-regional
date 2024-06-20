@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../assets/logo-vivienda.png";
+import logo from "../../assets/img-main/logo-vivienda.png";
 import { useLogin } from "../../context/Context.provider";
 import axios from "axios";
 import ENDPOINTS from "../../config";

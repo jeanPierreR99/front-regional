@@ -35,19 +35,17 @@ const CardNoticeHome: React.FC<DataNotice> = ({
           src={`${ENDPOINTS.DIR_IMG}/${files}`}
           alt="Imagen"
         />
-        <p className="absolute bottom-4 left-0 bg-[#0306A9] p-2 z-20 text-white  text-end text-sm mt-2 ">
-          <span>{date_published}</span>
-        </p>
       </div>
       <div className="px-2 py-4 relative overflow-hidden">
-        <a className="relative text-sm line-clamp-3 text-gray-800 font-bold  z-10 mb-2">
+        <a className="relative text-sm line-clamp-3 text-black font-bold  z-10 mb-2">
           {title}
         </a>
-        <p className="relative z-10 text-gray-800 text-sm line-clamp-3">
+        <p className="relative z-10 text-black font-light text-sm line-clamp-3">
           {content}
         </p>
+        <span className="text-xs text-gray-500 font-light">{date_published}</span>
         <button
-          className="flex float-right text-sm gap-1 text-gray-800 font-bold hover:text-gray-800/70 mt-2 "
+          className="flex float-right text-sm gap-1 text-gray-800 font-bold hover:text-gray-800/70 mt-6"
         >
           Leer Noticia{" "}
           <svg

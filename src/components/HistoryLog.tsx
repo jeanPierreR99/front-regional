@@ -1,9 +1,9 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import logro from "../assets/logro.png";
-import historia from "../assets/historia.png";
-import compromiso from "../assets/compromiso.png";
+import logro from "../assets/img-icon/about-logro.png";
+import historia from "../assets/img-icon/about-historia.png";
+import compromiso from "../assets/img-icon/about-compromiso.png";
 
 const HistoryLog: React.FC = () => {
   const { ref: ref1, inView: inView1 } = useInView({

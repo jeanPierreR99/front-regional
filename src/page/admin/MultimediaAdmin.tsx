@@ -20,19 +20,13 @@ function MultimediaAdmin() {
   }, [paramNotice]);
   return (
     <div>
-      <div className="grid grid-cols-5 gap-2  -mx-2 md:-mx-4 lg:-mx-16">
+      <div className="grid grid-cols-2 gap-2  -mx-2 md:-mx-4 lg:-mx-16">
         {allUrls &&
           Array.isArray(allUrls) &&
           allUrls.map((data: any, index: any) => (
             <div
               key={index}
-              className={`${
-                index % 5 === 0
-                  ? "col-span-2 md:col-span-2"
-                  : index % 3 === 0
-                  ? "col-span-2 md:col-span-2"
-                  : "col-span-3 md:col-span-3"
-              } relative overflow-hidden`}
+              className="col-span-1 relative overflow-hidden"
             >
               <ImageGallery url={data.url} type={data.type}></ImageGallery>
             </div>

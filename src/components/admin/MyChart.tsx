@@ -135,19 +135,19 @@ const MyChart: React.FC = () => {
   };
 
   return (
-    <div className="my-chart text-center p-10 text-white">
-      <h1 className='text-[#0306a9] mb-4 text-3xl font-bold'>Métricas Del Sistema</h1>
+    <div className="my-chart text-center p-10 text-black">
+      <h1 className='text-red-600 mb-4 text-3xl font-bold'>Métricas Del Sistema</h1>
       <div className="chart-container gap-6 grid md:grid-cols-3 grid-cols-1">
         <div className="chart-item">
-          <h2>Tamaño Del Directorio</h2>
+          <h2 className='font-bold'>Tamaño Del Directorio</h2>
           <Bar data={sizeData} options={options1}/>
         </div>
         <div className="chart-item">
-          <h2>Memoria En Uso</h2>
+          <h2 className='font-bold'>Memoria En Uso</h2>
           <Bar data={memoryData} options={options1} />
         </div>
         <div className="chart-item">
-          <h2>CPU En Usado</h2>
+          <h2 className='font-bold'>CPU En Usado</h2>
           <Doughnut data={cpuData} options={options3}/>
         </div>
       </div>
