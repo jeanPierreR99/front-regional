@@ -5,17 +5,14 @@ import Logo from "../components/Logo";
 const Footer: React.FC = () => {
   const { paramURL } = useParam();
   return (
-    <div className="pt-2">
+    <div className={       paramURL == "login"
+    ? "hidden":"pt-2"}>
       {" "}
       <div className="mb-10 px-4 md:px-4 lg:px-16">
         <Logo></Logo>
       </div>
       <footer
-        className={
-          paramURL == "login"
-            ? "hidden"
-            : "bg-blue-900 md:grid md:grid-cols-5 pt-10 md:pt-0"
-        }
+        className="bg-blue-900 md:grid md:grid-cols-5 pt-10 md:pt-0"
       >
         <div className="relative block h-32 md:col-span-2 md:h-full">
           <img

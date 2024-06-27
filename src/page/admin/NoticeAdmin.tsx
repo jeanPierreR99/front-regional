@@ -25,14 +25,14 @@ const NoticeAdmin: React.FC = () => {
       <FormNoticeAdmin toast={toast}></FormNoticeAdmin>
       <details className="p-4 border border-gray-300 rounded-lg">
         <summary className="text-lg font-semibold cursor-pointer text-green-600">
-          Noticias
+          Ver Noticias
         </summary>
-        <div className="w-full flex md:flex-wrap flex-col md:flex-row gap-3 justify-center overflow-hidden">
+        <div className="w-full flex md:flex-wrap flex-col md:flex-row gap-3 justify-between overflow-hidden">
           {Array.isArray(paramNotice) &&
             paramNotice.map((data) => (
               <div
                 key={data.id}
-                className=" w-full md:w-5/12"
+                className=" w-full md:w-[49%]"
                 onClick={() => {
                   openModalView(data.id);
                 }}

@@ -12,8 +12,21 @@ import PostAdmin from "../page/admin/PostAdmin";
 import ENDPOINTS from "../config";
 import axios from "axios";
 import MultimediaAdmin from "../page/admin/MultimediaAdmin";
-import { handleChangeParam, handleData } from "../functions";
+import { HandlePage, handleChangeParam, handleData } from "../functions";
+import loading from "../assets/img-icon/home.gif";
 import SystemMetrics from "../page/admin/SystemMetrics";
+
+const pageMap = {
+  admin: Home,
+  notice: NoticeAdmin,
+  estadistica: SystemMetrics,
+  post: PostAdmin,
+  multimedia: MultimediaAdmin,
+};
+
+const allowPages = ["admin", "notice", "estadistica", "post", "multimedia"];
+
+type PageMapKeys = keyof typeof pageMap;
 
 const RouteAdmin: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
@@ -21,6 +34,7 @@ const RouteAdmin: React.FC = () => {
   const { logout } = useLogin();
   const { setParamNotice } = useNotice();
   const { setParamPost } = usePost();
+
   const sessionDestroy = () => {
     localStorage.clear();
     handleChangeParam("home", setParamURL, setParamId);
@@ -42,11 +56,24 @@ const RouteAdmin: React.FC = () => {
     };
 
     window.addEventListener("popstate", handlePopState);
-
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
   }, []);
+
+  if (!allowPages.includes(paramURL)) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <img
+          src={loading}
+          className="w-16 h-16 bg-[#04BDF3] rounded-full"
+          alt="loading"
+        />
+      </div>
+    );
+  }
+
+  const pageKey = paramURL as PageMapKeys;
 
   return (
     <div className="">
@@ -90,19 +117,7 @@ const RouteAdmin: React.FC = () => {
                 </div>
               </div>
             )}
-            {paramURL === "admin" ? (
-              <Home />
-            ) : paramURL === "notice" ? (
-              <NoticeAdmin />
-            ) : paramURL === "estadistica" ? (
-              <SystemMetrics />
-            ) : paramURL === "post" ? (
-              <PostAdmin />
-            ) : paramURL === "multimedia" ? (
-              <MultimediaAdmin />
-            ) : (
-              <h1>NO EXISTE LA RUTA</h1>
-            )}
+            <HandlePage page={pageKey} pageMap={pageMap}></HandlePage>
           </div>
         </div>
       )}

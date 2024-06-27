@@ -15,9 +15,9 @@ const processContent = (text: string) => {
   if (!text) return "";
   const boldPattern = /\*\*(.*?)\*\*/g;
   text = text.replace(boldPattern, '<strong class="text-bold">$1</strong>');
-  
+
   const listPattern = /--(.*?)--/g;
-  text = text.replace(listPattern, '<li>$1</li>');
+  text = text.replace(listPattern, "<li>$1</li>");
 
   return text;
 };
@@ -36,10 +36,8 @@ const ModalViewPost: React.FC<ModalViewPostProps> = ({
   const deletePost = async (id: any) => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `${ENDPOINTS.DELETE_POST+id}`
-      );
-      if (response.data.response.status===200) {
+      const response = await axios.get(`${ENDPOINTS.DELETE_POST + id}`);
+      if (response.data.response.status === 200) {
         setParamPost((prevNotices: any) =>
           prevNotices.filter((notice: any) => notice.id !== id)
         );
@@ -52,6 +50,7 @@ const ModalViewPost: React.FC<ModalViewPostProps> = ({
       console.log("error en: " + e);
     }
   };
+
   return (
     <div className="fixed h-screen w-full top-0 left-0 z-[999] py-4 outline-none bg-black/30">
       <div className="relative z-10 w-11/12 lg:w-[50%] md:w-8/12  h-[100%] mx-auto">

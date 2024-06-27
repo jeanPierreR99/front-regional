@@ -18,9 +18,10 @@ function MultimediaAdmin() {
     setAllUrls(auxArray);
     window.scrollTo(0, 0);
   }, [paramNotice]);
+  
   return (
     <div>
-      <div className="grid grid-cols-2 gap-2  -mx-2 md:-mx-4 lg:-mx-16">
+      <div className="grid grid-cols-3 gap-2  -mx-2 md:-mx-4 lg:-mx-16">
         {allUrls &&
           Array.isArray(allUrls) &&
           allUrls.map((data: any, index: any) => (

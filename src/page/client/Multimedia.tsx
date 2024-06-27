@@ -4,6 +4,7 @@ import ImageGallery from "../../components/ImageGallery";
 import SocialMedia from "../../components/SocialMedia";
 import Links from "../../components/Links";
 import { useNotice, useParamId } from "../../context/Context.provider";
+import { SkeletonMultimediaCard } from "../../components/Skeleton";
 const Multimedia: React.FC = () => {
   const { paramNotice } = useNotice();
   const { paramId, setParamId } = useParamId();
@@ -55,13 +56,18 @@ const Multimedia: React.FC = () => {
           {paramId !== "1" ? title : "IMGENES Y VIDEOS"}
         </h2>
         <div className="grid grid-cols-2 gap-2">
+          {!paramNotice && (
+            <div className="col-span-2 grid grid-cols-2 gap-2">
+          <SkeletonMultimediaCard></SkeletonMultimediaCard>
+          <SkeletonMultimediaCard></SkeletonMultimediaCard>
+          <SkeletonMultimediaCard></SkeletonMultimediaCard>
+          <SkeletonMultimediaCard></SkeletonMultimediaCard>
+          </div>
+          )}
           {allUrls &&
             Array.isArray(allUrls) &&
             allUrls.map((data: any, index: any) => (
-              <div
-                key={index}
-                className="col-span-1 relative overflow-hidden"
-              >
+              <div key={index} className="col-span-1 relative overflow-hidden">
                 <ImageGallery url={data.url} type={data.type}></ImageGallery>
               </div>
             ))}

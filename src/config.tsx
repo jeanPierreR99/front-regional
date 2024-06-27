@@ -8,6 +8,7 @@ const ENDPOINTS = {
   DELETE_NOTICE: `${PATH_DOMAIN}/regional/server/?action=delete_notice&id=`,
   ADD_NOTICE: `${PATH_DOMAIN}/regional/server/?action=add_notice`,
   ADD_POST: `${PATH_DOMAIN}/regional/server/?action=add_post`,
+  UPDATE_POST: `${PATH_DOMAIN}/regional/server/?action=update_post`,
   GET_POST: `${PATH_DOMAIN}/regional/server/?action=get_post`,
   DELETE_POST: `${PATH_DOMAIN}/regional/server/?action=delete_post&id=`,
   LOGIN: `${PATH_DOMAIN}/regional/server/?action=verify_user`,

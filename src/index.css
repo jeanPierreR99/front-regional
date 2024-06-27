@@ -45,6 +45,15 @@
   background-size: cover;
 }
 
+.tejido-login {
+  top:0;
+  opacity: .4;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://sgipi-tesis.vercel.app/assets/tejido-922ba2a1.png");
+}
+
 .pixel {
   position: relative;
   padding-top: 46px;

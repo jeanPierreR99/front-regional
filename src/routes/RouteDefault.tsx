@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Inicio from "../page/client/Home";
 import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
@@ -14,6 +14,8 @@ import Multimedia from "../page/client/Multimedia";
 import loading from "../assets/img-icon/home.gif";
 import Post from "../page/client/Post";
 import { handleData } from "../functions";
+import { HandlePage } from "../functions";
+
 export interface DataNotice {
   id: string;
   title: string;
@@ -23,11 +25,32 @@ export interface DataNotice {
   date_published: string;
 }
 
+const pageMap = {
+  home: Inicio,
+  notice: Notice,
+  about: About,
+  multimedia: Multimedia,
+  post: Post,
+  contact: Contact,
+  login: Login,
+};
+
+const allowPages = [
+  "home",
+  "notice",
+  "about",
+  "multimedia",
+  "post",
+  "contact",
+  "login",
+];
+
+type PageMapKeys = keyof typeof pageMap;
+
 const RouteDefault: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
   const { setParamNotice } = useNotice();
   const { setParamPost } = usePost();
-  const [load, setLoad] = useState(true);
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const searchQuery = searchParams.get("search");
@@ -43,51 +66,33 @@ const RouteDefault: React.FC = () => {
     };
 
     window.addEventListener("popstate", handlePopState);
-    setTimeout(() => {
-      setLoad(false);
-    }, 1500);
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
   }, []);
 
+  if (!allowPages.includes(paramURL)) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <img
+          src={loading}
+          className="w-16 h-16 bg-[#04BDF3] rounded-full"
+          alt="loading"
+        />
+      </div>
+    );
+  }
+
+  const pageKey = paramURL as PageMapKeys;
+
   return (
-    <div className="bg-white">
-      {load && (
-        <div className="h-screen flex justify-center items-center">
-          <img
-            src={loading}
-            className="w-16 h-16 bg-[#04BDF3] rounded-full"
-            alt=""
-          />
-        </div>
-      )}
-      {!load && (
-        <div>
-          <Header />
-          <div className="">
-            {paramURL === "home" ? (
-              <Inicio />
-            ) : paramURL === "notice" ? (
-              <Notice />
-            ) : paramURL === "about" ? (
-              <About />
-            ) : paramURL === "multimedia" ? (
-              <Multimedia />
-            ) : paramURL === "post" ? (
-              <Post />
-            ) : paramURL === "contact" ? (
-              <Contact />
-            ) : paramURL === "login" ? (
-              <Login />
-            ) : (
-              <h1>NO EXISTE LA RUTA</h1>
-            )}
-          </div>
-          <Footer></Footer>
-        </div>
-      )}
+    <div className="bg-white w-full">
+      <Header />
+      <HandlePage page={pageKey} pageMap={pageMap}></HandlePage>
+      <Footer></Footer>
     </div>
+
+    
   );
 };
 

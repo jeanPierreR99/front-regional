@@ -4,6 +4,7 @@ import SocialMedia from "../../components/SocialMedia";
 import Links from "../../components/Links";
 import ENDPOINTS from "../../config";
 import CardPost from "../../components/CardPost";
+import { SkeletonPostCard } from "../../components/Skeleton";
 
 const processContent = (text: string) => {
   if (!text) return "";
@@ -34,10 +35,11 @@ const Post: React.FC = () => {
     handleChangeParam();
     window.scrollTo(0, 0);
   }, [paramURL, paramId]);
+
   return (
     <div className="pt-24 pb-6 overflow-hidden px-4 md:px-4 lg:px-16 flex flex-col gap-6">
-      <div className="flex">
-        <div className="flex-col hidden md:flex w-2/12 gap-4 px-2">
+      <div className="flex gap-3">
+        <div className="flex-col hidden md:flex w-2/12 gap-4">
           <div className="overflow-y-auto h-[400px] flex-shrink-0">
             <iframe
               src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fposts%2Fpfbid0KrTewcdsUzVh3WvXd2fKkqBs53uh98hsag2mTvXXg7FQrowyuSxGzShKjLEW45wql&show_text=true&width=200"
@@ -60,9 +62,17 @@ const Post: React.FC = () => {
           </div>
         </div>
         <div className="w-full flex flex-col gap-8 md:w-10/12">
+          {!paramPost && (
+            <div className="w-full md:10/12 h-fit gap-3 flex md:flex-wrap flex-col md:flex-row justify-between">
+              {" "}
+              <SkeletonPostCard></SkeletonPostCard>
+              <SkeletonPostCard></SkeletonPostCard>
+              <SkeletonPostCard></SkeletonPostCard>
+            </div>
+          )}
           <div className="flex flex-wrap order-1 justify-between gap-2 md:gap-4 pb-2 right_scroll">
             {paramPost &&
-              paramPost&&paramPost.map((data: any, index: any) => (
+              paramPost.map((data: any, index: any) => (
                 <CardPost
                   key={index}
                   id={data.id}
@@ -74,7 +84,8 @@ const Post: React.FC = () => {
               ))}
           </div>
           {paramId &&
-            paramPost&&paramPost.map((data: any, index: any) => {
+            paramPost &&
+            paramPost.map((data: any, index: any) => {
               if (data.id.toString() == paramId) {
                 return (
                   <div key={index} className="w-full">
@@ -84,7 +95,7 @@ const Post: React.FC = () => {
                         src={`${ENDPOINTS.DIR_IMG}/${data.file.url}`}
                         alt=""
                       />
-                      <p className=" text-red-600 font-bold">
+                      <p className=" text-blue-700 font-bold">
                         Publicado el {data.date_published}
                       </p>
                       <h4 className="uppercase text-black font-bold text-xl md:text-2xl">

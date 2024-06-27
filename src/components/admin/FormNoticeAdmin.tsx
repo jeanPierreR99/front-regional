@@ -3,6 +3,7 @@ import axios from "axios";
 import ENDPOINTS from "../../config";
 import { useNotice } from "../../context/Context.provider";
 import relojArena from "../../assets/img-icon/loader-sub.gif";
+import { addData } from "../../functions";
 
 interface FormNoticeAdminProps {
   toast: any;
@@ -73,8 +74,8 @@ const FormNoticeAdmin: React.FC<FormNoticeAdminProps> = ({ toast }) => {
     let date_published = new Date().getTime().toString();
     let create_at = getDate();
 
-    if (!title || !content || files.length < 4) {
-      setUploadMessage("Rellene todos los campos y 4 archivos requeridos");
+    if (!title || !content || files.length < 1) {
+      setUploadMessage("Rellene todos los campos y 1 archivo requerido");
       return;
     }
 
@@ -88,16 +89,12 @@ const FormNoticeAdmin: React.FC<FormNoticeAdminProps> = ({ toast }) => {
       formData.append("files[]", files[i]);
     }
     try {
-      const response = await axios.post(ENDPOINTS.ADD_NOTICE, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log(response);
+      const response = await addData(axios, formData, ENDPOINTS.ADD_NOTICE);
+
       if (response.data.response.status === 200) {
         const updatedParamNotice = [
-          ...paramNotice,
           response.data.response.data,
+          ...paramNotice,
         ];
 
         setParamNotice(updatedParamNotice);
@@ -209,9 +206,7 @@ const FormNoticeAdmin: React.FC<FormNoticeAdminProps> = ({ toast }) => {
                 />
               </div>
             )}
-            <p className=" text-red-600 font-bold">
-              Publicado el {getDate()}
-            </p>
+            <p className=" text-red-600 font-bold">Publicado el {getDate()}</p>
             <span className="text-xl md:text-2xl font-bold  text-black uppercase">
               {title}
             </span>

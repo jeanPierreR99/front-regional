@@ -89,6 +89,22 @@ const GallerySection: React.FC<any> = ({ files }) => {
     triggerOnce: true,
     threshold: 0.2,
   });
+  const { ref: ref3, inView: inView3 } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  const { ref: ref4, inView: inView4 } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  const { ref: ref5, inView: inView5 } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+  const { ref: ref6, inView: inView6 } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
 
   return (
     <div className="mx-auto w-full">
@@ -99,52 +115,52 @@ const GallerySection: React.FC<any> = ({ files }) => {
             initial={{ opacity: 0, x: -100 }}
             animate={inView1 ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
-            className="overflow-hidden  col-span-1"
+            className="overflow-hidden col-span-1"
           >
             {verifyTypeFileLocal(filesLocal[0].type, filesLocal[0].url)}
           </motion.div>
           <motion.div
-            ref={ref1}
-            initial={{ opacity: 0, x: 100 }}
-            animate={inView1 ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+            ref={ref2}
+            initial={{ opacity: 0, y: -100 }}
+            animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: -100 }}
             transition={{ duration: 0.5 }}
-            className="overflow-hidden  col-span-1"
+            className="overflow-hidden col-span-1"
           >
             {verifyTypeFileLocal(filesLocal[1].type, filesLocal[1].url)}
           </motion.div>
           <motion.div
-            ref={ref2}
-            initial={{ opacity: 0, y: 100 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+            ref={ref3}
+            initial={{ opacity: 0, x: 100 }}
+            animate={inView3 ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
             transition={{ duration: 0.5 }}
-            className="overflow-hidden  col-span-1"
+            className="overflow-hidden col-span-1"
           >
             {verifyTypeFileLocal(filesLocal[2].type, filesLocal[2].url)}
           </motion.div>
           <motion.div
-            ref={ref2}
-            initial={{ opacity: 0, y: 100 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+            ref={ref4}
+            initial={{ opacity: 0, x: -100 }}
+            animate={inView4 ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
-            className="overflow-hidden  col-span-1"
+            className="overflow-hidden col-span-1"
           >
             {verifyTypeFileLocal(filesLocal[3].type, filesLocal[3].url)}
           </motion.div>
           <motion.div
-            ref={ref2}
+            ref={ref5}
             initial={{ opacity: 0, y: 100 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+            animate={inView5 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 0.5 }}
-            className="overflow-hidden  col-span-1"
+            className="overflow-hidden col-span-1"
           >
             {verifyTypeFileLocal(filesLocal[4].type, filesLocal[4].url)}
           </motion.div>
           <motion.div
-            ref={ref2}
-            initial={{ opacity: 0, y: 100 }}
-            animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+            ref={ref6}
+            initial={{ opacity: 0, x: -100 }}
+            animate={inView6 ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
-            className="overflow-hidden  col-span-1"
+            className="overflow-hidden col-span-1"
           >
             {verifyTypeFileLocal(filesLocal[5].type, filesLocal[5].url)}
           </motion.div>

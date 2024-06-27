@@ -3,6 +3,7 @@ import axios from "axios";
 import ENDPOINTS from "../../config";
 import { usePost } from "../../context/Context.provider";
 import relojArena from "../../assets/img-icon/loader-sub.gif";
+import { addData } from "../../functions";
 
 interface FormPostAdminProps {
   toast: any;
@@ -65,17 +66,10 @@ const FormPostAdmin: React.FC<FormPostAdminProps> = ({ toast }) => {
     formData.append("create_at", create_at);
     formData.append("file", file);
     try {
-      const response = await axios.post(ENDPOINTS.ADD_POST, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log(response);
+      const response = await addData(axios, formData, ENDPOINTS.ADD_POST);
+
       if (response.data.response.status === 200) {
-        const updatedParamPost = [
-          ...paramPost,
-          response.data.response.data,
-        ];
+        const updatedParamPost = [response.data.response.data, ...paramPost];
 
         setParamPost(updatedParamPost);
         setTitle("");

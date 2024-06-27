@@ -36,9 +36,11 @@ const CardNotice: React.FC<DataNotice> = ({
         />
       </div>
       <div className="px-4 py-1 w-8/12 relative overflow-hidden">
-        <a className="line-clamp-3 text-sm text-blue-500 font-bold">{title}</a>
+        <a className="line-clamp-3 text-sm text-black font-bold">{title}</a>
         <p className="text-black text-sm font-light line-clamp-2 ">{content}</p>
-        <span className="text-gray-500 text-right font-light text-xs line-clamp-2 ">{date_published}</span>
+        <span className="text-gray-500 text-right font-light text-xs line-clamp-2 ">
+          {date_published}
+        </span>
       </div>
     </motion.div>
   );

@@ -1,6 +1,4 @@
 import React from "react";
-// import { useInView } from "react-intersection-observer";
-// import { motion } from "framer-motion";
 
 const itemsProyects = [
   {
@@ -22,8 +20,11 @@ const itemsProyects = [
 const CardProjects: React.FC = () => {
   return (
     <div className="grid grid-cols-1 w-full md:grid-cols-3 gap-14 md:gap-4 mx-4 z-10">
-      {itemsProyects.map((data) => (
-        <div className="h-[350px] w-full gap-10 text-center flex flex-col text-gray-800 font-bold">
+      {itemsProyects.map((data, index) => (
+        <div
+          key={index}
+          className="h-[350px] w-full gap-10 text-center flex flex-col text-gray-800 font-bold"
+        >
           {data.title}
           <iframe
             className="w-full  h-full"

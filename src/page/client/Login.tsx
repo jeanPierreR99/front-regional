@@ -3,6 +3,7 @@ import logo from "../../assets/img-main/logo-vivienda.png";
 import { useLogin } from "../../context/Context.provider";
 import axios from "axios";
 import ENDPOINTS from "../../config";
+import { addData } from "../../functions";
 const Login: React.FC = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -22,21 +23,15 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     if (!user && !password) {
       setError("Por favor, introduzca su usuario y contraseña");
-    }
-    else if (!user) {
+    } else if (!user) {
       setError("Por favor, introduzca su usuario");
-    }
-    else if (!password) {
+    } else if (!password) {
       setError("Por favor, introduzca su contraseña");
     } else {
       formData.append("user", user);
       formData.append("password", password);
       try {
-        const response = await axios.post(ENDPOINTS.LOGIN, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        const response = await addData(axios, formData, ENDPOINTS.LOGIN);
         if (response.data.response.data) {
           const objectUser = {
             user: response.data.response.data,
@@ -56,23 +51,19 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
-        <div>
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">
-            Iniciar sesión
-          </h2>
-        </div>
-        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-          <div className=" flex flex-col gap-2 ">
-            <img src={logo} alt="" className="bg-white object-scale-down" />
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative">
+      <div className="tejido-login absolute"></div>
+      <div className="max-w-xs w-full z-10">
+        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <div className=" flex flex-col gap-4 ">
+            <img src={logo} alt="" className="w-full h-20" />
             <input
               id="user"
               name="user"
               type="text"
               autoComplete="text"
               required
-              className="rounded-md w-full px-3 py-2 border border-gray-300 outline-none focus:border-blue-600 placeholder-gray-500 text-gray-500 sm:text-sm"
+              className="rounded-md w-full px-3 py-2 border border-gray-300 outline-none focus:border-blue-600 placeholder-gray-500 text-gray-900 sm:text-sm"
               placeholder="Correo electrónico"
               value={user}
               onChange={(e) => setUser(e.target.value)}
@@ -94,15 +85,13 @@ const Login: React.FC = () => {
             )}
           </div>
 
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={handleLogin}
-            >
-              Iniciar sesión
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            onClick={handleLogin}
+          >
+            Iniciar sesión
+          </button>
         </form>
       </div>
     </div>

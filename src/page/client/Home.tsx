@@ -85,9 +85,7 @@ const Inicio: React.FC = () => {
             </h6>
           </div>
           <div className="py-6">
-            {Array.isArray(paramNotice) && paramNotice.length > 0 && (
               <GallerySection files={[]}></GallerySection>
-            )}
           </div>
         </div>
         <div className="px-4 py-2 md:px-4 lg:px-16 mt-6">

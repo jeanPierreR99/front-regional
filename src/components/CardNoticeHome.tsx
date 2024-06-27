@@ -37,9 +37,9 @@ const CardNoticeHome: React.FC<DataNotice> = ({
         />
       </div>
       <div className="px-2 py-4 relative overflow-hidden">
-        <a className="relative text-sm line-clamp-3 text-black font-bold  z-10 mb-2">
+        <span className="relative text-sm line-clamp-3 text-black font-bold  z-10 mb-2">
           {title}
-        </a>
+        </span>
         <p className="relative z-10 text-black font-light text-sm line-clamp-3">
           {content}
         </p>
