@@ -1,34 +1,28 @@
 export function handleChangeParam(
   newParam: string,
   setParamURL: any,
-  setParamId: any
+  setParamId: any,
+  setSearchParams: any
 ) {
   setParamURL(newParam);
   setParamId("1");
-
-  const newSearchParams = new URLSearchParams(window.location.search);
-  newSearchParams.delete("id");
-  newSearchParams.set("search", newParam);
-  const newUrl = `?${newSearchParams.toString()}`;
-  window.history.pushState({ path: newUrl }, "", newUrl);
+  setSearchParams({ page: newParam.toString() });
+  window.scrollTo(0,0)
+  // window.history.pushState({}, "", `search?page=${newParam}`);
 }
 
 export function handleChangeParamId(
   param: string,
   id: string,
   setParamURL: any,
-  setParamId: any
+  setParamId: any,
+  setSearchParams: any
 ) {
   setParamURL(param);
   setParamId(id);
-
-  const newSearchParams = new URLSearchParams(window.location.search);
-  newSearchParams.delete("search");
-  newSearchParams.delete("id");
-  newSearchParams.append("search", param);
-  newSearchParams.append("id", id);
-  const newUrl = `?${newSearchParams.toString()}`;
-  window.history.pushState({ path: newUrl }, "", newUrl);
+  setSearchParams({ page: param.toString(), id: id.toString() });
+  window.scrollTo(0,0)
+  // window.history.pushState({}, "", `search?page=${param}&id=${id.toString()}`);
 }
 
 //HANDLE PAGE

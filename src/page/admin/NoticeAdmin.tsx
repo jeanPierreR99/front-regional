@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNotice } from "../../context/Context.provider";
-import CardNotice from "../../components/CardNotice";
+import CardNotice from "../../components/client/CardNotice";
 import FormNoticeAdmin from "../../components/admin/FormNoticeAdmin";
 import ModalViewNotice from "../../components/admin/ModalViewNotice";
 
@@ -19,7 +19,7 @@ const NoticeAdmin: React.FC = () => {
   const closeModalView = () => {
     setIsOpenView(false);
   };
-  console.log(paramNotice);
+
   return (
     <div className="flex flex-col gap-4">
       <FormNoticeAdmin toast={toast}></FormNoticeAdmin>
@@ -27,12 +27,11 @@ const NoticeAdmin: React.FC = () => {
         <summary className="text-lg font-semibold cursor-pointer text-green-600">
           Ver Noticias
         </summary>
-        <div className="w-full flex md:flex-wrap flex-col md:flex-row gap-3 justify-between overflow-hidden">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10">
           {Array.isArray(paramNotice) &&
             paramNotice.map((data) => (
               <div
                 key={data.id}
-                className=" w-full md:w-[49%]"
                 onClick={() => {
                   openModalView(data.id);
                 }}

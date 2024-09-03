@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GallerySection from "../GallerySection";
+import GallerySection from "../client/GallerySection";
 import { useNotice } from "../../context/Context.provider";
 import ENDPOINTS from "../../config";
 import relojArena from "../../assets/img-icon/loader-sub.gif";

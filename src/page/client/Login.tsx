@@ -1,24 +1,21 @@
 import React, { useState } from "react";
-import logo from "../../assets/img-main/logo-vivienda.png";
-import { useLogin } from "../../context/Context.provider";
+import logo from "../../assets/img-main/LOGOS_DRVCS_2024_02.png";
+import { useLogin, useParam, useParamId } from "../../context/Context.provider";
 import axios from "axios";
 import ENDPOINTS from "../../config";
-import { addData } from "../../functions";
+import { addData, handleChangeParam } from "../../functions";
+import { useSearchParams } from "react-router-dom";
+
 const Login: React.FC = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { setParamURL } = useParam();
+  const { setParamId } = useParamId();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { login } = useLogin();
 
   const formData = new FormData();
-
-  const handleChangeParam = (newParam: string) => {
-    const newSearchParams = new URLSearchParams(window.location.search);
-    newSearchParams.delete("id");
-    newSearchParams.set("search", newParam);
-    const newUrl = `?${newSearchParams.toString()}`;
-    window.history.pushState({ path: newUrl }, "", newUrl);
-  };
 
   const handleLogin = async () => {
     if (!user && !password) {
@@ -38,7 +35,7 @@ const Login: React.FC = () => {
             role: "admin",
           };
           localStorage.setItem("user", JSON.stringify(objectUser));
-          handleChangeParam("admin");
+          handleChangeParam("admin", setParamURL, setParamId, setSearchParams);
           login();
           return;
         }

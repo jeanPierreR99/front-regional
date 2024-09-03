@@ -20,6 +20,11 @@ interface ParamIdContextType {
   setParamId: (paramId: string) => void;
 }
 
+interface GalleryContextType {
+  paramGallery: any | null;
+  setParamGallery: (paramGallery: any) => void;
+}
+
 interface LoginContextType {
   isLoggedIn: boolean;
   login: () => void;
@@ -29,6 +34,7 @@ interface LoginContextType {
 const LoginContext = createContext<LoginContextType | undefined>(undefined);
 const ParamContext = createContext<ParamContextType | undefined>(undefined);
 const NoticeContext = createContext<NoticeContextType | null>(null);
+const GalleryContext = createContext<GalleryContextType | null>(null);
 const PostContext = createContext<PostContextType | null>(null);
 const ParamIdContext = createContext<ParamIdContextType | undefined>(undefined);
 
@@ -83,6 +89,23 @@ export const NoticeProvider: React.FC<{ children: ReactNode }> = ({
     <NoticeContext.Provider value={noticeContextValue}>
       {children}
     </NoticeContext.Provider>
+  );
+};
+
+export const GalleryProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [paramGallery, setParamGallery] = React.useState<any | null>(null);
+
+  const galleryContextValue: GalleryContextType = {
+    paramGallery,
+    setParamGallery,
+  };
+
+  return (
+    <GalleryContext.Provider value={galleryContextValue}>
+      {children}
+    </GalleryContext.Provider>
   );
 };
 
@@ -142,6 +165,15 @@ export const useNotice = () => {
 
   if (!context) {
     throw new Error("NoticeContext debe ser usado dentro de un NOTICEContext");
+  }
+  return context;
+};
+
+export const useGallery = () => {
+  const context = useContext(GalleryContext);
+
+  if (!context) {
+    throw new Error("NoticeContext debe ser usado dentro de un GALLERY Context");
   }
   return context;
 };

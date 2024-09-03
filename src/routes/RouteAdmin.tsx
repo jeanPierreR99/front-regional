@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {
+  useGallery,
   useLogin,
   useNotice,
   useParam,
@@ -15,6 +16,7 @@ import MultimediaAdmin from "../page/admin/MultimediaAdmin";
 import { HandlePage, handleChangeParam, handleData } from "../functions";
 import loading from "../assets/img-icon/home.gif";
 import SystemMetrics from "../page/admin/SystemMetrics";
+import { useSearchParams } from "react-router-dom";
 
 const pageMap = {
   admin: Home,
@@ -30,35 +32,25 @@ type PageMapKeys = keyof typeof pageMap;
 
 const RouteAdmin: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { setParamId } = useParamId();
   const { logout } = useLogin();
   const { setParamNotice } = useNotice();
   const { setParamPost } = usePost();
+  const { setParamGallery } = useGallery();
+  const searchQuery = searchParams.get("page");
 
   const sessionDestroy = () => {
     localStorage.clear();
-    handleChangeParam("home", setParamURL, setParamId);
+    handleChangeParam("home", setParamURL, setParamId, setSearchParams);
     logout();
   };
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const searchQuery = searchParams.get("search");
     setParamURL(searchQuery || "admin");
-
     handleData(axios, ENDPOINTS.GET_NOTICE, setParamNotice);
     handleData(axios, ENDPOINTS.GET_POST, setParamPost);
-
-    const handlePopState = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const searchQuery = searchParams.get("search");
-      setParamURL(searchQuery || "admin");
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
+    handleData(axios, ENDPOINTS.GET_GALLERY, setParamGallery);
   }, []);
 
   if (!allowPages.includes(paramURL)) {
@@ -79,7 +71,7 @@ const RouteAdmin: React.FC = () => {
     <div className="">
       {paramURL && (
         <div>
-          <div className="w-full px-4 h-[60px] bg-[#0306a9] flex items-center justify-between ">
+          <div className="w-full px-4 h-[60px] bg-gray-600 flex items-center justify-between ">
             <span className="text-white text-xl">ADMINISTRADOR</span>
             <button
               onClick={sessionDestroy}
@@ -108,7 +100,12 @@ const RouteAdmin: React.FC = () => {
                   <button
                     className="hover:text-gray-500/70"
                     onClick={() =>
-                      handleChangeParam("admin", setParamURL, setParamId)
+                      handleChangeParam(
+                        "admin",
+                        setParamURL,
+                        setParamId,
+                        setSearchParams
+                      )
                     }
                   >
                     Admin

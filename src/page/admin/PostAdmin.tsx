@@ -1,7 +1,7 @@
 import { ToastContainer, toast } from "react-toastify";
 import FormPostAdmin from "../../components/admin/FormPostAdmin";
 import { usePost } from "../../context/Context.provider";
-import CardPost from "../../components/CardPost";
+import CardPost from "../../components/client/CardPost";
 import { useEffect, useState } from "react";
 import ModalViewPost from "../../components/admin/ModalViewPost";
 import axios from "axios";
@@ -67,11 +67,12 @@ const PostAdmin: React.FC = () => {
         <summary className="text-lg font-semibold cursor-pointer text-green-600">
           Ver comunicados
         </summary>
-        <div className="w-full flex flex-wrap md:flex-row  gap-3 justify-between items-center overflow-hidden">
+        <div className="grid grid-cols-3 gap-10">
           {Array.isArray(paramPost) &&
             paramPost.map((data: any) => (
               <div key={data.id} className="">
                 <div
+                className=""
                   onClick={() => {
                     openModalView(data.id);
                   }}

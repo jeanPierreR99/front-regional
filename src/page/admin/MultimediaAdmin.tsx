@@ -1,38 +1,48 @@
-import {useEffect, useState} from "react";
-import { useNotice } from "../../context/Context.provider";
-import ImageGallery from "../../components/ImageGallery";
+import { useEffect } from "react";
+import { useGallery } from "../../context/Context.provider";
+import FormGalleryAdmin from "../../components/admin/FormGalleryAdmin";
+import { toast, ToastContainer } from "react-toastify";
+import InteractiveGallery from "../../components/client/InteractiveGallery";
 
 function MultimediaAdmin() {
-  const { paramNotice } = useNotice();
-  const [allUrls, setAllUrls] = useState<Array<string>>([]);
+  const { paramGallery } = useGallery();
 
   useEffect(() => {
-    let auxArray: any = [];
-    Array.isArray(paramNotice) &&
-      paramNotice.forEach((obj: any) => {
-        Array.isArray(obj.files) &&
-          obj.files.forEach((element: any) => {
-            auxArray.push(element);
-          });
-      });
-    setAllUrls(auxArray);
     window.scrollTo(0, 0);
-  }, [paramNotice]);
-  
+  }, [paramGallery]);
+
   return (
-    <div>
-      <div className="grid grid-cols-3 gap-2  -mx-2 md:-mx-4 lg:-mx-16">
-        {allUrls &&
-          Array.isArray(allUrls) &&
-          allUrls.map((data: any, index: any) => (
-            <div
-              key={index}
-              className="col-span-1 relative overflow-hidden"
-            >
-              <ImageGallery url={data.url} type={data.type}></ImageGallery>
-            </div>
-          ))}
-      </div>
+    <div className="flex flex-col gap-4">
+      <FormGalleryAdmin toast={toast}></FormGalleryAdmin>
+      <details className="p-4 border border-gray-300 rounded-lg">
+        <summary className="text-lg font-semibold cursor-pointer text-green-600">
+          Ver Galleria
+        </summary>
+        <div className="grid md:grid-cols-5 grid-cols-2 gap-10">
+          {paramGallery &&
+            Array.isArray(paramGallery) &&
+            paramGallery.map((data: any, index: any) => (
+              <div key={index} className="">
+                <InteractiveGallery
+                  title={data.title}
+                  url={data.files[0].url}
+                  additionalImages={data.files}
+                ></InteractiveGallery>
+              </div>
+            ))}
+        </div>
+      </details>
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import {
+  GalleryProvider,
   LoginProvider,
   NoticeProvider,
   ParamIdProvider,
@@ -6,21 +7,26 @@ import {
   PostProvider,
 } from "./context/Context.provider";
 import RouteMain from "./routes/RouteMain";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <div className="app App">
-      <LoginProvider>
-      <ParamProvider>
-        <NoticeProvider>
-          <PostProvider>
-          <ParamIdProvider>
-            <RouteMain></RouteMain>
-          </ParamIdProvider>
-          </PostProvider>
-        </NoticeProvider>
-      </ParamProvider>
-      </LoginProvider>
+      <BrowserRouter>
+        <LoginProvider>
+          <ParamProvider>
+            <NoticeProvider>
+              <GalleryProvider>
+                <PostProvider>
+                  <ParamIdProvider>
+                    <RouteMain></RouteMain>
+                  </ParamIdProvider>
+                </PostProvider>
+              </GalleryProvider>
+            </NoticeProvider>
+          </ParamProvider>
+        </LoginProvider>
+      </BrowserRouter>
     </div>
   );
 }

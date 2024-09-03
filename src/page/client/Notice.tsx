@@ -3,12 +3,12 @@ import {
   useParam,
   useParamId,
 } from "../../context/Context.provider";
-import CardNotice from "../../components/CardNotice";
-import { useEffect } from "react";
-import Links from "../../components/Links";
-import ENDPOINTS from "../../config";
-import SocialMedia from "../../components/SocialMedia";
-import { handleChangeParamId } from "../../functions";
+import CardNotice from "../../components/client/CardNotice";
+import { useEffect, useState } from "react";
+import { handleChangeParamId, handleChangeParam } from "../../functions";
+import { SliderImageVideo } from "../../components/client/InteractiveGallery";
+import { useSearchParams } from "react-router-dom";
+import HeaderSub from "../../components/client/HeaderSub";
 
 const processContent = (text: string) => {
   if (!text) return "";
@@ -34,151 +34,65 @@ const SkeletonNoticeCard = () => {
   );
 };
 
+export interface propHeader {
+  title: string;
+  date: string;
+}
+
 const Notice: React.FC = () => {
   const { paramNotice } = useNotice();
   const { paramURL, setParamURL } = useParam();
   const { paramId, setParamId } = useParamId();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [valHeaderNotice, setValHeaderNotice] = useState<propHeader>({
+    title: "",
+    date: "",
+  });
 
-  const handleChangeParam = () => {
-    const newSearchParams = new URLSearchParams(window.location.search);
-    newSearchParams.set("search", "notice");
-
-    setParamId(newSearchParams.get("id") || "");
-    const newUrl = `?${newSearchParams.toString()}`;
-    window.history.pushState({ path: newUrl }, "", newUrl);
+  const changeLocalParam = () => {
+    setParamId(searchParams.get("id") || "");
+    if (paramId && paramNotice) {
+      const foundNotice = paramNotice.find(
+        (obj: any) => obj.id === parseFloat(paramId)
+      );
+      if (foundNotice) {
+        setValHeaderNotice({
+          title: foundNotice.title,
+          date: foundNotice.date_published,
+        });
+      }
+    } else {
+      setValHeaderNotice({ title: "", date: "" });
+    }
   };
 
   useEffect(() => {
-    handleChangeParam();
-    window.scrollTo(0, 0);
-  }, [paramId, paramURL]);
+    changeLocalParam();
+  }, [paramURL, paramId]);
 
   return (
-    <div className="flex flex-col px-4 md:px-4 lg:px-16  pt-24 pb-6">
-      <div className="flex gap-3 flex-col md:flex-row w-full">
-        <div className="flex-col hidden md:flex w-2/12 gap-4">
-          <div className="overflow-y-auto h-[400px] flex-shrink-0">
-            <iframe
-              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fposts%2Fpfbid0KrTewcdsUzVh3WvXd2fKkqBs53uh98hsag2mTvXXg7FQrowyuSxGzShKjLEW45wql&show_text=true&width=200"
-              style={{ border: "none" }}
-              width={350}
-              height={800}
-              className="overflow-y-auto"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
-          </div>
-          <div className="overflow-y-auto h-[400px] flex-shrink-0">
-            <iframe
-              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FDRVCSMDD%2Fposts%2Fpfbid0oCxMWY2n4r7ULuZaMyLir91FDcGH2pDQkqJvQ8Yku8VrnNN9pMcVNySmu8gRTzSbl&show_text=true&width=200"
-              style={{ border: "none" }}
-              width={350}
-              height={800}
-              className="overflow-y-auto"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
-          </div>
-        </div>
+    <div className="flex flex-col bg-gray-200 py-1 min-h-screen">
+      <HeaderSub
+        title={valHeaderNotice.title}
+        titleHolder="NOTICIAS"
+        date={valHeaderNotice.date}
+        param="notice"
+      ></HeaderSub>
+      <div className="flex gap-3 flex-col md:flex-row px-2 pb-10 bg-white md:mx-28 mx-4">
         {!paramNotice && (
-          <div className="w-full md:10/12 h-fit gap-3 flex md:flex-wrap flex-col md:flex-row justify-between">
+          <div className="w-full mt-10 md:10/12 h-fit gap-3 flex md:flex-wrap flex-col md:flex-row justify-between">
             <SkeletonNoticeCard></SkeletonNoticeCard>
             <SkeletonNoticeCard></SkeletonNoticeCard>
             <SkeletonNoticeCard></SkeletonNoticeCard>
             <SkeletonNoticeCard></SkeletonNoticeCard>
           </div>
         )}
-        {paramId == "" &&
-          Array.isArray(paramNotice) &&
-          paramNotice.length > 0 && (
-            <div className="w-full md:10/12 overflow-x-hidden h-full gap-3 flex md:flex-wrap flex-col md:flex-row justify-between">
-              {Array.isArray(paramNotice) &&
-                paramNotice.map((data) => (
-                  <div key={data.id} className=" w-full md:w-[49%]">
-                    <CardNotice
-                      id={data.id}
-                      title={data.title}
-                      files={data.files[0].url}
-                      content={data.content}
-                      create_at={data.create_at}
-                      date_published={data.date_published}
-                    ></CardNotice>
-                  </div>
-                ))}
-            </div>
-          )}
-        {paramId &&
-          paramNotice &&
-          paramNotice.map((obj: any, index: any) => {
-            if (obj.id == paramId) {
-              return (
-                <div key={index} className="md:w-8/12 w-full">
-                  <div className="w-full h-[400px] relative">
-                    <img
-                      className="w-full h-full"
-                      src={`${ENDPOINTS.DIR_IMG}/${obj.files[0].url}`}
-                      alt=""
-                    />
-                  </div>
-                  <p className=" text-blue-700 font-bold">
-                    Publicado el {obj.date_published}
-                  </p>
-                  <span className="text-xl md:text-2xl font-bold  text-black uppercase">
-                    {obj.title}
-                  </span>
-                  <div className="column-container">
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: processContent(obj.content),
-                      }}
-                      style={{ whiteSpace: "pre-line" }}
-                      className="first-letter:text-7xl first-letter:mr-3 first-letter:float-left text-black font-light"
-                    ></p>
-                  </div>
-                  <div className="text-right z-10 md:pr-12">
-                    <button
-                      onClick={() =>
-                        handleChangeParamId(
-                          "multimedia",
-                          obj.id,
-                          setParamURL,
-                          setParamId
-                        )
-                      }
-                      className="hover:text-blue-700/70 text-blue-700 float-end w-fit px-2 py-1 rounded-md flex gap-1 font-bold"
-                    >
-                      Ver galeria
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        className="size-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              );
-            }
-          })}
-        {paramId && paramNotice && (
-          <div
-            style={{
-              position: "sticky",
-              top: "90px",
-              overflowY: "auto",
-            }}
-            className="right_scroll w-full md:w-4/12 h-auto md:h-[calc(100vh-100px)] flex flex-col md:flex-col gap-3 md:pr-2 py-14 md:py-0 overflow-x-hidden"
-          >
-            {Array.isArray(paramNotice) &&
-              paramNotice.map((data) => (
+        {paramId == "" && (
+          <div className="grid md:grid-cols-2 gap-10 mt-10">
+            {paramNotice &&
+              paramNotice.map((data: any, index: any) => (
                 <CardNotice
-                  key={data.id}
+                  key={index}
                   id={data.id}
                   title={data.title}
                   files={data.files[0].url}
@@ -189,11 +103,118 @@ const Notice: React.FC = () => {
               ))}
           </div>
         )}
+
+        {paramId &&
+          paramNotice &&
+          paramNotice.map((obj: any, index: any) => {
+            if (obj.id == paramId) {
+              return (
+                <div
+                  key={index}
+                  className="w-full md:grid grid-cols-3 gap-4 pt-8"
+                >
+                  <div className="col-span-2">
+                    <div className="h-[450px] relative overflow-hidden">
+                      <SliderImageVideo
+                        additionalImages={obj.files}
+                        auto={true}
+                      ></SliderImageVideo>
+                    </div>
+                    <div className="column-container">
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: processContent(obj.content),
+                        }}
+                        style={{ whiteSpace: "pre-line" }}
+                        className="first-letter:text-7xl first-letter:mr-3 first-letter:float-left text-black font-light"
+                      ></p>
+                    </div>
+                    <div className="text-right z-10 md:pr-12">
+                      <button
+                        onClick={() =>
+                          handleChangeParamId(
+                            "multimedia",
+                            obj.id,
+                            setParamURL,
+                            setParamId,
+                            setSearchParams
+                          )
+                        }
+                        className="hover:text-blue-700/70 text-blue-700 float-end w-fit px-2 py-1 rounded-md flex gap-1 font-bold"
+                      >
+                        Ver galeria
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          className="size-6"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-span-1 hidden md:block">
+                    <div className="relative mb-4">
+                      <span className="w-full h-1 bg-red-600 absolute top-[50%]"></span>
+                      <span className="bg-red-600 w-fit relative z-[9] text-white py-2 pr-6 flex gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="size-6"
+                        >
+                          <path d="M4.5 4.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h8.25a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3H4.5ZM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06Z" />
+                        </svg>
+                        Otras Noticias
+                      </span>
+                    </div>
+                    {Array.isArray(paramNotice) &&
+                      paramNotice.slice(0, 10).map((data: any) => (
+                        <div key={data.id}>
+                          <button
+                            onClick={() =>
+                              handleChangeParamId(
+                                "notice",
+                                data.id,
+                                setParamURL,
+                                setParamId,
+                                setSearchParams
+                              )
+                            }
+                            className="text-left mt-2 bg-gray-200 text-sm hover:text-blue-500 px-2 py-1"
+                          >
+                            {data.title}
+                          </button>
+                        </div>
+                      ))}
+                    <div className="mt-2 text-center">
+                      <button
+                        onClick={() =>
+                          handleChangeParam(
+                            "notice",
+                            setParamURL,
+                            setParamId,
+                            setSearchParams
+                          )
+                        }
+                        className="border border-blue-500 px-2 py-1 text-blue-500 text-sm hover:bg-blue-500 hover:text-white duration-200"
+                      >
+                        Ver mas
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+          })}
       </div>
-      <div className="mt-14">
-        <Links></Links>
-      </div>
-      <SocialMedia></SocialMedia>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Inicio from "../page/client/Home";
 import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
-import { useParam, usePost } from "../context/Context.provider";
+import { useGallery, useParam, usePost } from "../context/Context.provider";
 import Notice from "../page/client/Notice";
 import axios from "axios";
 import { useNotice } from "../context/Context.provider";
@@ -15,6 +15,8 @@ import loading from "../assets/img-icon/home.gif";
 import Post from "../page/client/Post";
 import { handleData } from "../functions";
 import { HandlePage } from "../functions";
+import Popup from "../components/client/Popup";
+import { useSearchParams } from "react-router-dom";
 
 export interface DataNotice {
   id: string;
@@ -50,25 +52,17 @@ type PageMapKeys = keyof typeof pageMap;
 const RouteDefault: React.FC = () => {
   const { paramURL, setParamURL } = useParam();
   const { setParamNotice } = useNotice();
+  const { setParamGallery } = useGallery();
   const { setParamPost } = usePost();
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const searchQuery = searchParams.get("search");
-    setParamURL(searchQuery || "home");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("page");
+  const searchQueryId = searchParams.get("id");
 
+  useEffect(() => {
+    setParamURL(searchQuery || "home");
     handleData(axios, ENDPOINTS.GET_NOTICE, setParamNotice);
     handleData(axios, ENDPOINTS.GET_POST, setParamPost);
-
-    const handlePopState = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const searchQuery = searchParams.get("search");
-      setParamURL(searchQuery || "home");
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
+    handleData(axios, ENDPOINTS.GET_GALLERY, setParamGallery);
   }, []);
 
   if (!allowPages.includes(paramURL)) {
@@ -87,12 +81,11 @@ const RouteDefault: React.FC = () => {
 
   return (
     <div className="bg-white w-full">
+      {/* <Popup></Popup> */}
       <Header />
       <HandlePage page={pageKey} pageMap={pageMap}></HandlePage>
       <Footer></Footer>
     </div>
-
-    
   );
 };
 
